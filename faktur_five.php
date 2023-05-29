@@ -318,39 +318,74 @@ for ($i = 0; $i < $numofpage; $i++){
             <table width="100%" border="1px">
                 <tr style="background: rgba(217,225,242,1.0);border-bottom: 1px solid;">
                     <th class="text-center" style="width:5%">
-                        #
+                        No
                     </th>
                     <th class="text-center" colspan="3">
-                        Detail
-                    </th>
-                    <th class="text-center" style="width:12%">
-                        Harga
+                        Uraian
                     </th>
                     <th class="text-center" style="width:10%">
                         Qty
+                    </th>
+                    <th class="text-center" style="width:12%">
+                        Harga
                     </th>
                     <th class="text-center" style="width:12%">
                         Total
                     </th>
                 </tr>
                 <tbody>
-              <?php
-                    $sql1a=mysqli_query($conn,"SELECT * FROM $tabeldatabase WHERE nota='$nota' LIMIT $offset,$limit");
+                <?php
+                    $kategori = [];
+                    $sql1a=mysqli_query($conn,"SELECT ij.*,br.kategori FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' LIMIT $offset,$limit");
                     $num = ($i) * 9 + 1;
-                  while($rowa=mysqli_fetch_assoc($sql1a)){
-
-            
-                    ?>
-
-                <tr>
-                    <td><?php echo $num++;?></td>
-                    <td colspan="3"><?php echo $rowa['nama'];?></td>
-                    <td style="text-align:center"><?php echo number_format($rowa['harga']);?></td>
-                    <td style="text-align:center"><?php echo $rowa['jumlah'];?></td>
-                    <td style="text-align:right"><?php echo number_format($rowa['hargaakhir']);?></td>
-                </tr>
-
-            <?php } ?>
+                    $kat_no = 1;
+                    while($rowa=mysqli_fetch_assoc($sql1a)){
+                        $kategori[$rowa['kategori']][] = $rowa;
+                    }
+                    ksort($kategori);
+                    if(!empty($kategori)){
+                        foreach($kategori as $kunci => $val){
+                            if($kunci!=""){
+                                echo "<tr style='border-bottom: 1px solid;'>
+                                <td class='text-center'>$kat_no</td>
+                                <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci</td>
+                                </tr>";
+                                $det_no = 1;
+                                foreach($val as $var){
+                                    $nama = $var['nama'];
+                                    $harga = number_format($var['harga']);
+                                    $jumlah = $var['jumlah'];
+                                    $hargaakhir = number_format($var['hargaakhir']);
+                                    echo "<tr style='border-bottom: 1px solid;'>
+                                    <td></td>
+                                    <td class='text-center' style='width:5%'>$det_no</td>
+                                    <td colspan='2'>$nama</td>
+                                    <td style='text-align:center'>$jumlah</td>
+                                    <td style='text-align:center'>$harga</td>
+                                    <td style='text-align:right'>$hargaakhir</td>
+                                    </tr>";
+                                    $det_no++;
+                                }
+                                $kat_no++;
+                            }else{
+                                foreach($val as $var){
+                                    $nama = $var['nama'];
+                                    $harga = number_format($var['harga']);
+                                    $jumlah = $var['jumlah'];
+                                    $hargaakhir = number_format($var['hargaakhir']);
+                                    echo "<tr style='border-bottom: 1px solid;'>
+                                    <td class='text-center' style='width:5%'>$kat_no</td>
+                                    <td colspan='3'>$nama</td>
+                                    <td style='text-align:center'>$jumlah</td>
+                                    <td style='text-align:center'>$harga</td>
+                                    <td style='text-align:right'>$hargaakhir</td>
+                                    </tr>";
+                                    $kat_no++;
+                                }
+                            }
+                        }
+                    }
+                ?>
 
               <?php if($i==$lastpage){
                     for ($a = 1; $a < $filler; $a++){
