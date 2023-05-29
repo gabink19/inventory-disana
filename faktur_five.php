@@ -201,10 +201,12 @@ $judul="Invoice";
         $address=$row['alamat'];
 
 
+$lop=mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(ij.kode) as countitem FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' AND br.kategori <> '' GROUP BY br.kode"));
+$lop_plus = $lop['countitem'];
+
 $lop=mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(kode) as countitem FROM $tabeldatabase WHERE nota='$nota'"));
-
+$lop['countitem'] += $lop_plus;
 $numofpage=ceil($lop['countitem']/27);
-
 if($lop['countitem']==27){
     $rowoflastpage=27;
 } else {
@@ -233,7 +235,6 @@ $lastpage=$numofpage-1;
 
 
 <?php
-
 for ($i = 0; $i < $numofpage; $i++){
   $nohal=$i+1;  
 
@@ -351,6 +352,7 @@ for ($i = 0; $i < $numofpage; $i++){
                                 <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci</td>
                                 </tr>";
                                 $det_no = 1;
+                                $num++;
                                 foreach($val as $var){
                                     $nama = $var['nama'];
                                     $harga = number_format($var['harga']);
@@ -365,6 +367,7 @@ for ($i = 0; $i < $numofpage; $i++){
                                     <td style='text-align:right'>$hargaakhir</td>
                                     </tr>";
                                     $det_no++;
+                                    $num++;
                                 }
                                 $kat_no++;
                             }else{
@@ -381,6 +384,7 @@ for ($i = 0; $i < $numofpage; $i++){
                                     <td style='text-align:right'>$hargaakhir</td>
                                     </tr>";
                                     $kat_no++;
+                                    $num++;
                                 }
                             }
                         }
