@@ -214,7 +214,7 @@ $nota=$_GET['nota'];
   <tr>
     <th align="left">Nama : <?php echo $by;?></th>
     <th align="left">Nama :</th>
-    <th align="left">Nama : <?php echo $driver;?>/<?php echo $nodriver;?></th>
+    <th align="left">Nama : <?php echo $driver;?><br>No Hp : <?php echo $nodriver;?></th>
     <th align="left">Nama :</th>
   </tr>
   <tr>
