@@ -21,6 +21,7 @@ exit(0);
 theader();
 menu();
 ?>
+
             <div class="content-wrapper">
                 <section class="content-header">
 </section>
@@ -90,6 +91,7 @@ $nota= $_GET['nota'];
          $tglnota = mysqli_real_escape_string($conn, $_POST["tglnota"]);
          $diskon = mysqli_real_escape_string($conn, $_POST["diskon"]);
          $total = mysqli_real_escape_string($conn, $_POST["total"]);
+         $biaya = mysqli_real_escape_string($conn, $_POST["biaya"]);
          $bayar = mysqli_real_escape_string($conn, $_POST["bayar"]);
          $kembali = mysqli_real_escape_string($conn, $_POST["kembali"]);
          $tipe = mysqli_real_escape_string($conn, $_POST["tipe"]);
@@ -112,7 +114,7 @@ $nota= $_GET['nota'];
 
 
 
-                 $sql2 = "insert into bayar values( '$nota','$tglnota','$jam','$bayar','$total','$kembali','$databelitotal','$kasir','$diskon','','$tipe','$ket')";
+                 $sql2 = "insert into bayar values( '$nota','$tglnota','$jam','$bayar','$total','$kembali','$databelitotal','$kasir','$diskon','','$tipe','$ket','$biaya')";
                if(mysqli_query($conn, $sql2)){
 
                //update mutasi
@@ -243,15 +245,14 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                                    function sum1() {
                                          var txtFirstNumberValue =  document.getElementById('subtotal').value
                                          var txtSecondNumberValue = document.getElementById('diskon').value;
-                                         var result = parseFloat(txtFirstNumberValue) - parseFloat(txtSecondNumberValue);
+                                         var txtThirdNumberValue = document.getElementById('biaya').value;
+                                         var result = parseFloat(txtFirstNumberValue) - parseFloat(txtSecondNumberValue) + parseFloat(txtThirdNumberValue);
                                          if (!isNaN(result)) {
                                             document.getElementById('total').value = result;
                                             document.getElementById('disc').value = txtSecondNumberValue;
+                                            document.getElementById('biayapajak').value = txtThirdNumberValue;
                                             document.getElementById('tot').value = result;
                                          }
-                                       if (!$(bayar).val()){
-                                         document.getElementById('total').value = "0";
-                                       }
                                        if (!$(total).val()){
                                          document.getElementById('total').value = "0";
                                        }
@@ -280,6 +281,12 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                   <td>Diskon(Rp)</td>
                  
                   <td><input type="text" class="form-control" id="diskon" name="diskon" value="0" onkeyup="sum1();"></td>
+                </tr>
+                <tr>
+                 
+                  <td>Pajak(Rp)</td>
+                 
+                  <td><input type="text" class="form-control" id="biaya" name="biaya" value="0" onkeyup="sum1();"></td>
                 </tr>
                 <tr>
 
@@ -421,6 +428,7 @@ function Struk(url) {
         $total=$row['total'];
         $kembali=$row['kembali'];
         $kasir=$row['kasir'];
+        $biaya=$row['biaya'];
 
         $sql1="SELECT SUM(jumlah) as data FROM transaksimasuk where nota='$nota'";
         $hasil1=mysqli_query($conn,$sql1);
@@ -550,6 +558,12 @@ input {
           <td colspan="3" style="width:120px;"></td>
           <td style="width:48px;">Diskon</td>
           <td style="width:72px;" colspan="2" align="right"><input type="text" id="disc"></td>
+          </tr>
+
+          <tr>
+          <td colspan="3" style="width:120px;"></td>
+          <td style="width:48px;">Pajak</td>
+          <td style="width:72px;" colspan="2" align="right"><input type="text" id="biayapajak"></td>
           </tr>
 
            <tr>

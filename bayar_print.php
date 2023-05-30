@@ -85,7 +85,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                          <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Tampilan Struk mm</h3>
+          <h3 class="box-title">Tampilan Struk</h3>
 
              <div class="box-tools pull-right">
             <a href="" data-toggle="modal" data-target="#all" class="btn btn-danger">Hapus Transaksi</a>

@@ -405,6 +405,13 @@ for ($i = 0; $i < $numofpage; $i++){
                 <tr style="background: rgba(217,225,242,1.0);">
                     <td>&nbsp;</td>
                     
+                    <td colspan="3">Pajak</td>
+                    <td colspan="2"></td>
+                    <td colspan="1" style="text-align:right"><?php echo number_format(($biaya), $decimal, $a_decimal, $thousand).',-';?></td>
+                </tr>
+                <tr style="background: rgba(217,225,242,1.0);">
+                    <td>&nbsp;</td>
+                    
                     <td colspan="2">Diskon <?php echo $diskon;?>%</td>
                     <td><?php echo number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>
                     <td colspan="2">Jumlah</td>

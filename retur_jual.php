@@ -240,6 +240,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
         $total=$row['total'];
         $kembali=$row['kembali'];
         $kasir=$row['kasir'];
+        $biaya=$row['biaya'];
         $diskon=$row['diskon'];
         $subtotal= $total + $diskon;
         $tipe =$row['tipebayar'];
@@ -266,6 +267,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
               <table class="table">
                 <tr>
                   <th >Nota</th>
+                  <th>Pajak</th>
                   <th>Subtotal</th>
                   <th>Diskon</th>
                   <th >Total</th>
@@ -274,6 +276,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                 </tr>
                 <tr>
                   <td><?php echo $nota;?></td>
+                  <td>Rp <?php echo number_format($biaya, $decimal, $a_decimal, $thousand).',-'; ?></td>
                   <td>Rp <?php echo number_format($subtotal, $decimal, $a_decimal, $thousand).',-'; ?></td>
                   <td>
                    Rp <?php echo number_format($diskon, $decimal, $a_decimal, $thousand).',-'; ?>
@@ -344,8 +347,8 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                           $row=mysqli_fetch_assoc($hasile);
                           $datatotal=$row['data'];
 
-                          if($datatotal>$total){
-                            $datatotal=$total;}
+                          // if($datatotal>$total){
+                          //   $datatotal=$total;}
                         ?>
 
                          <!-- Default box -->

@@ -10,7 +10,10 @@
 $sql1="SELECT * FROM retur where nota='$id'";
         $hasil1=mysqli_query($conn,$sql1);
         $row=mysqli_fetch_assoc($hasil1);
-        $status=$row['status'];
+        $status="";
+        if(isset($row['status'])){
+          $status=$row['status'];
+        }
 
 
         $sql = "SELECT * FROM bayar WHERE nota = $id";
@@ -23,12 +26,14 @@ $sql1="SELECT * FROM retur where nota='$id'";
              <table class="table table-striped">
                 <tr>
                   <th style="width: 30px">Nota</th>
+                  <th style="width: 30px">Pajak</th>
                   <th style="width: 30px">Subtotal</th>
                   <th style="width: 30px">Diskon</th>
                   <th style="width: 40px">Total</th>
                 </tr>
                 <tr>
                   <td><?php echo $baris['nota'];?></td>
+                  <td><?php echo $baris['biaya'];?></td>
                   <td><?php $subtotal = $baris['diskon']+$baris['total'];
                    echo $subtotal;?></td>
                   <td>
