@@ -337,7 +337,7 @@ for ($i = 0; $i < $numofpage; $i++){
                 <tbody>
                 <?php
                     $kategori = [];
-                    $sql1a=mysqli_query($conn,"SELECT ij.*,br.kode,br.kategori FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' LIMIT $offset,$limit");
+                    $sql1a=mysqli_query($conn,"SELECT ij.*,kt.kode,br.kategori FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode LEFT JOIN kategori kt ON kt.nama=br.kategori WHERE nota='$nota' LIMIT $offset,$limit");
                     $num = ($i) * 9 + 1;
                     $kat_no = 1;
                     while($rowa=mysqli_fetch_assoc($sql1a)){
