@@ -356,7 +356,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
                  <tr>
                  
-                  <td>Biaya Tambahan</td>
+                  <td>Pajak</td>
                  
                    <td><input type="text" class="form-control" value="0" name="biaya" id="biaya" onkeyup="sum3();" autocomplete="off"></td>
                 </tr>

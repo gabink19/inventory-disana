@@ -42,6 +42,7 @@ etc();session();connect();
         $kasir=$row['kasir'];
         $diskon=$row['diskon'];
         $jam=$row['jam'];
+        $biaya=$row['biaya'];
          $ket=$row['keterangan'];
         $datatotal= $total + $diskon;
 
@@ -114,7 +115,7 @@ etc();session();connect();
         </tr>
 
          <tr >
-           <td style="width:192px;" colspan="6" align="left">aaaa</td>
+           <td style="width:192px;" colspan="6" align="left"></td>
         </tr>
 
            <tr class="siv solid">
@@ -142,6 +143,11 @@ etc();session();connect();
               <td style="width:72px;" colspan="2" align="right"></td>
               </tr>
 
+              <tr>
+              <td colspan="3" style="width:120px;">Pajak</td>
+              <td style="width:48px;" align="right"><b><?php echo number_format($biaya, $decimal, $a_decimal, $thousand).',-';?></b></td> 
+              <td style="width:72px;" colspan="2" ></td>
+              </tr>
              
              
             <tr class="siv">
