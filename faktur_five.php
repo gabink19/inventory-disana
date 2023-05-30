@@ -206,15 +206,15 @@ $lop_plus = $lop['countitem'];
 
 $lop=mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(kode) as countitem FROM $tabeldatabase WHERE nota='$nota'"));
 $lop['countitem'] += $lop_plus;
-$numofpage=ceil($lop['countitem']/26);
-if($lop['countitem']==26){
-    $rowoflastpage=26;
+$numofpage=ceil($lop['countitem']/24);
+if($lop['countitem']==24){
+    $rowoflastpage=24;
 } else {
-    $rowoflastpage=$lop['countitem'] % 26;
+    $rowoflastpage=$lop['countitem'] % 24;
 }
 
 
-$filler=26-$rowoflastpage;
+$filler=22-$rowoflastpage;
 $lastpage=$numofpage-1;
         ?>
 
@@ -238,8 +238,8 @@ $lastpage=$numofpage-1;
 for ($i = 0; $i < $numofpage; $i++){
   $nohal=$i+1;  
 
-  $limit =$nohal*26;
-  $offset=$i*26;
+  $limit =$nohal*24;
+  $offset=$i*24;
 
 
 
@@ -396,7 +396,9 @@ for ($i = 0; $i < $numofpage; $i++){
                     }
                 ?>
 
-              <?php if($i==$lastpage){
+              <?php 
+                echo $lastpage."--".$i."--".$filler;
+                    if($i==$lastpage){
                     for ($a = 1; $a < $filler; $a++){
                 ?>
              <tr><td>&nbsp;</td><td colspan="3">&nbsp;</td><td style="text-align:center">&nbsp;</td><td style="text-align:center">&nbsp;</td><td style="text-align:right">&nbsp;</td></tr>
