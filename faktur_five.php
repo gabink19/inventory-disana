@@ -337,19 +337,24 @@ for ($i = 0; $i < $numofpage; $i++){
                 <tbody>
                 <?php
                     $kategori = [];
-                    $sql1a=mysqli_query($conn,"SELECT ij.*,br.kategori FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' LIMIT $offset,$limit");
+                    $sql1a=mysqli_query($conn,"SELECT ij.*,br.kode,br.kategori FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' LIMIT $offset,$limit");
                     $num = ($i) * 9 + 1;
                     $kat_no = 1;
                     while($rowa=mysqli_fetch_assoc($sql1a)){
-                        $kategori[$rowa['kategori']][] = $rowa;
+                        if ($rowa['kategori']=="") {
+                            $rowa['kode']="000000";
+                        }
+                        $kategori[$rowa['kode']."__".$rowa['kategori']][] = $rowa;
                     }
                     ksort($kategori);
                     if(!empty($kategori)){
                         foreach($kategori as $kunci => $val){
-                            if($kunci!=""){
+                            $expl = explode("__",$kunci);
+                            $kunci_name= $expl[1];
+                            if($kunci_name!=""){
                                 echo "<tr style='border-bottom: 1px solid;'>
                                 <td class='text-center'>$kat_no</td>
-                                <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci</td>
+                                <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci_name</td>
                                 </tr>";
                                 $det_no = 1;
                                 $num++;
