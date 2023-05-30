@@ -397,7 +397,6 @@ for ($i = 0; $i < $numofpage; $i++){
                 ?>
 
               <?php 
-                echo $lastpage."--".$i."--".$filler;
                     if($i==$lastpage){
                     for ($a = 1; $a < $filler; $a++){
                 ?>
