@@ -530,6 +530,8 @@ $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no 
 </section>
 <?php if($status!='dibayar'){
     echo "<p style='font-size: 12px;text-align:center;margin-bottom: 2px;'>*Mohon Pembayaran Tepat Waktu Demi Kelancaran Bersama*</p>";
+}else{
+    echo "<p style='font-size: 12px;text-align:center;margin-bottom: 2px;'>$signature</p>";
 }?>
 
 <?php
