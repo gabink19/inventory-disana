@@ -166,6 +166,9 @@ function tanggalIndo($dmy)
                 ?></td>
               <td align="center"></td>
           </tr>
+
+<?php } ?>
+
           <tr bgcolor="white">
               <td colspan="2">Catatan : <font style="color:red"><?php echo $ket;?></font></td>
               <td colspan="2">PERHATIAN :
@@ -174,9 +177,6 @@ function tanggalIndo($dmy)
                 <br>3. Surat Jalan ini akan dilengkapi dengan invoice sebagai bukti penjualan
               </td>
           </tr>
-
-<?php } ?>
-
           </tbody>
         </table>
    <br>
