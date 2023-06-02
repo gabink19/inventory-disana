@@ -77,6 +77,7 @@ if ($_SESSION['jabatan'] == 'admin') {
           $nama = $fill['nama'];
           $alamat = $fill['alamat'];
           $notelp = $fill['notelp'];
+          $email = $fill['email'];
           $tagline = $fill['tagline'];
           $signature = $fill['signature'];
           $avatar = $fill['avatar'];
@@ -451,6 +452,13 @@ if(isset($_POST['simpan'])){
               </div>
 
               <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email" value="<?php echo $email; ?>" maxlength="50">
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label for="tagline" class="col-sm-2 control-label">Tag Line</label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control" id="tagline" name="tagline" placeholder="Masukkan Tag Line" value="<?php echo $tagline; ?>" maxlength="100">
@@ -480,6 +488,7 @@ $nama = $alamat = $notelp = $tagline = $signature= $avatar="";
 $nama = $_POST['nama'];
 $alamat = $_POST['alamat'];
 $notelp = $_POST['notelp'];
+$email = $_POST['email'];
 $tagline = $_POST['tagline'];
 $signature = $_POST['signature'];
 
@@ -495,14 +504,14 @@ $sql="select * from data";
      if(mysqli_num_rows($result)>0){
  if((($tipeavatar == "image/jpeg" || $tipeavatar == "image/png") && ($ukuranavatar <= 10000000)) && ($chmod >= 3 || $_SESSION['jabatan'] == 'admin')){
          move_uploaded_file($tmp, $avatar);
-         $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', avatar='$avatar'";
+         $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', avatar='$avatar', email='$email'";
          $updatean = mysqli_query($conn, $sql1);
          echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil diupdate!');</script>";
          echo "<script type='text/javascript'>window.location = 'set_general';</script>";
 
  }else if($chmod >= 3 || $_SESSION['jabatan'] == 'admin'){
        $avatar = "dist/upload/index.jpg";
-       $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', avatar='$avatar'";
+       $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', avatar='$avatar', email='$email'";
        $updatean = mysqli_query($conn, $sql1);
        echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil diupdate!');</script>";
        echo "<script type='text/javascript'>window.location = 'set_general';</script>";
@@ -515,13 +524,13 @@ $sql="select * from data";
 }
 else if((($tipeavatar == "image/jpeg" || $tipeavatar == "image/png") && ($ukuranavatar <= 10000000)) && ( $chmod >= 2 || $_SESSION['jabatan'] == 'admin')){
   move_uploaded_file($tmp, $avatar);
-  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar')";
+  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature, email) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar','$email')";
   $insertan = mysqli_query($conn, $sql2);
   echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil ditambahkan!');</script>";
   echo "<script type='text/javascript'>window.location = 'set_general';</script>";
 }else {
   $avatar = "dist/upload/index.jpg";
-  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar')";
+  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature, email) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar','$email')";
   $insertan = mysqli_query($conn, $sql2);
   echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil ditambahkan!');</script>";
   echo "<script type='text/javascript'>window.location = 'set_general';</script>";

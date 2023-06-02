@@ -8,6 +8,7 @@ $queryback="SELECT * FROM data";
     $resultback=mysqli_query($conn,$queryback);
     $rowback=mysqli_fetch_assoc($resultback);
     $footer=$rowback['nama'];
+    $logo=$rowback['avatar'];
 $bg=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM backset"));
 $bgi=$bg['loginbg'];
 connect(); timing();
@@ -45,6 +46,7 @@ connect(); timing();
   
   <div class="container-login100" style="background-image: url('<?php echo $bgi;?>');">
     <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+      <img src="<?php echo $logo;?>" class="loginlogo" alt="Logo">
       <form action="op.php" method="post" class="login100-form validate-form">
         <span class="login100-form-title p-b-37">
           <b><?php echo $footer;?></b></a>

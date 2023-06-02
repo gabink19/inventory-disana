@@ -90,8 +90,14 @@ th, td {
             margin: 75px auto 40px auto;
             display: flex;
         }
-    </style>
 
+        .loginlogo {
+            width: 60px;
+            height: 60px;
+            margin-left: 10px;
+            margin-top: 20px;
+        }
+    </style>
 
     <style>
 @media print{
@@ -134,11 +140,14 @@ $today = date('d-m-Y');
         $hasil1=mysqli_query($conn,$sql1);
         $row=mysqli_fetch_assoc($hasil1);
         $nama=$row['nama'];
+        $namaPerusahaan=$row['nama'];
         $alamat=$row['alamat'];
         $notelp=$row['notelp'];
         $tagline=$row['tagline'];
         $signature=$row['signature'];
         $avatar=$row['avatar'];
+        $logo=$row['avatar'];
+        $email=$row['email'];
 
 
         if($tipe=='quotation'){
@@ -168,7 +177,7 @@ $judul="Penawaran";
 
 $tabel = "sale"; // tabel database
 $tabeldatabase = "invoicejual"; // tabel database
-$judul="Invoice";
+$judul="INVOICE";
 
   $sql1="SELECT * FROM $tabel where nota='$nota'";
         $hasil1=mysqli_query($conn,$sql1);
@@ -188,17 +197,14 @@ $judul="Invoice";
          $keterangan=$row['keterangan'];
         $batas="Jatuh Tempo";
        
-}
+}     
 
-        
-       
-
-        $sql1="SELECT * FROM pelanggan where kode='$pelanggan' ";
-        $hasil1=mysqli_query($conn,$sql1);
-        $row=mysqli_fetch_assoc($hasil1);
-        $customer=$row['nama'];
-        $nohp=$row['nohp'];
-        $address=$row['alamat'];
+$sql1="SELECT * FROM pelanggan where kode='$pelanggan' ";
+$hasil1=mysqli_query($conn,$sql1);
+$row=mysqli_fetch_assoc($hasil1);
+$customer=$row['nama'];
+$nohp=$row['nohp'];
+$address=$row['alamat'];
 
 
 $lop=mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(ij.kode) as countitem FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' AND br.kategori <> '' GROUP BY br.kode"));
@@ -214,13 +220,28 @@ if($lop['countitem']==27){
 }
 
 
-$filler=27-$rowoflastpage;
+$filler=15-$rowoflastpage;
 $lastpage=$numofpage-1;
-        ?>
 
+function tanggalIndo($dmy)
+{
+    $expl = explode("-",$dmy);
+    $bulan_array = ["01"=>"Januari",
+                    "02"=>"Februari",
+                    "03"=>"Maret",
+                    "04"=>"April",
+                    "05"=>"Mei",
+                    "06"=>"Juni",
+                    "07"=>"Juli",
+                    "08"=>"Agustus",
+                    "09"=>"September",
+                    "10"=>"Oktober",
+                    "11"=>"November",
+                    "12"=>"Desember"];
 
-
-
+    return $expl[0]." ".$bulan_array[$expl[1]]." ".$expl[2];
+}
+?>
     </style>
 </head>
 
@@ -262,48 +283,50 @@ for ($i = 0; $i < $numofpage; $i++){
     <div class="box-body" id="box_data" style="display: flex;padding: 5px 10px 0 10px;margin-bottom: -21px;">
         <div style="width: 100%;padding-right: 10px;" class="col-md-12">
 
-            <div class="row">
+            <div class="row" style="margin-bottom: -35px">
                 <div class="col-lg-4" style="width: 70%;padding-left: 0px;">
-                    <h5 style="font-size: 20px;margin-bottom: 5px;">  <?php echo $nama;?></h5>
-                     <p style="font-size: 12px;margin: 0;padding: 0;"><small><?php echo $alamat;?></small></p>
+                    <img src="<?php echo $logo;?>" class="loginlogo" alt="Logo">
                 </div>
                 <div class="col-lg-8" style="width: 30%;">
-                      <h5 style="font-size: 20px;margin-bottom: 15px;"><?php echo $judul;?></h5>
-
-                    <h5 style="font-size: 16px;margin: 0;padding: 0;"><b>No.:<?php echo $nota;?></b></h5>
+                    <h5 style="font-size: 30px;margin-bottom: 15px;font-weight: 900;text-align: right;padding-right:10px"><?php echo $judul;?></h5>
+                    <br>
+                </div>
+                    <!-- <h5 style="font-size: 16px;margin: 0;padding: 0;"><b>No.:<?php echo $nota;?></b></h5>
 
                     <p style="font-size: 12px;margin: 0;padding-top: 3px;;"><b><?php echo $batas;?>: <?php echo date('d-m-Y',strtotime($due));?></b></p>
 
                     <p style="font-size: 12px;margin: 0;padding-top: 5px;;"><b>Halaman: <?php echo $nohal;?> dari <?php echo $numofpage;?></b></p>
 
                     <br>
-                </div>
+                </div> -->
             </div>
-            <div class="" style="display: flex;margin-top: -62px;">
-
-            <table style="width:60%">
-                <tr class="" style="background: rgba(217,225,242,1.0);border-top: 1px dashed">
-                    <td style="font-size: 16px;"  class="db text-left" width="400px" style="background: rgba(217,225,242,1.0)">
-                       KEPADA: <p></p>
-                       <?php echo $customer;?></td>
-                      <td style="font-size: 20px;"></td>
-                   
-                </tr>
-                
+            
+            <table width="100%" style="background: #41403e;border-top: 2px solid">
+                 <tr class="">
+                    <td></td>
                 </tr>
 
-                  <tr class="" style="background: rgba(217,225,242,1.0);border-bottom: 1px dashed;">
-                  
-                    <td style="font-size: 12px;"><?php echo $address;?> </td>
-                        
-                    </td>
-                    
-                    <td>&nbsp;</td>
-                    <tr class="" style="background: rgba(217,225,242,1.0);border-bottom: 1px dashed;">
-                    <td style="font-size: 10px;"><?php echo $nohp;?> </td>
-                    <td>&nbsp;</td>
-                </tr>
             </table>
+            <div class="" style="display: flex;">
+            
+            <div class="row" style="margin-left:0px;width: 100%;">
+                <table width="100%">
+                    <tr>
+                        <td style="background: white;border-top: 0px !important;width: 40%;"><?php echo $alamat;?><br><u>Email : <?php echo $email;?></u></td>
+                        <td style="background: white;border-top: 0px !important;width: 25%;"></td>
+                        <td style="background: white;border-top: 0px !important;width: 20%;">Tanggal<br>Jatuh Tempo</td>
+                        <td style="background: white;border-top: 0px !important;width: 20%;"><b>: <?php echo tanggalIndo(date('d-m-Y'));?><br>: <?php echo tanggalIndo(date('d-m-Y',strtotime($due)));?></b></td>
+                    </tr>
+                </table>
+                <table style="margin-top:20px;width:50%">
+                    <tr>
+                        <td style="background: white;border-top: 0px !important;width: 5%;">Kepada :</td>
+                        <td style="background: white;border-top: 0px !important;width: 30%;"><b><?php echo $customer;?></b><br><?php echo $address;?></td></td>
+                        <td style="background: white;border-top: 0px !important;width: 20%;"></td></tr>
+                </table>
+            
+            </div>
+            <br>
             </div>
             <br>
 
@@ -322,22 +345,22 @@ for ($i = 0; $i < $numofpage; $i++){
                         No
                     </th>
                     <th class="text-center" colspan="3">
-                        Uraian
+                        Nama Barang
                     </th>
                     <th class="text-center" style="width:10%">
-                        Qty
+                        Jumlah
                     </th>
                     <th class="text-center" style="width:12%">
-                        Harga
+                        Harga (Rp)
                     </th>
                     <th class="text-center" style="width:12%">
-                        Total
+                        Total (Rp)
                     </th>
                 </tr>
                 <tbody>
                 <?php
                     $kategori = [];
-                    $sql1a=mysqli_query($conn,"SELECT ij.*,br.kategori FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' LIMIT $offset,$limit");
+                    $sql1a=mysqli_query($conn,"SELECT ij.*,br.kategori,br.satuan FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode WHERE nota='$nota' LIMIT $offset,$limit");
                     $num = ($i) * 9 + 1;
                     $kat_no = 1;
                     while($rowa=mysqli_fetch_assoc($sql1a)){
@@ -355,14 +378,16 @@ for ($i = 0; $i < $numofpage; $i++){
                                 $num++;
                                 foreach($val as $var){
                                     $nama = $var['nama'];
-                                    $harga = number_format($var['harga']);
+                                    $harga = number_format($var['harga'],0,".",".");
                                     $jumlah = $var['jumlah'];
-                                    $hargaakhir = number_format($var['hargaakhir']);
+                                    $satuan = $var['satuan'];
+                                    $hargaakhir = number_format($var['hargaakhir'],0,".",".");
+                                    if($satuan =="") $satuan = "pcs";
                                     echo "<tr style='border-bottom: 1px solid;'>
                                     <td></td>
                                     <td class='text-center' style='width:5%'>$det_no</td>
                                     <td colspan='2'>$nama</td>
-                                    <td style='text-align:center'>$jumlah</td>
+                                    <td style='text-align:center'>$jumlah $satuan</td>
                                     <td style='text-align:center'>$harga</td>
                                     <td style='text-align:right'>$hargaakhir</td>
                                     </tr>";
@@ -373,13 +398,15 @@ for ($i = 0; $i < $numofpage; $i++){
                             }else{
                                 foreach($val as $var){
                                     $nama = $var['nama'];
-                                    $harga = number_format($var['harga']);
+                                    $harga = number_format($var['harga'],0,".",".");
                                     $jumlah = $var['jumlah'];
-                                    $hargaakhir = number_format($var['hargaakhir']);
+                                    $satuan = $var['satuan'];
+                                    if($satuan =="") $satuan = "pcs";
+                                    $hargaakhir = number_format($var['hargaakhir'],0,".",".");
                                     echo "<tr style='border-bottom: 1px solid;'>
                                     <td class='text-center' style='width:5%'>$kat_no</td>
                                     <td colspan='3'>$nama</td>
-                                    <td style='text-align:center'>$jumlah</td>
+                                    <td style='text-align:center'>$jumlah $satuan</td>
                                     <td style='text-align:center'>$harga</td>
                                     <td style='text-align:right'>$hargaakhir</td>
                                     </tr>";
@@ -460,14 +487,16 @@ for ($i = 0; $i < $numofpage; $i++){
 <?php if($status!='dibayar'){?>
                     <td width="40%" align="center" valign="top">
 <?php
-$qws2=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no LIMIT 1,1"));
+// $qws2=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no LIMIT 1,1"));
 $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no LIMIT 1"));
 
 ?>
 
 
-                        <h6 style="margin-bottom: 5px;"><b><?php echo $qws1['bank'];?> <?php echo $qws1['norek'];?> <?php echo $qws1['nama'];?></b></h6>
-                        <h6 style="margin-top: 5px;"><b><?php echo $qws2['bank'];?> <?php echo $qws2['norek'];?> <?php echo $qws2['nama'];?></b></h6>
+                        <h5 style="margin-bottom: 25px;">
+                        Catatan :<br> Pembayaran harap ditransfer ke : <br><b><?php echo $qws1['bank'];?><br>
+                        No. Rek <?php echo $qws1['norek'];?><br> 
+                        a.n <?php echo $qws1['nama'];?></b></h5>
 
                     </td>
 <?php } else { ?>
@@ -480,26 +509,13 @@ $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no 
 
 
 
-                    <td width="16%" valign="top"><h6 style="margin-bottom: 0;">
-                        <span style="text-decoration: dashed; padding-left: 100%;color: #000; border-bottom: 1px solid black;"></span>
-                    </h6>
-                        <h6 class="text-center"
-                        style="margin-top: 5px;">Penerima</h6></td>
-
-
-
-
-                         <td width="3%" valign="top"><h6 style="margin-bottom: 0;">
-                        </td>
-
-
-
-
-                         <td width="16%" valign="top"><h6 style="margin-bottom: 0;">
-                        <span style="text-decoration: dashed; padding-left: 100%;color: #000; border-bottom: 1px solid black;"></span>
-                    </h6>
-                        <h6 class="text-center"
-                        style="margin-top: 5px;">Mengetahui</h6></td>
+                    <td width="16%" valign="top">
+                        <h6 class="text-center" style="margin-top: 5px;font-size:14px"><?php echo $namaPerusahaan;?></h6>
+                        <h6 class="text-center"  style="margin-top: 80px;"></h6>
+                        <h6 style="margin-bottom: 0;text-align:center">
+                        <span style="font-size:14px"><u><b>Imbron Rosady</b></u></span></h6>
+                        <h6 class="text-center"  style="margin-top: 5px;">Direktur</h6>
+                    </td>
                 </tr>
 
             </table>
@@ -512,7 +528,9 @@ $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no 
 
 
 </section>
- <p style="font-size: 12px;text-align:center"><?php echo $signature;?></p>
+<?php if($status!='dibayar'){
+    echo "<p style='font-size: 12px;text-align:center;margin-bottom: 2px;'>*Mohon Pembayaran Tepat Waktu Demi Kelancaran Bersama*</p>";
+}?>
 
 <?php
 

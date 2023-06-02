@@ -1038,6 +1038,7 @@ CREATE TABLE `data` (
   `signature` varchar(255) DEFAULT NULL,
   `avatar` varchar(150) DEFAULT NULL,
   `no` int(11) NOT NULL
+  `email` varchar(150) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
