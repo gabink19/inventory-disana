@@ -97,6 +97,13 @@ th, td {
             margin-left: 10px;
             margin-top: 20px;
         }
+
+        .lunaslogo {
+            width: 125px;
+            height: auto;
+            margin-left: 10px;
+            margin-top: 40px;
+        }
     </style>
 
     <style>
@@ -501,7 +508,7 @@ $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no 
                     </td>
 <?php } else { ?>
  <td width="40%" align="center" valign="top">
-<h5 style="font-size: 20px">LUNAS</h5>
+ <img src="dist/img/lunas.png" class="lunaslogo" alt="Logo">
 </td>
 
 <?php } } ?>
