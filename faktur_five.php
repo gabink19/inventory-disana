@@ -376,33 +376,33 @@ for ($i = 0; $i < $numofpage; $i++){
                     ksort($kategori);
                     if(!empty($kategori)){
                         foreach($kategori as $kunci => $val){
-                            if($kunci!=""){
-                                echo "<tr style='border-bottom: 1px solid;'>
-                                <td class='text-center'>$kat_no</td>
-                                <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci</td>
-                                </tr>";
-                                $det_no = 1;
-                                $num++;
-                                foreach($val as $var){
-                                    $nama = $var['nama'];
-                                    $harga = number_format($var['harga'],0,".",".");
-                                    $jumlah = $var['jumlah'];
-                                    $satuan = $var['satuan'];
-                                    $hargaakhir = number_format($var['hargaakhir'],0,".",".");
-                                    if($satuan =="") $satuan = "pcs";
-                                    echo "<tr style='border-bottom: 1px solid;'>
-                                    <td></td>
-                                    <td class='text-center' style='width:5%'>$det_no</td>
-                                    <td colspan='2'>$nama</td>
-                                    <td style='text-align:center'>$jumlah $satuan</td>
-                                    <td style='text-align:center'>$harga</td>
-                                    <td style='text-align:right'>$hargaakhir</td>
-                                    </tr>";
-                                    $det_no++;
-                                    $num++;
-                                }
-                                $kat_no++;
-                            }else{
+                            // if($kunci!=""){
+                            //     echo "<tr style='border-bottom: 1px solid;'>
+                            //     <td class='text-center'>$kat_no</td>
+                            //     <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci</td>
+                            //     </tr>";
+                            //     $det_no = 1;
+                            //     $num++;
+                            //     foreach($val as $var){
+                            //         $nama = $var['nama'];
+                            //         $harga = number_format($var['harga'],0,".",".");
+                            //         $jumlah = $var['jumlah'];
+                            //         $satuan = $var['satuan'];
+                            //         $hargaakhir = number_format($var['hargaakhir'],0,".",".");
+                            //         if($satuan =="") $satuan = "pcs";
+                            //         echo "<tr style='border-bottom: 1px solid;'>
+                            //         <td></td>
+                            //         <td class='text-center' style='width:5%'>$det_no</td>
+                            //         <td colspan='2'>$nama</td>
+                            //         <td style='text-align:center'>$jumlah $satuan</td>
+                            //         <td style='text-align:center'>$harga</td>
+                            //         <td style='text-align:right'>$hargaakhir</td>
+                            //         </tr>";
+                            //         $det_no++;
+                            //         $num++;
+                            //     }
+                            //     $kat_no++;
+                            // }else{
                                 foreach($val as $var){
                                     $nama = $var['nama'];
                                     $harga = number_format($var['harga'],0,".",".");
@@ -420,7 +420,7 @@ for ($i = 0; $i < $numofpage; $i++){
                                     $kat_no++;
                                     $num++;
                                 }
-                            }
+                            // }
                         }
                     }
                 ?>
