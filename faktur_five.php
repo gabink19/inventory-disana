@@ -298,14 +298,6 @@ for ($i = 0; $i < $numofpage; $i++){
                     <h5 style="font-size: 30px;margin-bottom: 15px;font-weight: 900;text-align: right;padding-right:10px"><?php echo $judul;?></h5>
                     <br>
                 </div>
-                    <!-- <h5 style="font-size: 16px;margin: 0;padding: 0;"><b>No.:<?php echo $nota;?></b></h5>
-
-                    <p style="font-size: 12px;margin: 0;padding-top: 3px;;"><b><?php echo $batas;?>: <?php echo date('d-m-Y',strtotime($due));?></b></p>
-
-                    <p style="font-size: 12px;margin: 0;padding-top: 5px;;"><b>Halaman: <?php echo $nohal;?> dari <?php echo $numofpage;?></b></p>
-
-                    <br>
-                </div> -->
             </div>
             
             <table width="100%" style="background: #41403e;border-top: 2px solid">
@@ -376,33 +368,6 @@ for ($i = 0; $i < $numofpage; $i++){
                     ksort($kategori);
                     if(!empty($kategori)){
                         foreach($kategori as $kunci => $val){
-                            // if($kunci!=""){
-                            //     echo "<tr style='border-bottom: 1px solid;'>
-                            //     <td class='text-center'>$kat_no</td>
-                            //     <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci</td>
-                            //     </tr>";
-                            //     $det_no = 1;
-                            //     $num++;
-                            //     foreach($val as $var){
-                            //         $nama = $var['nama'];
-                            //         $harga = number_format($var['harga'],0,".",".");
-                            //         $jumlah = $var['jumlah'];
-                            //         $satuan = $var['satuan'];
-                            //         $hargaakhir = number_format($var['hargaakhir'],0,".",".");
-                            //         if($satuan =="") $satuan = "pcs";
-                            //         echo "<tr style='border-bottom: 1px solid;'>
-                            //         <td></td>
-                            //         <td class='text-center' style='width:5%'>$det_no</td>
-                            //         <td colspan='2'>$nama</td>
-                            //         <td style='text-align:center'>$jumlah $satuan</td>
-                            //         <td style='text-align:center'>$harga</td>
-                            //         <td style='text-align:right'>$hargaakhir</td>
-                            //         </tr>";
-                            //         $det_no++;
-                            //         $num++;
-                            //     }
-                            //     $kat_no++;
-                            // }else{
                                 foreach($val as $var){
                                     $nama = $var['nama'];
                                     $harga = number_format($var['harga'],0,".",".");
@@ -420,7 +385,6 @@ for ($i = 0; $i < $numofpage; $i++){
                                     $kat_no++;
                                     $num++;
                                 }
-                            // }
                         }
                     }
                 ?>
@@ -492,20 +456,15 @@ for ($i = 0; $i < $numofpage; $i++){
 <?php if($tabel!="quotation"){?>
                  
 <?php if($status!='dibayar'){?>
-                    <td width="40%" align="center" valign="top">
+    <td width="40%" align="center" valign="top">
 <?php
-// $qws2=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no LIMIT 1,1"));
 $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no LIMIT 1"));
-
 ?>
-
-
-                        <h5 style="margin-bottom: 25px;">
-                        Catatan :<br> Pembayaran harap ditransfer ke : <br><b><?php echo $qws1['bank'];?><br>
-                        No. Rek <?php echo $qws1['norek'];?><br> 
-                        a.n <?php echo $qws1['nama'];?></b></h5>
-
-                    </td>
+<h5 style="margin-bottom: 25px;">
+    Catatan :<br> Pembayaran harap ditransfer ke : <br><b><?php echo $qws1['bank'];?><br>
+    No. Rek <?php echo $qws1['norek'];?><br> 
+    a.n <?php echo $qws1['nama'];?></b></h5>
+</td>
 <?php } else { ?>
  <td width="40%" align="center" valign="top">
  <img src="dist/img/lunas.png" class="lunaslogo" alt="Logo">
