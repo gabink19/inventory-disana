@@ -97,14 +97,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
       <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Daftar Surat Jalan</h3>
-          <a href="stok_out" class="btn bg-maroon">Tambah</a>
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
+          <a href="stok_out" class="btn bg-maroon" style="float:right">Tambah Dari Stok Keluar</a>
         </div>
         <div class="box-body">
           

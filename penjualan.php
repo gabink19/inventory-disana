@@ -329,7 +329,7 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
 
            <?php } } else {}?>
 
-
+           <a href='surat_buat_inv?q=<?php echo$fill['nota'];?>' target='_blank'  class='btn btn-success btn-xs'>Surat Jalan</a>
 
                           </td></tr><?php
                     ;
@@ -399,6 +399,7 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
             
            <?php  } ?>
 
+           <a href='surat_buat_inv?q=<?php echo$fill['nota'];?>' target='_blank'  class='btn btn-success btn-xs'>Surat Jalan</a>
 
                      </td></tr>
             <?php
