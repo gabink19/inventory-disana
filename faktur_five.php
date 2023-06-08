@@ -90,6 +90,14 @@ th, td {
             margin: 75px auto 40px auto;
             display: flex;
         }
+        .loginlogo {
+            width: 60px;
+            height: 60px;
+            margin-left: 10px;
+            margin-right: 5px;
+            margin-top: 20px;
+            float:left;
+        }
     </style>
 
 
@@ -139,6 +147,7 @@ $today = date('d-m-Y');
         $tagline=$row['tagline'];
         $signature=$row['signature'];
         $avatar=$row['avatar'];
+        $logo=$row['avatar'];
 
 
         if($tipe=='quotation'){
@@ -264,7 +273,7 @@ for ($i = 0; $i < $numofpage; $i++){
 
             <div class="row">
                 <div class="col-lg-4" style="width: 70%;padding-left: 0px;">
-                    <h5 style="font-size: 20px;margin-bottom: 5px;">  <?php echo $nama;?></h5>
+                <img src="<?php echo $logo;?>" class="loginlogo" alt="Logo"><h5 style="font-size: 20px;margin-bottom: 5px;">  <?php echo $nama;?></h5>
                      <p style="font-size: 12px;margin: 0;padding: 0;"><small><?php echo $alamat;?></small></p>
                 </div>
                 <div class="col-lg-8" style="width: 30%;">
@@ -279,7 +288,7 @@ for ($i = 0; $i < $numofpage; $i++){
                     <br>
                 </div>
             </div>
-            <div class="" style="display: flex;margin-top: -62px;">
+            <div class="" style="display: flex;margin-top: -45px;">
 
             <table style="width:60%">
                 <tr class="" style="background: rgba(217,225,242,1.0);border-top: 1px dashed">
@@ -482,13 +491,12 @@ for ($i = 0; $i < $numofpage; $i++){
 <?php
 $qws2=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no LIMIT 1,1"));
 $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no LIMIT 1"));
-
-?>
-
-
-                        <h6 style="margin-bottom: 5px;"><b><?php echo $qws1['bank'];?> <?php echo $qws1['norek'];?> <?php echo $qws1['nama'];?></b></h6>
-                        <h6 style="margin-top: 5px;"><b><?php echo $qws2['bank'];?> <?php echo $qws2['norek'];?> <?php echo $qws2['nama'];?></b></h6>
-
+if(isset($qws1['bank'])&&isset($qws1['norek'])&&isset($qws1['nama'])){?>
+    <h6 style="margin-bottom: 5px;"><b><?php echo $qws1['bank'];?> <?php echo $qws1['norek'];?> <?php echo $qws1['nama'];?></b></h6>
+<?php }
+if(isset($qws2['bank'])&&isset($qws2['norek'])&&isset($qws2['nama'])){?>
+    <h6 style="margin-top: 5px;"><b><?php echo $qws2['bank'];?> <?php echo $qws2['norek'];?> <?php echo $qws2['nama'];?></b></h6>
+<?php } ?>
                     </td>
 <?php } else { ?>
  <td width="40%" align="center" valign="top">
