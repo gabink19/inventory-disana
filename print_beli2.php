@@ -90,6 +90,14 @@ th, td {
             margin: 75px auto 40px auto;
             display: flex;
         }
+        .loginlogo {
+            width: 60px;
+            height: 60px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 20px;
+            float:left;
+        }
     </style>
 
 
@@ -139,6 +147,7 @@ $today = date('d-m-Y');
         $tagline=$row['tagline'];
         $signature=$row['signature'];
         $avatar=$row['avatar'];
+        $logo=$row['avatar'];
 
 $tabel = "buy"; // tabel database
 $tabeldatabase = "invoicebeli"; // tabel database
@@ -234,8 +243,8 @@ for ($i = 0; $i < $numofpage; $i++){
         <div style="width: 100%;padding-right: 10px;" class="col-md-12">
 
             <div class="row">
-                <div class="col-lg-4" style="width: 70%;padding-left: 20px;">
-                    <h5 style="font-size: 20px;margin-bottom: 5px;">  <?php echo $nama;?></h5>
+                <div class="col-lg-4" style="width: 70%;">
+                <img src="<?php echo $logo;?>" class="loginlogo" alt="Logo"><h5 style="font-size: 20px;margin-bottom: 5px;">  <?php echo $nama;?></h5>
                      <p style="font-size: 12px;margin: 0;padding: 0;"><?php echo $notelp;?>,<small><?php echo $alamat;?></small></p>
                 </div>
                 <div class="col-lg-8" style="width: 30%;">
