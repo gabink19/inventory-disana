@@ -44,14 +44,14 @@ table {
 }
 th{
   color:#000;
-  font-size: 14px;
+  font-size: 7pt;
+  text-transform: uppercase;
   padding: 0.5em;
   border-width: 1px;
   border-style: solid;
   border-color:#000;
   border-collapse: collapse;
   background-color:#FFF;
-  font-weight: 400;
 }
 
 
@@ -106,48 +106,72 @@ $nota=$_GET['nota'];
         $row=mysqli_fetch_assoc($hasil1);
         $ket=$row['keterangan'];
 
-function tanggalIndo($dmy)
-{
-    $expl = explode("-",$dmy);
-    $bulan_array = ["01"=>"Januari",
-                    "02"=>"Februari",
-                    "03"=>"Maret",
-                    "04"=>"April",
-                    "05"=>"Mei",
-                    "06"=>"Juni",
-                    "07"=>"Juli",
-                    "08"=>"Agustus",
-                    "09"=>"September",
-                    "10"=>"Oktober",
-                    "11"=>"November",
-                    "12"=>"Desember"];
-
-    return $expl[0]." ".$bulan_array[$expl[1]]." ".$expl[2];
-}
 ?>
 
 
 <body>
-  <h5 style="font-family:Verdana, Geneva, sans-serif; text-align:right;font-weight:bold;font-size:15px;margin-right:40px;margin-bottom: -10px;">Surat Jalan</h5>
-  <table width="100%" style="border:0px;">
+
+
+
+
+      <table width="100%">
+        <tbody>
+
+          <tr>
+            <th width="596" align="center"><h2><?php echo $pt;?></h2></th>
+
+            <th width="200" rowspan="3" scope="col"><img src="<?php echo $avatar;?>" width="180" height="80"></th>
+            </tr>
+      <tr>
+        <th width="596" align="center"><h3><?php echo $address;?> | <?php echo $phone;?></h3></th>
+      </tr>
+
+        <tr>
+        <th width="596" align="center"><h1>SURAT JALAN #<?php echo $surat;?></h1></th>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+
+
+
+  <table width="100%" border="0">
   <tbody>
     <tr>
-      <th style="text-align:left;width:12%;vertical-align:top;border-width:0px;">Penerima :</th>
-      <th style="text-align:left;width:20%;font-weight:bold;border-width:0px;"><?php echo $tujuan;?><br><?php echo $alamat;?></th>
-      <th style="text-align:left;width:20%;font-weight:bold;border-width:0px;"></th>
-      <th style="text-align:center;width:30%;font-weight:bold;vertical-align:top;border-width:0px;">Tanggal : <?php echo tanggalIndo($tgl);?></th>
-    </tr>
-  </tbody>
+      <th width="160" align="left">Tujuan</th>
+      <th width="2" scope="col">:</th>
+    <th width="300" align="left"><?php echo $tujuan;?></th>
+
+     <th width="700" rowspan="3" scope="col" align="center"><?php echo $alamat;?></th>
+  </tr>
+  <tr>
+    <th align="left">No.Telepon</th>
+      <th width="2" scope="col">:</th>
+<th width="300" align="left"><?php echo $telp;?></th>
+</tr>
+
+ <tr>
+    <th align="left">Tanggal</th>
+      <th width="2" scope="col">:</th>
+<th width="300" align="left"><?php echo $tgl;?></th>
+</tr>
+
+</tbody>
 </table>
 <br>
 <table width="100%" border="0" bgcolor="#000000">
       <tbody>
         <tr bgcolor="#FFFFFF" height="40">
-          <th width="1%" scope="col">No</th>
-          <th width="8%" scope="col">Item Description</th>
-          <th width="4%" scope="col">Qty</th>
-          <th width="3%" scope="col">No. PO</th>
-        </tr>
+
+        <th width="1%" scope="col">No</th>
+        <th width="10%" scope="col">Nama Barang</th>
+        <th width="4%" scope="col">Jumlah</th>
+        <th width="3%" scope="col">Satuan</th>
+        
+
+      </tr>
 
  <?php
 
@@ -157,51 +181,50 @@ function tanggalIndo($dmy)
           while ($fill = mysqli_fetch_assoc($hasil)){
             ?>
 
-          <tr bgcolor="white">
+    <tr bgcolor="white">
               <td align="center"><?php echo ++$no_urut;?></td>
               <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-              <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['jumlah']); ?> <?php  $cba =$fill['kode_barang'];
-                        $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT satuan FROM barang WHERE kode='$cba'"));
-                        echo mysqli_real_escape_string($conn, $r['satuan']); 
-                ?></td>
-              <td align="center"></td>
-          </tr>
+               <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+        <td align="center"><?php  $cba =$fill['kode_barang'];
+        $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT satuan FROM barang WHERE kode='$cba'"));
+       echo mysqli_real_escape_string($conn, $r['satuan']); ?>
+                        </td>
+      
+    </tr>
 
 <?php } ?>
 
-          <tr bgcolor="white">
-              <td colspan="2">Catatan : <font style="color:red"><?php echo $ket;?></font></td>
-              <td colspan="2">PERHATIAN :
-                <br>1. Surat Jalan ini merupakan bukti resmi penerimaan barang
-                <br>2. Surat Jalan ini bukan bukti penjualan
-                <br>3. Surat Jalan ini akan dilengkapi dengan invoice sebagai bukti penjualan
-              </td>
-          </tr>
           </tbody>
         </table>
    <br>
-<table width="100%" style="border: none;">
+<table width="100%" border="1">
   <tbody>
     <tr>
-    <th width="50%" scope="col" style="border: none;border-bottom:1px">Dikirim Oleh :</th>
-    <th width="50%" scope="col" style="border: none;">Yang Menerima :</th>
+    <th width="201" scope="col">Dibuat</th>
+    <th width="218" scope="col">Dikirim (<?php echo $nopol;?>)</th>
+    <th width="208" scope="col">Penerima</th>
   </tr>
   <tr>
-    <th height="83" scope="row"  style="border: none;">&nbsp;</th>
-    <td style="border: none;">&nbsp;</td>
+    <th height="83" scope="row">&nbsp;</th>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
   </tr>
   <tr>
-    <th align="center" style="border: none;"><?php echo $driver;?><hr style="width: 200px;"></th>
-    <th align="center" style="border: none;">&nbsp;<hr style="width: 200px;"></th>
+    <th align="left">Nama : <?php echo $by;?></th>
+    <th align="left">Nama : <?php echo $driver;?><br>No Hp : <?php echo $nodriver;?></th>
+    <th align="left">Nama :</th>
   </tr>
   <tr>
-    <th align="center" style="border: none;margin-top:-10px">Tanggal : <?php echo tanggalIndo($tgl);?></th>
-    <th align="center" style="border: none;">Tanggal :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Tanggal : <?php echo $tgl;?></th>
+    <th align="left">Tanggal :</th>
+    <th align="left">Tanggal :</th>
   </tr>
 </tbody>
 </table>
+<label><h5>#<?php echo $ket;?></h5></label><br>
 
 
-<script>
-  setTimeout(function(){window.print()}, 1000);
-</script>
+ <script>
+
+          setTimeout(function(){window.print()}, 1000);
+           </script>

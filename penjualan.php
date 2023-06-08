@@ -262,7 +262,7 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                                                 <th>No</th>
                                                 <th>No.Invoice</th>
                                                 <th>Tgl Pembuatan</th>
-                                                <th>Due Date</th>
+                                                <th>Jatuh Tempo</th>
                                                 <th>Pelanggan</th>
                                                 <th>Total</th>
                                                 <th>Sudah Dibayar</th>
