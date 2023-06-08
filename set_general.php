@@ -70,9 +70,9 @@ if ($_SESSION['jabatan'] == 'admin') {
   $loginbg = $fill['loginbg'];
           }
 
-          $sql1="select * from data";
-                           $hasil2 = mysqli_query($conn,$sql1);
-                           while ($fill = mysqli_fetch_assoc($hasil2)){
+        $sql1="select * from data";
+        $hasil2 = mysqli_query($conn,$sql1);
+        while ($fill = mysqli_fetch_assoc($hasil2)){
 
           $nama = $fill['nama'];
           $alamat = $fill['alamat'];
@@ -81,7 +81,18 @@ if ($_SESSION['jabatan'] == 'admin') {
           $tagline = $fill['tagline'];
           $signature = $fill['signature'];
           $avatar = $fill['avatar'];
-                  }
+          if($fill['emailNotifReceiver']=='' || $fill['emailNotifReceiver']=='{}'){
+            $penerima[0] = "";
+            $penerima[1] = "";
+            $penerima[2] = "";
+          }else{
+            $jsontoArr = json_decode($fill['emailNotifReceiver'],true);
+            foreach($jsontoArr as $k => $v){
+              $penerima[$k] = $v;
+              $c++;
+            }
+          }
+         }
 ?>
 
                                 <!-- /.box-body -->
@@ -472,6 +483,14 @@ if(isset($_POST['simpan'])){
                 </div>
               </div>
 
+              <div class="form-group">
+                <label for="tagline" class="col-sm-2 control-label">Penerima Email Notifikasi</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="penerimaEmail1" name="penerimaEmail[]" placeholder="Masukkan Email Penerima 1" value="<?php echo $penerima[0]; ?>">
+                  <input type="email" class="form-control" id="penerimaEmail2" name="penerimaEmail[]" placeholder="Masukkan Email Penerima 2" value="<?php echo $penerima[1]; ?>">
+                  <input type="email" class="form-control" id="penerimaEmail3" name="penerimaEmail[]" placeholder="Masukkan Email Penerima 3" value="<?php echo $penerima[2]; ?>">
+                </div>
+              </div>
 
             </div>
             <!-- /.box-body -->
@@ -491,6 +510,7 @@ $notelp = $_POST['notelp'];
 $email = $_POST['email'];
 $tagline = $_POST['tagline'];
 $signature = $_POST['signature'];
+$penerimaEmail = json_encode($_POST['penerimaEmail']);
 
 $namaavatar = $_FILES['avatar']['name'];
 $ukuranavatar = $_FILES['avatar']['size'];
@@ -504,14 +524,14 @@ $sql="select * from data";
      if(mysqli_num_rows($result)>0){
  if((($tipeavatar == "image/jpeg" || $tipeavatar == "image/png") && ($ukuranavatar <= 10000000)) && ($chmod >= 3 || $_SESSION['jabatan'] == 'admin')){
          move_uploaded_file($tmp, $avatar);
-         $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', avatar='$avatar', email='$email'";
+         $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', avatar='$avatar', email='$email',emailNotifReceiver='$penerimaEmail'";
          $updatean = mysqli_query($conn, $sql1);
          echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil diupdate!');</script>";
          echo "<script type='text/javascript'>window.location = 'set_general';</script>";
 
  }else if($chmod >= 3 || $_SESSION['jabatan'] == 'admin'){
-       $avatar = "dist/upload/index.jpg";
-       $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', avatar='$avatar', email='$email'";
+      //  $avatar = "dist/upload/index.jpg";
+       $sql1 = "update data set nama='$nama', alamat='$alamat', notelp='$notelp', tagline='$tagline', signature='$signature', email='$email',emailNotifReceiver='$penerimaEmail'";
        $updatean = mysqli_query($conn, $sql1);
        echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil diupdate!');</script>";
        echo "<script type='text/javascript'>window.location = 'set_general';</script>";
@@ -524,13 +544,13 @@ $sql="select * from data";
 }
 else if((($tipeavatar == "image/jpeg" || $tipeavatar == "image/png") && ($ukuranavatar <= 10000000)) && ( $chmod >= 2 || $_SESSION['jabatan'] == 'admin')){
   move_uploaded_file($tmp, $avatar);
-  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature, email) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar','$email')";
+  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature, email, emailNotifReceiver) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar','$email','$penerimaEmail')";
   $insertan = mysqli_query($conn, $sql2);
   echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil ditambahkan!');</script>";
   echo "<script type='text/javascript'>window.location = 'set_general';</script>";
 }else {
   $avatar = "dist/upload/index.jpg";
-  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature, email) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar','$email')";
+  $sql2 = "insert into data (nama, alamat, notelp, tagline, signature, email, emailNotifReceiver) values('$nama','$alamat','$notelp','$tagline','$signature','$avatar','$email','$penerimaEmail')";
   $insertan = mysqli_query($conn, $sql2);
   echo "<script type='text/javascript'>  alert('Berhasil, Data berhasil ditambahkan!');</script>";
   echo "<script type='text/javascript'>window.location = 'set_general';</script>";

@@ -1,2 +1,4 @@
 /configuration/config_connect.php
 /dist/upload
+.env
+/vendor
