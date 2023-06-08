@@ -100,11 +100,17 @@ $nota=$_GET['nota'];
         $tgl=date("d-m-Y", strtotime($row['tanggal']));
 
 
-
- $sql1="SELECT * FROM stok_keluar WHERE nota='$nota'";
-        $hasil1=mysqli_query($conn,$sql1);
-        $row=mysqli_fetch_assoc($hasil1);
-        $ket=$row['keterangan'];
+$ket="";
+if (strpos($nota, 'INV') === false) {
+  $sql1="SELECT * FROM stok_keluar WHERE nota='$nota'";
+         $hasil1=mysqli_query($conn,$sql1);
+         $row=mysqli_fetch_assoc($hasil1);
+         $ket=$row['keterangan'];
+}else{
+  $sql1="SELECT * FROM invoicejual WHERE nota='$nota'";
+  $hasil1=mysqli_query($conn,$sql1);
+  $row=mysqli_fetch_assoc($hasil1);
+}
 
 ?>
 
@@ -174,25 +180,42 @@ $nota=$_GET['nota'];
       </tr>
 
  <?php
-
+    if (strpos($nota, 'INV') === false) {
           $query1="SELECT * FROM stok_keluar_daftar WHERE nota='$nota' order by no";
           $hasil = mysqli_query($conn,$query1);
           $no_urut=0;
           while ($fill = mysqli_fetch_assoc($hasil)){
-            ?>
+  ?>
+        <tr bgcolor="white">
+            <td align="center"><?php echo ++$no_urut;?></td>
+            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td align="center"><?php  $cba =$fill['kode_barang'];
+            $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT satuan FROM barang WHERE kode='$cba'"));
+            echo mysqli_real_escape_string($conn, $r['satuan']); ?>
+            </td>
+        </tr>
+<?php } }else{
+          $ninot = str_replace("INV","",$nota);
+          $query1="SELECT * FROM invoicejual WHERE nota='$ninot' order by no";
+          $hasil = mysqli_query($conn,$query1);
+          $no_urut=0;
+          while ($fill = mysqli_fetch_assoc($hasil)){?>
 
-    <tr bgcolor="white">
-              <td align="center"><?php echo ++$no_urut;?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-               <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-        <td align="center"><?php  $cba =$fill['kode_barang'];
-        $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT satuan FROM barang WHERE kode='$cba'"));
-       echo mysqli_real_escape_string($conn, $r['satuan']); ?>
-                        </td>
-      
-    </tr>
-
-<?php } ?>
+        <tr bgcolor="white">
+            <td align="center"><?php echo ++$no_urut;?></td>
+            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td align="center"><?php  $cba =$fill['kode'];
+            $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT satuan FROM barang WHERE kode='$cba'"));
+            $satuan = "Pcs";
+            if(isset($r['satuan'])){
+              $satuan = $r['satuan'];
+            }
+            echo $satuan; ?>
+            </td>
+        </tr>
+<?php } } ?>
 
           </tbody>
         </table>

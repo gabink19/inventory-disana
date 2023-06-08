@@ -35,16 +35,23 @@ menu();
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 include "configuration/config_chmod.php";
-$halaman = "surat_kelola"; // halaman
+$halaman = "surat_buat"; // halaman
 $dataapa = "Surat Jalan"; // data
 $tabeldatabase = "surat"; // tabel database
-$chmod = $chmenu8; // Hak akses Menu
+$chmod = $chmenu5; // Hak akses Menu
 $forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
 $forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
- 
+$nota=$_GET['q'];
+$notnot = $nota."INV";
+$sql=mysqli_query($conn, "SELECT nota FROM surat WHERE nota='$notnot'");
+if($sql->num_rows>0){
+    echo "<script type='text/javascript'>window.location = 'surat_print?nota=".$notnot."';</script>";
+}
+$sql=mysqli_query($conn, "SELECT * FROM pelanggan LEFT JOIN sale ON sale.pelanggan=pelanggan.kode WHERE nota='$nota'");
+$pelanggan=mysqli_fetch_assoc($sql);
 ?>
 
 
@@ -94,128 +101,155 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
   <!-- KONTEN BODY AWAL -->
                          <!-- Default box -->
+                         <div class="col-lg-6">
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Daftar Surat Jalan</h3>
-          <a href="stok_out" class="btn bg-maroon" style="float:right">Tambah Dari Stok Keluar</a>
+          <h3 class="box-title">Form Surat Jalan</h3>
+
+          
         </div>
         <div class="box-body">
-          
-
-
-  
-  <?php
-    error_reporting(E_ALL ^ E_DEPRECATED);
-    $sql    = "select * from surat order by no desc";
-    $result = mysqli_query($conn, $sql);
-    $rpp    = 15;
-    $reload = "$halaman"."?pagination=true";
-    $page   = intval(isset($_GET["page"]) ? $_GET["page"] : 0);
-
-    if ($page <= 0)
-        $page = 1;
-    $tcount  = mysqli_num_rows($result);
-    $tpages  = ($tcount) ? ceil($tcount / $rpp) : 1;
-    $count   = 0;
-    $i       = ($page - 1) * $rpp;
-    $no_urut = ($page - 1) * $rpp;
-?>
-                            <div class="box-body table-responsive">
-                                    <table class="table table-hover ">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Nomor Surat</th>
-                                                <th>Tanggal</th>
-                                                <th>Tujuan</th>
-                                                <th>Driver</th>
-                                                
-                                                
-                        <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
-                                                <th>Opsi</th>
-                        <?php }else{} ?>
-                                            </tr>
-                                        </thead>
-                                          <?php
-    error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
-    $search = $_POST['search'];
-
-    if ($search != null || $search != "") {
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-              if(isset($_POST['search'])){
-        $query1="SELECT * FROM  $forward where tujuan like '%$search%' or nosurat like '%$search%' order by no limit $rpp";
-        $hasil = mysqli_query($conn,$query1);
-        $no = 1;
-        while ($fill = mysqli_fetch_assoc($hasil)){
-          ?>
-                     <tbody>
-<tr>
-            <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nosurat']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tujuan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['driver']); ?></td>
-            
-            
-
-            <td>
-            <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
-          <button type="button" class="btn btn-success btn-xs" onclick="window.location.href='surat_view?nota=<?php  echo $fill['nota']; ?>'">Cetak</button>
-           <?php } else {}?>
-
-          
-              </td></tr><?php
-          ;
-        }
-
-        ?>
-                  </tbody></table>
- <div align="right"><?php if($tcount>=$rpp){ echo paginate_one($reload, $page, $tpages);}else{} ?></div>
-     <?php
-      }
-
-    }
-
-  } else {
-    while(($count<$rpp) && ($i<$tcount)) {
-      mysqli_data_seek($result,$i);
-      $fill = mysqli_fetch_array($result);
-      ?>
-                      <tbody>
-<tr>
-            <td><?php echo ++$no_urut;?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['nosurat']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tujuan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['driver']); ?></td>
-            
-            <td>
-            <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
          
+<form action="" method="post">
+                 
+              <div class="row">
+                
+                <div class="col-xs-6">
+                     <label>Nomor Surat</label>
+                  <input type="hidden" class="form-control" value="<?php echo $pelanggan['kode'];?>INV" name="pilih">
+                  <input type="disabled" class="form-control" value="SR<?php echo $nota;?>INV" name="nomor" readonly>
+                   <input type="hidden" class="form-control" value="<?php echo $nota;?>INV" name="nota">
+                </div>
+                 
+                <div class="col-xs-6">
+                <label>Tanggal</label>
+                  <input type="text" class="form-control" id="datepicker2" name="tgl">
+                </div>
+              </div>
+            <br>
+                 <div class="form-group">
+                  <label>Tujuan</label>
+                  <input type="text" class="form-control" id="tujuan" name="tujuan" value="<?php echo $pelanggan['nama'];?>">
+                </div>
 
-           <a class="btn btn-success btn-xs" href="surat_print?nota=<?php  echo $fill['nota']; ?>" target="_blank">Cetak</a>
-           <?php } else {}?>
+                 <div class="form-group">
+                  <label>Nomor Telepon</label>
+                  <input type="text" class="form-control" id="notelp" name="notelp"   value="<?php echo $pelanggan['nohp'];?>">
+                </div>
 
-          
-           </td></tr>
-      <?php
-      $i++;
-      $count++;
-    }
+                 <div class="form-group">
+                  <label>Alamat</label>
+                  <textarea class="form-control" rows="3" id="alamat" placeholder="Alamat Lengkap" name="alamat"  ><?php echo $pelanggan['alamat'];?></textarea>
+                </div>
 
-    ?>
-                  </tbody></table>
-          <div align="right"><?php if($tcount>=$rpp){ echo paginate_one($reload, $page, $tpages);}else{} ?></div>
-  <?php } ?>
+                 <div class="form-group">
+                  <label>Driver/Kurir</label>
+                  <input type="text" class="form-control" name="driver">
+                </div>
 
+                 <div class="form-group">
+                  <label>No.Hp Driver/Kurir</label>
+                  <input type="text" class="form-control" name="nohp">
+                </div>
+
+                 <div class="form-group">
+                  <label>Nomor Polisi Kendaraan</label>
+                  <input type="text" class="form-control" placeholder="optional" name="nopol">
+                </div>
+
+                <div class="form-group">
+                  <label>Keterangan</label>
+                  <textarea class="form-control" rows="2" name="ket" ></textarea>
+                </div>
+
+
+
+                    <div class="box-footer">
+               
+                  <button type="submit" name="surat" class="btn btn-success pull-right col-lg-6 col-xs-6">Simpan & Cetak</button>
+              </div>
 
 
         </div>
 
                                 <!-- /.box-body -->
                             </div>
+                        </div>
+</form>
+
+
+
+
+<div class="col-lg-6">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Daftar Barang</h3>
+
+         
+        </div>
+         <?php
+           error_reporting(E_ALL ^ E_DEPRECATED);
+
+           $sql    = "select * from invoicejual where nota='$nota' order by no";
+           $result = mysqli_query($conn, $sql);
+           $rpp    = 30;
+           $reload = "$halaman"."?pagination=true";
+           $page   = intval(isset($_GET["page"]) ? $_GET["page"] : 0);
+
+
+
+           if ($page <= 0)
+           $page = 1;
+           $tcount  = mysqli_num_rows($result);
+           $tpages  = ($tcount) ? ceil($tcount / $rpp) : 1;
+           $count   = 0;
+           $i       = ($page - 1) * $rpp;
+           $no_urut = ($page - 1) * $rpp;
+           ?>
+           <div class="box-body table-responsive">
+              <table class="data table table-hover table-bordered">
+                  <thead>
+                      <tr>
+                          <th style="width:10px">No</th>
+                          <th>Nama Barang</th>
+                          <th style="width:10%">Jumlah </th>
+                          
+           
+                      </tr>
+                  </thead>
+                    <?php
+           error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
+           while(($count<$rpp) && ($i<$tcount)) {
+           mysqli_data_seek($result,$i);
+           $fill = mysqli_fetch_array($result);
+           ?>
+           <tbody>
+           <tr>
+           <td><?php echo ++$no_urut;?></td>
+
+          
+           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+          
+           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+        
+          </tr>
+           <?php
+           $i++;
+           $count++;
+           }
+
+           ?>
+           </tbody></table>
+          <br>
+
+
+
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+
+
+
                         </div>
 
 <?php
@@ -228,6 +262,50 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
     <?php
 }
 ?>
+
+
+
+
+<?php
+
+    if(isset($_POST["surat"])){
+       if($_SERVER["REQUEST_METHOD"] == "POST"){
+               $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
+                $nomor = mysqli_real_escape_string($conn, $_POST["nomor"]);
+                 $tgl = mysqli_real_escape_string($conn, $_POST["tgl"]);
+                 $pilih = mysqli_real_escape_string($conn, $_POST["pilih"]);
+                 $tujuan = mysqli_real_escape_string($conn, $_POST["tujuan"]);
+                  $alamat = mysqli_real_escape_string($conn, $_POST["alamat"]);
+                   $telp = mysqli_real_escape_string($conn, $_POST["notelp"]);
+                    $driver = mysqli_real_escape_string($conn, $_POST["driver"]);
+                     $nohp = mysqli_real_escape_string($conn, $_POST["nohp"]);
+                      $nopol = mysqli_real_escape_string($conn, $_POST["nopol"]);
+                      $ket = mysqli_real_escape_string($conn, $_POST["ket"]);
+
+                      $by=$_SESSION['nama'];
+
+
+                         $sql="select * from surat where nota='$nota' or nosurat LIKE '%$nomor%'";
+        $result=mysqli_query($conn,$sql);
+              if(mysqli_num_rows($result)>0){
+                $n=$_GET['q'];
+                 echo "<script type='text/javascript'>  alert('Gagal, Telah ada surat jalan dengan nomor atau id yang sama!'); </script>";
+           echo "<script type='text/javascript'>window.location = 'surat_buat_inv?q=$n';</script>";
+              } else {
+
+        $sql2 = "insert into surat values( '$nota','$nomor','$tgl','$pilih','$tujuan','$telp','$alamat','$driver','$nohp','$nopol','$by','')";
+           if(mysqli_query($conn, $sql2)){
+
+           echo "<script type='text/javascript'>  alert('Berhasil, Data Surat telah disimpan!'); </script>";
+           echo "<script type='text/javascript'>window.location = 'surat_print?nota=".$nota."';</script>";
+         }else{
+           echo "<script type='text/javascript'>  alert('Gagal, Data Surat gagal disimpan!'); </script>";
+           echo "<script type='text/javascript'>window.location = 'surat_kelola';</script>";
+         }
+
+              }
+
+               } } ?>
                         <!-- ./col -->
                     </div>
 
@@ -248,14 +326,30 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
           <!-- ./wrapper -->
 
 <!-- Script -->
-    <script src='jquery-3.1.1.min.js' type='text/javascript'></script>
-
-    <!-- jQuery UI -->
-    <link href='jquery-ui.min.css' rel='stylesheet' type='text/css'>
-    <script src='jquery-ui.min.js' type='text/javascript'></script>
-
+  
 <script src="dist/plugins/jQuery/jquery-2.2.3.min.js"></script>
         <script src="libs/1.11.4-jquery-ui.min.js"></script>
+
+
+
+
+<script>
+$(document).ready(function() {
+    $('#pilih').val(3);
+})
+$("#pilih").on("change", function(){
+    var tujuan = $("#pilih option:selected").attr("nama");
+    var notelp = $("#pilih option:selected").attr("notelp");
+    var alamat = $("#pilih option:selected").attr("alamat");
+
+    $("#tujuan").val(tujuan);
+    $("#notelp").val(notelp);
+    $("#alamat").val(alamat);
+});
+</script>
+
+
+
 
         <script>
   $.widget.bridge('uibutton', $.ui.button);
@@ -285,93 +379,6 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
     <script src="dist/plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <script src="dist/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="dist/plugins/iCheck/icheck.min.js"></script>
-
-<!--fungsi AUTO Complete-->
-<!-- Script -->
-    <script type='text/javascript' >
-    $( function() {
-  
-        $( "#barcode" ).autocomplete({
-            source: function( request, response ) {
-                
-                $.ajax({
-                    url: "server.php",
-                    type: 'post',
-                    dataType: "json",
-                    data: {
-                        search: request.term
-                    },
-                    success: function( data ) {
-                        response( data );
-                    }
-                });
-            },
-            select: function (event, ui) {
-                $('#nama').val(ui.item.label);
-                $('#barcode').val(ui.item.value); // display the selected text
-                $('#hargajual').val(ui.item.hjual);
-                $('#stok').val(ui.item.sisa); // display the selected text
-                $('#hargabeli').val(ui.item.hbeli);
-                $('#jumlah').val(ui.item.jumlah);
-                $('#kode').val(ui.item.kode); // save selected id to input
-                return false;
-                
-            }
-        });
-
-        // Multiple select
-        $( "#multi_autocomplete" ).autocomplete({
-            source: function( request, response ) {
-                
-                var searchText = extractLast(request.term);
-                $.ajax({
-                    url: "server.php",
-                    type: 'post',
-                    dataType: "json",
-                    data: {
-                        search: searchText
-                    },
-                    success: function( data ) {
-                        response( data );
-                    }
-                });
-            },
-            select: function( event, ui ) {
-                var terms = split( $('#multi_autocomplete').val() );
-                
-                terms.pop();
-                
-                terms.push( ui.item.label );
-                
-                terms.push( "" );
-                $('#multi_autocomplete').val(terms.join( ", " ));
-
-                // Id
-                var terms = split( $('#selectuser_ids').val() );
-                
-                terms.pop();
-                
-                terms.push( ui.item.value );
-                
-                terms.push( "" );
-                $('#selectuser_ids').val(terms.join( ", " ));
-
-                return false;
-            }
-           
-        });
-    });
-
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
-
-    </script>
-
-<!--AUTO Complete-->
 
 <script>
   $(function () {
