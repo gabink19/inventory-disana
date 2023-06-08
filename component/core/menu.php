@@ -100,7 +100,7 @@ if($chmenu5 >= 1 || $_SESSION['jabatan'] == 'admin'){ ?>
 if($chmenu6 >= 1 || $_SESSION['jabatan'] == 'admin'){ ?>
 
                         <li class="treeview">
-                            <a href="#"> <i class="glyphicon glyphicon-minus"></i> <span>Sales Invoice</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i> </span> </a>
+                            <a href="#"> <i class="glyphicon glyphicon-minus"></i> <span>Penjualan</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i> </span> </a>
                <ul class="treeview-menu">
 
                 <?php if($chmenu6 >= 2 || $_SESSION['jabatan'] == 'admin'){ ?>
@@ -257,7 +257,7 @@ if($chmenu7 >= 1 || $_SESSION['jabatan'] == 'admin'){ ?>
                                       <a href="report_jual"><i class="fa fa-circle-o"></i>Kasir</a>
                                   </li>
                                    <li>
-                                      <a href="report_inv"><i class="fa fa-circle-o"></i>Sales Invoice</a>
+                                      <a href="report_inv"><i class="fa fa-circle-o"></i>Penjualan Invoice</a>
                                   </li>
                                   <li>
                                       <a href="report_inv_piutang"><i class="fa fa-circle-o"></i>Piutang Penjualan</a>

@@ -214,7 +214,7 @@ if($lop['countitem']==24){
 }
 
 
-$filler=22-$rowoflastpage;
+$filler=0;
 $lastpage=$numofpage-1;
         ?>
 
@@ -327,6 +327,9 @@ for ($i = 0; $i < $numofpage; $i++){
                     <th class="text-center" style="width:10%">
                         Qty
                     </th>
+                    <th class="text-center" style="width:10%">
+                        Satuan
+                    </th>
                     <th class="text-center" style="width:12%">
                         Harga
                     </th>
@@ -337,7 +340,7 @@ for ($i = 0; $i < $numofpage; $i++){
                 <tbody>
                 <?php
                     $kategori = [];
-                    $sql1a=mysqli_query($conn,"SELECT ij.*,kt.kode,br.kategori FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode LEFT JOIN kategori kt ON kt.nama=br.kategori WHERE nota='$nota' LIMIT $offset,$limit");
+                    $sql1a=mysqli_query($conn,"SELECT ij.*,kt.kode,br.kategori,br.satuan FROM $tabeldatabase ij LEFT JOIN barang br ON ij.kode=br.kode LEFT JOIN kategori kt ON kt.nama=br.kategori WHERE nota='$nota' LIMIT $offset,$limit");
                     $num = ($i) * 9 + 1;
                     $kat_no = 1;
                     while($rowa=mysqli_fetch_assoc($sql1a)){
@@ -354,7 +357,7 @@ for ($i = 0; $i < $numofpage; $i++){
                             if($kunci_name!=""){
                                 echo "<tr style='border-bottom: 1px solid;'>
                                 <td class='text-center'>$kat_no</td>
-                                <td colspan='6' style='text-align:center;background:aqua;font-weight:600'>$kunci_name</td>
+                                <td colspan='7' style='text-align:center;background:aqua;font-weight:600'>$kunci_name</td>
                                 </tr>";
                                 $det_no = 1;
                                 $num++;
@@ -362,12 +365,14 @@ for ($i = 0; $i < $numofpage; $i++){
                                     $nama = $var['nama'];
                                     $harga = number_format($var['harga']);
                                     $jumlah = $var['jumlah'];
+                                    $satuan = $var['satuan'];
                                     $hargaakhir = number_format($var['hargaakhir']);
                                     echo "<tr style='border-bottom: 1px solid;'>
                                     <td></td>
                                     <td class='text-center' style='width:5%'>$det_no</td>
                                     <td colspan='2'>$nama</td>
                                     <td style='text-align:center'>$jumlah</td>
+                                    <td style='text-align:center'>$satuan</td>
                                     <td style='text-align:center'>$harga</td>
                                     <td style='text-align:right'>$hargaakhir</td>
                                     </tr>";
@@ -380,11 +385,13 @@ for ($i = 0; $i < $numofpage; $i++){
                                     $nama = $var['nama'];
                                     $harga = number_format($var['harga']);
                                     $jumlah = $var['jumlah'];
+                                    $satuan = $var['satuan'];
                                     $hargaakhir = number_format($var['hargaakhir']);
                                     echo "<tr style='border-bottom: 1px solid;'>
                                     <td class='text-center' style='width:5%'>$kat_no</td>
                                     <td colspan='3'>$nama</td>
                                     <td style='text-align:center'>$jumlah</td>
+                                    <td style='text-align:center'>$satuan</td>
                                     <td style='text-align:center'>$harga</td>
                                     <td style='text-align:right'>$hargaakhir</td>
                                     </tr>";
@@ -411,8 +418,8 @@ for ($i = 0; $i < $numofpage; $i++){
                 <tr style="background: rgba(217,225,242,1.0);">
                     <td>&nbsp;</td>
                     
-                    <td colspan="3">Pajak</td>
-                    <td colspan="2"></td>
+                    <td colspan="3">Pajak 11%</td>
+                    <td colspan="3"></td>
                     <td colspan="1" style="text-align:right"><?php echo number_format(($biaya), $decimal, $a_decimal, $thousand).',-';?></td>
                 </tr>
                 <tr style="background: rgba(217,225,242,1.0);">
@@ -420,13 +427,13 @@ for ($i = 0; $i < $numofpage; $i++){
                     
                     <td colspan="2">Diskon <?php echo $diskon;?>%</td>
                     <td><?php echo number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>
-                    <td colspan="2">Jumlah</td>
+                    <td colspan="3">Jumlah</td>
                     <td colspan="1" style="text-align:right"><?php echo number_format(($pot+$total), $decimal, $a_decimal, $thousand).',-';?></td>
                 </tr>
                 <tr style="background: rgba(217,225,242,1.0);">
                     <td colspan="4">&nbsp;</td>
                     
-                    <td colspan="2">Total (Rp)</td>
+                    <td colspan="3">Total (Rp)</td>
                     <td style="text-align:right"><b><?php echo number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
                 </tr>
                 </tfoot>
@@ -450,9 +457,9 @@ for ($i = 0; $i < $numofpage; $i++){
                <table width="100%" border="1px">
                  <tr class="" style="background: rgba(217,225,242,1.0);border-top: 1px solid">
                     <td style="font-size: 14px;"  class="db text-left" width="100px" style="background: rgba(217,225,242,1.0)">
-                        Keterangan:
+                        Keterangan: 
                     </td>
-                      <td style="font-size: 12px;"></td>
+                      <td style="font-size: 12px;"><?php echo $keterangan;?></td>
                    
                 </tr>
 
@@ -493,11 +500,7 @@ $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no 
 
 
 
-                    <td width="16%" valign="top"><h6 style="margin-bottom: 0;">
-                        <span style="text-decoration: dashed; padding-left: 100%;color: #000; border-bottom: 1px solid black;"></span>
-                    </h6>
-                        <h6 class="text-center"
-                        style="margin-top: 5px;">Penerima</h6></td>
+                    
 
 
 
@@ -509,10 +512,11 @@ $qws1=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rekening ORDER BY no 
 
 
                          <td width="16%" valign="top"><h6 style="margin-bottom: 0;">
-                        <span style="text-decoration: dashed; padding-left: 100%;color: #000; border-bottom: 1px solid black;"></span>
+                        
                     </h6>
-                        <h6 class="text-center"
-                        style="margin-top: 5px;">Mengetahui</h6></td>
+                    <h6 class="text-center" style="margin-top: 5px;"><?php echo $bayar;?></h6>
+                    <p></p>
+                        <h6 class="text-center"style="margin-top: 5px;">Direktur</h6></td>
                 </tr>
 
             </table>
