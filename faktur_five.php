@@ -142,6 +142,7 @@ $today = date('d-m-Y');
         $hasil1=mysqli_query($conn,$sql1);
         $row=mysqli_fetch_assoc($hasil1);
         $nama=$row['nama'];
+        $namaPerusahaan=$row['nama'];
         $alamat=$row['alamat'];
         $notelp=$row['notelp'];
         $tagline=$row['tagline'];
@@ -504,27 +505,13 @@ if(isset($qws2['bank'])&&isset($qws2['norek'])&&isset($qws2['nama'])){?>
 </td>
 
 <?php } } ?>
-
-
-
-
-                    
-
-
-
-
-                         <td width="3%" valign="top"><h6 style="margin-bottom: 0;">
-                        </td>
-
-
-
-
-                         <td width="16%" valign="top"><h6 style="margin-bottom: 0;">
-                        
-                    </h6>
-                    <h6 class="text-center" style="margin-top: 5px;"><?php echo $bayar;?></h6>
-                    <p></p>
-                        <h6 class="text-center"style="margin-top: 5px;">Direktur</h6></td>
+                    <td width="16%" valign="top">
+                        <h6 class="text-center" style="margin-top: 5px;font-size:14px"><?php echo $namaPerusahaan;?></h6>
+                        <h6 class="text-center"  style="margin-top: 80px;"></h6>
+                        <h6 style="margin-bottom: 0;text-align:center">
+                        <span style="font-size:14px"><u><b>Imbron Rosady</b></u></span></h6>
+                        <h6 class="text-center"  style="margin-top: 5px;">Direktur</h6>
+                    </td>
                 </tr>
 
             </table>
