@@ -273,8 +273,8 @@ if($supplier!=''){
                           echo "<script type='text/javascript'>  alert('Data tidak bisa diubah!');</script>";
                         }
                       else if(( $chmod >= 2 || $_SESSION['jabatan'] == 'admin')){
-
-                       $sql2 = "insert into $tabel values( '$kode','$nopo','$tgl','$tglnota','$biaya','$datatotal','','$supplier','$kasir','$belum','','$keterangan','')";
+                        $grandTotal = $datatotal+$biaya;
+                       $sql2 = "insert into $tabel values( '$kode','$nopo','$tgl','$tglnota','$biaya','$grandTotal','','$supplier','$kasir','$belum','','$keterangan','')";
                       $insertan = mysqli_query($conn, $sql2);
 
                      $sql3 = "UPDATE mutasi SET status='$berhasil' where keterangan='$kode'";

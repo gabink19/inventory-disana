@@ -382,10 +382,9 @@ for ($i = 0; $i < $numofpage; $i++){
                     <tr style="background: rgba(217,225,242,1.0);">
                         <td>&nbsp;</td>
                         
+                        <td colspan="3">Biaya Lainnya</td>
                         <td colspan="2"></td>
-                        <td></td>
-                        <td colspan="2"></td>
-                        <td colspan="1" style="text-align:right"></td>
+                        <td colspan="1" style="text-align:right"><?php echo number_format($biaya, $decimal, $a_decimal, $thousand);?></td>
                     </tr>
                     <tr style="background: rgba(217,225,242,1.0);">
                         <td colspan="4">&nbsp;</td>

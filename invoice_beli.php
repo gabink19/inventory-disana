@@ -90,6 +90,7 @@ function autoNumber(){
         $supplier=$row['supplier'];
          $status=$row['status'];
           $terima=$row['diterima'];
+          $biayalainnya=$row['biaya'];
 
           if($status=="dibayar"){
             $sss="";
@@ -296,7 +297,14 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
            }
 
            ?>
-            </tbody>
+          </tbody>
+          <tbody>
+           <tr>
+            <td></td>
+            <td colspan="3"><b>Biaya Lainnya</b></td>
+            <td ><?php echo number_format($biayalainnya, $decimal, $a_decimal, $thousand).',-';?></td>
+           </tr>
+          </tbody>
           </table>
            <div align="right"><?php if($tcount>=$rpp){ echo paginate_one($reload, $page, $tpages);}else{} ?></div>
         </div>
@@ -354,7 +362,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
               
               <tr>
                 <th>Total:</th>
-                <td>Rp. <?php echo number_format($totalprice, $decimal, $a_decimal, $thousand).',-';?></td>
+                <td>Rp. <?php echo number_format($biayalainnya+$totalprice, $decimal, $a_decimal, $thousand).',-';?></td>
               </tr>
             </table>
           </div>
@@ -505,12 +513,12 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
            <div class="form-group col-md-12 col-xs-12" >
                   <label for="nama" class="col-sm-3 control-label">Jumlah bayar:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jml" name="jml" value="<?php echo $totalprice;?>" placeholder="Masukan Jumlah bayar" >
-                     <input type="hidden" class="form-control" name="tagihan" value="<?php echo $totalprice;?>" >
+                    <input type="text" class="form-control" id="jml" name="jml" value="<?php echo $biayalainnya+$totalprice;?>" placeholder="Masukan Jumlah bayar" >
+                     <input type="hidden" class="form-control" name="tagihan" value="<?php echo $biayalainnya+$totalprice;?>" >
                   </div>
                 </div>
         </div>
-<input type="hidden" class="form-control" id="jml1" name="jml1" value="<?php echo $totalprice;?>" readonly >
+<input type="hidden" class="form-control" id="jml1" name="jml1" value="<?php echo $biayalainnya+$totalprice;?>" readonly >
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
@@ -618,8 +626,8 @@ $sql=mysqli_query($conn,"UPDATE buy SET status='dibayar',sudahbayar='$sudahbayar
            <div class="form-group col-md-12 col-xs-12" >
                   <label for="nama" class="col-sm-3 control-label">Jumlah:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="hutang" name="hutang1" value="<?php echo $totalprice;?>"  >
-                     <input type="hidden" class="form-control" name="hutang2" value="<?php echo $totalprice;?>"  readonly >
+                    <input type="text" class="form-control" id="hutang" name="hutang1" value="<?php echo $biayalainnya+$totalprice;?>"  >
+                     <input type="hidden" class="form-control" name="hutang2" value="<?php echo $biayalainnya+$totalprice;?>"  readonly >
                   </div>
                 </div>
         </div>
