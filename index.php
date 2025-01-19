@@ -159,10 +159,10 @@ if ($alert == 1 && $url =='http://idwares.esy.es'){
                              <h3><?php echo $datax4; ?></h3>
 
                              <?php
-                             $sql= "SELECT batas from backset";
-                              $hasilx2=mysqli_query($conn,$sql);
-                              $row=mysqli_fetch_assoc($hasilx2);
-                              $alert = $row['batas'];
+                            //  $sql= "SELECT batas from backset";
+                            //   $hasilx2=mysqli_query($conn,$sql);
+                            //   $row=mysqli_fetch_assoc($hasilx2);
+                            //   $alert = $row['batas'];
 
                              ?>
                              <p>Barang dengan Stok dibawah minimal</p>
