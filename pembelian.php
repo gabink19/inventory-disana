@@ -4,7 +4,8 @@
 include "configuration/config_etc.php";
 include "configuration/config_include.php";
 include "configuration/config_alltotal.php";
-etc();encryption();session();connect();head();body();timing();
+// etc();
+encryption();session();connect();head();body();timing();
 //alltotal();
 pagination();
 ?>
@@ -249,13 +250,6 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
 <div class="col-lg-3 col-md-3 col-sm-3">
 <!-- isi -->
 </div>
-
-
-<?php
-
-$sqlw=mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(nota) as nt, SUM(totalbeliakhir) as tt FROM pembelian WHERE cabang LIKE '%$cab%' AND status LIKE '%hutang%'"));
-
-?>
 
 <div class="col-lg-6 col-md-6 col-sm-6">
   

@@ -3,7 +3,7 @@
 
 <?php
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
-include "configuration/config_etc.php";
+ include "configuration/config_etc.php";
 include "configuration/config_include.php";
 etc();session();connect();
 ?>

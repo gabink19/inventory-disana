@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-include "configuration/config_etc.php";
+ include "configuration/config_etc.php";
 include "configuration/config_include.php";
 etc();session();connect();
 ?>

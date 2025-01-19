@@ -3,9 +3,10 @@
 <?php
 include "configuration/config_etc.php";
 include "configuration/config_include.php";
-include "configuration/config_alltotal.php";
-etc();encryption();session();connect();head();body();timing();
-//alltotal();
+include_once "configuration/config_alltotal.php";
+// etc();
+encryption();session();connect();head();body();timing();
+// alltotal();
 pagination();
 ?>
 
@@ -312,7 +313,6 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
             <td><?php  echo mysqli_real_escape_string($conn, $fill['terjual']); ?></td>
             <td><?php  echo mysqli_real_escape_string($conn, $fill['terbeli']); ?></td>
             <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['deposit']); ?></td>
           </tr>
       <?php
       $i++;

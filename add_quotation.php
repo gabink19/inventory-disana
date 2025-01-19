@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <?php
-include "configuration/config_etc.php";
+ include "configuration/config_etc.php";
 include "configuration/config_include.php";
 
 date_default_timezone_set("Asia/Jakarta");
 $today=date('Y-m-d');
 
-etc();encryption();session();connect();head();body();timing();
+//etc();
+encryption();session();connect();head();body();timing();
 //alltotal();
 pagination();
 ?>

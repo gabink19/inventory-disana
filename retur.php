@@ -4,7 +4,8 @@
 include "configuration/config_etc.php";
 include "configuration/config_include.php";
 include "configuration/config_alltotal.php";
-etc();encryption();session();connect();head();body();timing();
+// etc();
+encryption();session();connect();head();body();timing();
 
 pagination();
 date_default_timezone_set("Asia/Jakarta");

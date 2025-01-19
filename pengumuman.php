@@ -2,7 +2,8 @@
 <html>
 <?php
 include "configuration/config_include.php";
-etc();encryption();session();connect();head();body();timing();
+//etc();
+encryption();session();connect();head();body();timing();
 //alltotal();
 //pagination();
 ?>

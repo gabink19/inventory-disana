@@ -4,10 +4,16 @@
 include "configuration/config_etc.php";
 include "configuration/config_include.php";
 include "configuration/config_alltotal.php";
-etc();encryption();session();connect();head();body();timing();
+//etc();
+encryption();session();connect();head();body();timing();
 pagination();
 ?>
 
+<?php
+$decimal ="0";
+$a_decimal =",";
+$thousand =".";
+?>
 <?php
 if (!login_check()) {
 ?>
