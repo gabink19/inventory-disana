@@ -45,8 +45,8 @@ $halaman = "quotation"; // halaman
 $dataapa = "Penawaran"; // data
 $tabeldatabase = "quotation"; // tabel database
 $chmod = $chmenu3; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 $now=date('Y-m-d');
  
@@ -118,7 +118,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3 style="font-size: 30px"><?php echo number_format($qsuc, $decimal, $a_decimal, $thousand);?></h3>
+              <h3 style="font-size: 30px"><?php echo safe_number_format($qsuc, $decimal, $a_decimal, $thousand);?></h3>
 
               <p>Penawaran Berhasil</p>  
             </div>
@@ -133,7 +133,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3 style="font-size: 30px"><?php echo number_format($qnon, $decimal, $a_decimal, $thousand);?></h3>
+              <h3 style="font-size: 30px"><?php echo safe_number_format($qnon, $decimal, $a_decimal, $thousand);?></h3>
               <p>Penawaran Nonaktif</p>
             </div>
             <div class="icon">
@@ -147,7 +147,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3 style="font-size: 30px"><?php echo number_format($qexp, $decimal, $a_decimal, $thousand);?></h3>
+              <h3 style="font-size: 30px"><?php echo safe_number_format($qexp, $decimal, $a_decimal, $thousand);?></h3>
 
               <p>Penawaran Kadaluarsa</p>
             </div>

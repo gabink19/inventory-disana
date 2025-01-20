@@ -50,8 +50,8 @@ if($trx=='1'){
       $tabeldatabase = "invoicebeli"; // tabel database
 }
 
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 ?>
 
@@ -234,13 +234,13 @@ $total=$rowa['total'];
                       <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
   <?php    if($trx == '1'){?>
- <td><?php  echo mysqli_real_escape_string($conn, $fill['retur']); ?></td>
+ <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['retur']); ?></td>
   <?php } ?>
   <?php if($id!='1'){ ?>
   <td>

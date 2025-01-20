@@ -43,8 +43,8 @@ $dataapa = "Invoice Pembelian"; // data
 $tabeldatabase = "buy"; // tabel database
 $tabel = "invoicebeli"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -87,7 +87,7 @@ if ($search != null || $search != "") {
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo number_format($inv11, $decimal, $a_decimal, $thousand);?></h3>
+              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo safe_number_format($inv11, $decimal, $a_decimal, $thousand);?></h3>
 
               <p>Total Pembelian</p>
             </div>
@@ -102,7 +102,7 @@ if ($search != null || $search != "") {
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo number_format($inv12, $decimal, $a_decimal, $thousand);?></h3>
+              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo safe_number_format($inv12, $decimal, $a_decimal, $thousand);?></h3>
 
               <p>Total Dibayar</p>
             </div>
@@ -117,7 +117,7 @@ if ($search != null || $search != "") {
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo number_format($inv13, $decimal, $a_decimal, $thousand);?></h3>
+              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo safe_number_format($inv13, $decimal, $a_decimal, $thousand);?></h3>
 
               <p>Belum Dibayar</p>
             </div>
@@ -132,7 +132,7 @@ if ($search != null || $search != "") {
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo number_format($inv15, $decimal, $a_decimal, $thousand);?></h3>
+              <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp</sup><?php echo safe_number_format($inv15, $decimal, $a_decimal, $thousand);?></h3>
 
               <p>Tagihan Jatuh Tempo</p>
             </div>
@@ -315,18 +315,18 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
                       <td><?php echo ++$no_urut;?></td>
-                      <td><?php  echo mysqli_real_escape_string($conn, $fill['nopo']); ?></td>
+                      <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nopo']); ?></td>
                      <td><?php $newtgla = date("d-m-Y",strtotime($fill['tanggal']));
-                       echo mysqli_real_escape_string($conn, $newtgla); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+                       echo safe_mysqli_real_escape_string($conn, $newtgla); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
 
              <td><?php $newtgl = date("d-m-Y",strtotime($fill['tglsale']));
-                       echo mysqli_real_escape_string($conn, $newtgl); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-                      <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+                       echo safe_mysqli_real_escape_string($conn, $newtgl); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+                      <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
 
-                      <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
-                      <td><?php  echo mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
+                      <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
+                      <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
                       
                       <td>
                       
@@ -382,19 +382,19 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
                       <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nopo']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nopo']); ?></td>
              <td><?php $newtgla = date("d-m-Y",strtotime($fill['tanggal']));
-                       echo mysqli_real_escape_string($conn, $newtgla); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+                       echo safe_mysqli_real_escape_string($conn, $newtgla); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
             <td><?php $newtgl = date("d-m-Y",strtotime($fill['tglsale']));
-                       echo mysqli_real_escape_string($conn, $newtgl); ?></td>
+                       echo safe_mysqli_real_escape_string($conn, $newtgl); ?></td>
 
                        
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
             
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
 
             
             <td>

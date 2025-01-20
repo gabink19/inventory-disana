@@ -327,9 +327,9 @@ for ($i = 0; $i < $numofpage; $i++){
                 <tr>
                     <td><?php echo $num++;?></td>
                     <td colspan="3"><?php echo $rowa['nama'];?></td>
-                    <td style="text-align:center"><?php echo number_format($rowa['harga']);?></td>
+                    <td style="text-align:center"><?php echo safe_number_format($rowa['harga']);?></td>
                     <td style="text-align:center"><?php echo $rowa['jumlah'];?></td>
-                    <td style="text-align:right"><?php echo number_format($rowa['hargaakhir']);?></td>
+                    <td style="text-align:right"><?php echo safe_number_format($rowa['hargaakhir']);?></td>
                 </tr>
 
             <?php } ?>
@@ -357,7 +357,7 @@ for ($i = 0; $i < $numofpage; $i++){
                     <td colspan="4">&nbsp;</td>
                     
                     <td colspan="2">Total (Rp)</td>
-                    <td style="text-align:right"><b><?php echo number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
+                    <td style="text-align:right"><b><?php echo safe_number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
                 </tr>
                 </tfoot>
 <?php } else {?>

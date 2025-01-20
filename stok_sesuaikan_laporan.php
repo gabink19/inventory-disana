@@ -37,8 +37,8 @@ $halaman = "laporan_penyesuaian"; // halaman
 $dataapa = "Penyesuaian Stok"; // data
 $tabeldatabase = "stok_sesuai"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -191,10 +191,10 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['oleh']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['oleh']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
             <td>
             
           <a class="btn btn-success btn-xs" href="stok_sesuai_print?nota=<?php echo $fill['nota']; ?>" target = '_blank'>CETAK</a>

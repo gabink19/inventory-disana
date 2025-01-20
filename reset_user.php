@@ -135,7 +135,7 @@ $user = "admin";
 
       if(isset($_POST['cek'])){
    if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $pin = mysqli_real_escape_string($conn, $_POST["pin"]);
+    $pin = safe_mysqli_real_escape_string($conn, $_POST["pin"]);
     $pina=sha1(MD5($pin));
 
        $sql="select * from pin where pin='$pina'";

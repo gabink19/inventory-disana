@@ -40,8 +40,8 @@ $halaman = "cetak_barcode"; // halaman
 $dataapa = "Form Barcode"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn,$tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn,$tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 //$search = $_POST['search'];
 $kode=$_GET['kode'];
  $sql = "SELECT * from $tabeldatabase where kode = '$kode' ";
@@ -365,9 +365,9 @@ if($kolom==1){
     if(isset($_POST["setting"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-              $atas = mysqli_real_escape_string($conn, $_POST["atas"]);
-              $bawah = mysqli_real_escape_string($conn, $_POST["bawah"]);
-              $kolom = mysqli_real_escape_string($conn, $_POST["kolom"]);
+              $atas = safe_mysqli_real_escape_string($conn, $_POST["atas"]);
+              $bawah = safe_mysqli_real_escape_string($conn, $_POST["bawah"]);
+              $kolom = safe_mysqli_real_escape_string($conn, $_POST["kolom"]);
 
 
               $sql="UPDATE barang_setting_barcode SET label_atas='$atas', label_bawah='$bawah', jml_kolom='$kolom'";

@@ -45,8 +45,8 @@ $halaman = "mutasi"; // halaman
 $dataapa = "Mutasi Barang"; // data
 $tabeldatabase = "mutasi"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -234,15 +234,15 @@ if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['namauser']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['namauser']); ?></td>
             <?php  $tgl = date("d-m-Y",strtotime($fill['tgl'])); ?>
-            <td><?php echo $fill['jam'];?> / <?php  echo mysqli_real_escape_string($conn, $tgl); ?> </td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
+            <td><?php echo $fill['jam'];?> / <?php  echo safe_mysqli_real_escape_string($conn, $tgl); ?> </td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
           </tr><?php
           ;
         }
@@ -259,17 +259,17 @@ if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['namauser']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['namauser']); ?></td>
             <?php  $tgl = date("d-m-Y",strtotime($fill['tgl'])); ?>
-            <td><?php echo $fill['jam'];?> / <?php  echo mysqli_real_escape_string($conn, $tgl); ?> </td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php echo $fill['jam'];?> / <?php  echo safe_mysqli_real_escape_string($conn, $tgl); ?> </td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
             <td> <?php if($fill['status']=="berhasil"){?> <span class="label label-success"><?php echo $fill['status'];?> </span>
                 <?php } else {?> <span class="label label-danger"><?php echo $fill['status'];?></span> <?php } ?>       
             </td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
           </tr>
             
       <?php

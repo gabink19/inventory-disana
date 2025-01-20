@@ -40,8 +40,8 @@ $halaman = "tipe_operasional"; // halaman
 $dataapa = "Tipe Pengeluaran"; // data
 $tabeldatabase = "operasional_tipe"; // tabel database
 $chmod = $chmenu3; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -205,8 +205,8 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
      if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-          $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+          $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
           
              $sql="select * from $tabeldatabase where nama='$nama'";
         $result=mysqli_query($conn,$sql);
@@ -278,7 +278,7 @@ echo "<script type='text/javascript'>window.location = '$halaman';</script>";
     while ($fill = mysqli_fetch_assoc($hasil)){
     ?>
                    <td><?php echo ++$no;?></td>
-                  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+                  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
                  <td><button type="button" class="btn btn-danger btn-xs" onclick="window.location.href='tipe_operasional?no=<?php echo $fill['no'];?>'">Hapus</button></td>
                   
                 </tr>

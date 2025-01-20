@@ -40,8 +40,8 @@ $halaman = "surat_buat"; // halaman
 $dataapa = "Surat Jalan"; // data
 $tabeldatabase = "surat"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -229,9 +229,9 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
            <td><?php echo ++$no_urut;?></td>
 
           
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
           
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
         
           </tr>
            <?php
@@ -271,17 +271,17 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
     if(isset($_POST["surat"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
-               $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-                $nomor = mysqli_real_escape_string($conn, $_POST["nomor"]);
-                 $tgl = mysqli_real_escape_string($conn, $_POST["tgl"]);
-                 $pilih = mysqli_real_escape_string($conn, $_POST["pilih"]);
-                 $tujuan = mysqli_real_escape_string($conn, $_POST["tujuan"]);
-                  $alamat = mysqli_real_escape_string($conn, $_POST["alamat"]);
-                   $telp = mysqli_real_escape_string($conn, $_POST["notelp"]);
-                    $driver = mysqli_real_escape_string($conn, $_POST["driver"]);
-                     $nohp = mysqli_real_escape_string($conn, $_POST["nohp"]);
-                      $nopol = mysqli_real_escape_string($conn, $_POST["nopol"]);
-                      $ket = mysqli_real_escape_string($conn, $_POST["ket"]);
+               $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+                $nomor = safe_mysqli_real_escape_string($conn, $_POST["nomor"]);
+                 $tgl = safe_mysqli_real_escape_string($conn, $_POST["tgl"]);
+                 $pilih = safe_mysqli_real_escape_string($conn, $_POST["pilih"]);
+                 $tujuan = safe_mysqli_real_escape_string($conn, $_POST["tujuan"]);
+                  $alamat = safe_mysqli_real_escape_string($conn, $_POST["alamat"]);
+                   $telp = safe_mysqli_real_escape_string($conn, $_POST["notelp"]);
+                    $driver = safe_mysqli_real_escape_string($conn, $_POST["driver"]);
+                     $nohp = safe_mysqli_real_escape_string($conn, $_POST["nohp"]);
+                      $nopol = safe_mysqli_real_escape_string($conn, $_POST["nopol"]);
+                      $ket = safe_mysqli_real_escape_string($conn, $_POST["ket"]);
 
                       $by=$_SESSION['nama'];
 

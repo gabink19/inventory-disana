@@ -164,14 +164,14 @@ $nota=$_GET['nota'];
               <td align="center"><?php echo ++$no_urut;?></td>
               <td align="center"><?php  $cba =$fill['kode_brg'];
         $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT sku,satuan FROM barang WHERE kode='$cba'"));
-       echo mysqli_real_escape_string($conn, $r['sku']); ?>
+       echo safe_mysqli_real_escape_string($conn, $r['sku']); ?>
                         </td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-        <td align="center"><?php echo mysqli_real_escape_string($conn, $r['satuan']); ?></td>
-       <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['sebelum']); ?></td>
-         <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['sesudah']); ?></td>
-         <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['selisih']); ?></td>
-          <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['catatan']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+        <td align="center"><?php echo safe_mysqli_real_escape_string($conn, $r['satuan']); ?></td>
+       <td align="center"><?php echo safe_mysqli_real_escape_string($conn, $fill['sebelum']); ?></td>
+         <td align="center"><?php echo safe_mysqli_real_escape_string($conn, $fill['sesudah']); ?></td>
+         <td align="center"><?php echo safe_mysqli_real_escape_string($conn, $fill['selisih']); ?></td>
+          <td align="center"><?php echo safe_mysqli_real_escape_string($conn, $fill['catatan']); ?></td>
     </tr>
  <?php
             ;

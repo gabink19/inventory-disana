@@ -54,8 +54,8 @@ $judul="Invoice";
 }
 
 
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 
 date_default_timezone_set("Asia/Jakarta");
@@ -174,10 +174,10 @@ $today = date('d-m-Y');
 				<tr class="item">
 					
 					
-					<td style="text-align:left"><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-					<td><?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-					<td style="text-align:center"><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-					<td style="text-align:right"><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+					<td style="text-align:left"><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+					<td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+					<td style="text-align:center"><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+					<td style="text-align:right"><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
 				</tr>
 <?php } ?>
 		
@@ -187,14 +187,14 @@ $today = date('d-m-Y');
 					<td></td>
 					<td style="text-align:right">Diskon <?php echo $diskon;?>%:</td>
 					
-					<td colspan="2" style="text-align:right"><?php echo number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>			
+					<td colspan="2" style="text-align:right"><?php echo safe_number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>			
 				</tr>
 
 				<tr class="total">
 					<td></td>
 					<td style="text-align:right">Biaya Tambahan:</td>
 					
-					<td colspan="2" style="text-align:right"><?php echo number_format($biaya, $decimal, $a_decimal, $thousand).',-';?></td>			
+					<td colspan="2" style="text-align:right"><?php echo safe_number_format($biaya, $decimal, $a_decimal, $thousand).',-';?></td>			
 				</tr>
 
 				<tr class="total">
@@ -216,7 +216,7 @@ $today = date('d-m-Y');
 					
 					<td style="text-align:right"><b>Grand Total:</b></td>
 									
-					<td colspan="2" style="text-align:right"><b>Rp <?php echo number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
+					<td colspan="2" style="text-align:right"><b>Rp <?php echo safe_number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
 				</tr>
 
 <?php if($tipe=='quotation'){?>

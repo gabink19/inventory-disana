@@ -36,8 +36,8 @@ $halaman = "report_inv"; // halaman
 $dataapa = "Laporan Invoice Penjualan"; // data
 $tabeldatabase = "sale"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 $bulan = $_POST['bulan'];
 $tahun = $_POST['tahun'];
@@ -273,9 +273,9 @@ while ($fill = mysqli_fetch_assoc($hasil)){ ?>
 
                 <tr>
                   <td><?php echo ++$no_urut;?></td>
-                  <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
+                  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
                   <td>Rp 
-                   <?php  echo mysqli_real_escape_string($conn, $fill['cost']); ?>
+                   <?php  echo safe_mysqli_real_escape_string($conn, $fill['cost']); ?>
                     </div>
                   </td>
                   
@@ -445,8 +445,8 @@ if($bulan == null || $search == "" ){
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
   <?php
 $cust = $fill['pelanggan'];
 $sqle="SELECT nama FROM pelanggan WHERE kode ='$cust'";
@@ -459,11 +459,11 @@ $hasil1=mysqli_query($conn,$jml);
 $row1=mysqli_fetch_array($hasil1);
 $jmljual=$row1['tot_jual'];
    ?>
-   <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'])); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['diskon']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $pembeli); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'])); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['diskon']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $pembeli); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
   </tr><?php
           ;
         }
@@ -484,8 +484,8 @@ $jmljual=$row1['tot_jual'];
                       <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
   <?php
 $cust = $fill['pelanggan'];
 $sqle="SELECT nama FROM pelanggan WHERE kode ='$cust'";
@@ -496,11 +496,11 @@ $pembeli=$rowa['nama'];
    ?>
    
   
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['diskon']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $pembeli); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['diskon']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $pembeli); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
  </tr>
       <?php
       $i++;

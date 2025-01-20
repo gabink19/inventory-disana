@@ -40,8 +40,8 @@ $halaman = "report_beli_hutang"; // halaman
 $dataapa = "Hutang Pembelian"; // data
 $tabeldatabase = "buy_hutang"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 
  error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
@@ -126,16 +126,16 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
             $sam=$_GET['end'];
 
 if($s !='all'){
-                $sqla="SELECT SUM(hutang) as tbeli FROM buy_hutang WHERE kreditur='$s' AND tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
-                 $sqlc="SELECT SUM(sudahbayar) as tsubayar FROM buy_hutang WHERE kreditur='$s' AND tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
+                $sqla="SELECT COALESCE(SUM(hutang), 0) as tbeli FROM buy_hutang WHERE kreditur='$s' AND tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
+                 $sqlc="SELECT  COALESCE(SUM(sudahbayar), 0) as tsubayar FROM buy_hutang WHERE kreditur='$s' AND tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
 
- $sqld="SELECT SUM(sudahbayar) as tembayar, SUM(hutang) as tembeli FROM buy_hutang WHERE kreditur='$s' AND status LIKE 'hutang' AND due BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
+ $sqld="SELECT  COALESCE(SUM(sudahbayar), 0) as tembayar, COALESCE(SUM(hutang), 0) as tembeli FROM buy_hutang WHERE kreditur='$s' AND status LIKE 'hutang' AND due BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
 
             } else {
-                 $sqla="SELECT SUM(hutang) as tbeli FROM buy_hutang WHERE tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
-                 $sqlc="SELECT SUM(sudahbayar) as tsubayar FROM buy_hutang WHERE tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
+                 $sqla="SELECT COALESCE(SUM(hutang), 0) as tbeli FROM buy_hutang WHERE tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
+                 $sqlc="SELECT  COALESCE(SUM(sudahbayar), 0) as tsubayar FROM buy_hutang WHERE tgl BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
 
-                 $sqld="SELECT SUM(sudahbayar) as tembayar, SUM(hutang) as tembeli FROM buy_hutang WHERE status LIKE 'hutang' AND due BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
+                 $sqld="SELECT  COALESCE(SUM(sudahbayar), 0) as tembayar, COALESCE(SUM(hutang), 0) as tembeli FROM buy_hutang WHERE status LIKE 'hutang' AND due BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
             }
 
 $b=mysqli_fetch_assoc(mysqli_query($conn,$sqla));
@@ -152,29 +152,32 @@ echo '  <div >
             <td><h3>TOTAL HUTANG</h3></td>
              <td style="width:50%"><h3>:</h3></td>
              
-            <td><h3>'.number_format($b['tbeli']-$c['tsubayar']).'</h3></td>
+            <td><h3>'.safe_number_format($b['tbeli']-$c['tsubayar']).'</h3></td>
         </tr>
 
          <tr>
         <td>TOTAL TAGIHAN</td>
              <td style="width:50%"><h3></h3></td>
              
-            <td>'.number_format($b['tbeli']).'</td>
+            <td>'.safe_number_format($b['tbeli']).'</td>
         </tr>
 
          <tr>
         <td>SUDAH TERBAYAR</td>
              <td style="width:50%"><h3></h3></td>
              
-            <td><b>'.number_format($c['tsubayar']).'</b></td>
+            <td><b>'.safe_number_format($c['tsubayar']).'</b></td>
         </tr>
         </table>
         </div>';
 
 }
-
-$dari=date('d-m-Y', strtotime($dr));
-$sampai=date('d-m-Y', strtotime($sam));
+$dari = date("Y-m-d");
+$sampai = date("Y-m-d");
+if ($dr!="") {
+  $dari=date('d-m-Y', strtotime($dr));
+  $sampai=date('d-m-Y', strtotime($sam));
+}
 
 ?>
               
@@ -233,7 +236,7 @@ $sampai=date('d-m-Y', strtotime($sam));
                             $ca=mysqli_fetch_assoc(mysqli_query($conn,"SELECT nama FROM supplier WHERE kode='$supe'"));
                             echo $ca['nama'];
                         ?></td>
-                       <td><?php echo number_format($row['hutang']-$row['sudahbayar']);?></td>
+                       <td><?php echo safe_number_format($row['hutang']-$row['sudahbayar']);?></td>
                          <td><?php echo date('d-m-Y',strtotime($row['due']));?></td>
                        
                          <td><?php echo $row['keterangan'];?></td>
@@ -250,7 +253,7 @@ $sampai=date('d-m-Y', strtotime($sam));
                             <th>Total</th>
                             <th></th>
                              <th></th>
-                            <th><?php echo number_format($b['tbeli']-$c['tsubayar']);?></th>
+                            <th><?php echo safe_number_format($b['tbeli']-$c['tsubayar']);?></th>
                             <th></th>
                             <th style="width:30px"></th>
                         </tr>
@@ -317,7 +320,7 @@ $sampai=date('d-m-Y', strtotime($sam));
                             $ca=mysqli_fetch_assoc(mysqli_query($conn,"SELECT nama FROM supplier WHERE kode='$supe'"));
                             echo $ca['nama'];
                         ?></td>
-                       <td><?php echo number_format($row['hutang']-$row['sudahbayar']);?></td>
+                       <td><?php echo safe_number_format($row['hutang']-$row['sudahbayar']);?></td>
                          <td><span class="label label-danger"><?php echo date('d-m-Y',strtotime($row['due']));?></span></td>
                        
                          <td><?php echo $row['keterangan'];?></td>
@@ -334,7 +337,7 @@ $sampai=date('d-m-Y', strtotime($sam));
                             <th>Total</th>
                             <th></th>
                              <th></th>
-                            <th><?php echo number_format($d['tembeli']-$d['tembayar']);?></th>
+                            <th><?php echo safe_number_format($d['tembeli']-$d['tembayar']);?></th>
                             <th></th>
                             <th style="width:30px"></th>
                         </tr>

@@ -38,8 +38,8 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 $halaman = "set_faktur"; // halaman
 $dataapa = "Layout Faktur"; // data
 $tabeldatabase = ""; // tabel database
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 
 

@@ -41,8 +41,8 @@ $dataapa = "Stok Masuk"; // data
 $tabeldatabase = "stok_masuk"; // tabel database
 $tabel="stok_masuk_daftar";
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -95,7 +95,7 @@ if ($search != null || $search != "") {
 //fungsi menangkap barcode
 
 if(isset($_GET['barcode'])) {
-   $barcode = mysqli_real_escape_string($conn, $_GET["barcode"]);
+   $barcode = safe_mysqli_real_escape_string($conn, $_GET["barcode"]);
     $sql1= "SELECT * FROM barang where barcode='$barcode'";
     $query=mysqli_query($conn, $sql1);
     $data=mysqli_fetch_assoc($query);
@@ -110,10 +110,10 @@ if(isset($_GET['barcode'])) {
 
     if(isset($_POST["masuk"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
-               $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-                $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-                 $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-                  $jumlah = mysqli_real_escape_string($conn, $_POST["jumlah"]);
+               $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+                $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+                 $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+                  $jumlah = safe_mysqli_real_escape_string($conn, $_POST["jumlah"]);
                    $jam=date('h:i');
 
                     $kegiatan = "Stok Masuk";
@@ -377,9 +377,9 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
            <td><?php echo ++$no_urut;?></td>
 
           
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
           
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
         
            <td>
            <?php  if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') { ?>
@@ -464,8 +464,8 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 
     if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
-               $nota = mysqli_real_escape_string($conn, $_POST["notae"]);
-               $sup= mysqli_real_escape_string($conn, $_POST["supplier"]);
+               $nota = safe_mysqli_real_escape_string($conn, $_POST["notae"]);
+               $sup= safe_mysqli_real_escape_string($conn, $_POST["supplier"]);
                 $tgl= date('Y-m-d');
                   $usr=$_SESSION['nouser'];
                   $cab=01;

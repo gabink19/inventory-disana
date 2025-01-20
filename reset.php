@@ -40,8 +40,8 @@ $halaman = "reset"; // halaman
 $dataapa = "RESET APLIKASI"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = 5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
  
 ?>

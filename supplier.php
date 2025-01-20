@@ -37,8 +37,8 @@ $halaman = "supplier"; // halaman
 $dataapa = "Supplier"; // data
 $tabeldatabase = "supplier"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 
@@ -197,11 +197,11 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgldaftar']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nohp']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['alamat']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgldaftar']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nohp']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['alamat']); ?></td>
             
             <td>
             <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
@@ -432,11 +432,11 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
       if(isset($_POST["simpansupplier"])){
    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-          $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-          $tgldaftar = mysqli_real_escape_string($conn, $_POST["tgldaftar"]);
-          $nohp = mysqli_real_escape_string($conn, $_POST["nohp"]);
-          $alamat = mysqli_real_escape_string($conn, $_POST["alamat"]);
+          $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+          $tgldaftar = safe_mysqli_real_escape_string($conn, $_POST["tgldaftar"]);
+          $nohp = safe_mysqli_real_escape_string($conn, $_POST["nohp"]);
+          $alamat = safe_mysqli_real_escape_string($conn, $_POST["alamat"]);
       
 
 

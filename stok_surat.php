@@ -40,8 +40,8 @@ $halaman = "surat_kelola"; // halaman
 $dataapa = "Surat Jalan"; // data
 $tabeldatabase = "surat"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -154,10 +154,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nosurat']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tujuan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['driver']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nosurat']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tujuan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['driver']); ?></td>
             
             
 
@@ -187,10 +187,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['nosurat']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tujuan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['driver']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nosurat']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tujuan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['driver']); ?></td>
             
             <td>
             <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>

@@ -140,35 +140,35 @@ $newsampai = date("d-m-Y", strtotime($sampai));
   <tr>
    <td style="text-align:center;width:200px;height:20px;">1</td>
     <td style="width:700px;height:20px;">Retail</td>
-    <td  style="text-align:center;width:200px;height:20px;"><?php echo number_format($retail);?></td>
+    <td  style="text-align:center;width:200px;height:20px;"><?php echo safe_number_format($retail);?></td>
     
   </tr>
 
    <tr>
    <td style="text-align:center;width:200px;height:20px;">2</td>
     <td style="width:700px;height:20px;">Invoice (belum dibayar)</td>
-    <td  style="text-align:center;width:200px;height:20px;"><?php echo number_format($salesunpaid);?></td>
+    <td  style="text-align:center;width:200px;height:20px;"><?php echo safe_number_format($salesunpaid);?></td>
     
   </tr>
 
    <tr>
    <td style="text-align:center;width:200px;height:20px;">3</td>
     <td style="width:700px;height:20px;">Invoice (Lunas)</td>
-    <td  style="text-align:center;width:200px;height:20px;"><?php echo number_format($salespaid);?></td>
+    <td  style="text-align:center;width:200px;height:20px;"><?php echo safe_number_format($salespaid);?></td>
     
   </tr>
 
  <tr>
    <td style="text-align:center;width:200px;height:20px;">Beban Penjualan</td>
     <td style="width:700px;height:20px;">Harga Pokok Penjualan</td>
-    <td  style="text-align:center;width:200px;height:20px;"><?php echo number_format($biaya);?></td>
+    <td  style="text-align:center;width:200px;height:20px;"><?php echo safe_number_format($biaya);?></td>
     
   </tr>
 
   <tr>
    <td colspan="2" style="text-align:center;width:900px;height:40px;"><strong>Total Laba Kotor</strong></td>
    
-    <td  style="text-align:center;width:200px;height:40px;"><?php echo number_format($gross1);?></td>
+    <td  style="text-align:center;width:200px;height:40px;"><?php echo safe_number_format($gross1);?></td>
     
   </tr>
 
@@ -197,7 +197,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
   <tr>
    <td style="text-align:center;width:200px;height:20px;"><?php echo ++$no;?></td>
     <td style="width:700px;height:20px;"><?php echo $fill['tipe'];?></td>
-    <td  style="text-align:center;width:200px;height:20px;"><?php echo number_format($fill['cost']);?></td>
+    <td  style="text-align:center;width:200px;height:20px;"><?php echo safe_number_format($fill['cost']);?></td>
     
   </tr>
 
@@ -208,7 +208,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
   <tr>
    <td colspan="2" style="text-align:center;width:900px;height:40px;"><strong>Total Laba Bersih</strong></td>
     
-    <td  style="text-align:center;width:200px;height:40px;"><strong>Rp <?php echo number_format($net);?></strong></td>
+    <td  style="text-align:center;width:200px;height:40px;"><strong>Rp <?php echo safe_number_format($net);?></strong></td>
     
   </tr>
 </table>

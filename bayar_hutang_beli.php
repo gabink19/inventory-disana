@@ -40,8 +40,8 @@ $halaman = "bayar_hutang_beli"; // halaman
 $dataapa = "Pembayaran Hutang"; // data
 $tabeldatabase = "buy_payment"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
  
 function autoNumber(){
@@ -175,7 +175,7 @@ $b=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM supplier WHERE kode='$aa
            <div class="form-group col-md-12 col-xs-12" >
                   <label for="biaya" class="col-sm-3 control-label">Total Hutang:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" value="<?php echo number_format($a['hutang']); ?>" readonly>
+                    <input type="text" class="form-control" value="<?php echo safe_number_format($a['hutang']); ?>" readonly>
                       <input type="hidden" class="form-control" value="<?php echo $a['hutang']; ?>" readonly>
                   </div>
                 </div>
@@ -185,7 +185,7 @@ $b=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM supplier WHERE kode='$aa
            <div class="form-group col-md-12 col-xs-12" >
                   <label for="biaya" class="col-sm-3 control-label">Sisa Hutang:</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" value="<?php echo number_format($sisa); ?>" readonly>
+                    <input type="text" class="form-control" value="<?php echo safe_number_format($sisa); ?>" readonly>
                         <input type="hidden" class="form-control" value="<?php echo $sisa; ?>" name="sisa" readonly>
                           <input type="hidden" class="form-control" value="<?php echo $a['sudahbayar']; ?>" name="sudah" readonly>
                   </div>
@@ -333,7 +333,7 @@ while($row=mysqli_fetch_assoc($sql)){
                   <td><?php echo $no++;?>.</td>
                   <td><?php echo $row['keterangan'];?></td>
                   <td><?php echo date('d-m-Y',strtotime($row['tanggal']));?></td>
-                    <td><?php echo number_format($row['jumlah']);?></td>
+                    <td><?php echo safe_number_format($row['jumlah']);?></td>
 
 
                     <?php if($row['metode']=='cash'){
@@ -355,7 +355,6 @@ while($row=mysqli_fetch_assoc($sql)){
 
 <?php 
 
-
 } ?>
 
 
@@ -363,7 +362,7 @@ while($row=mysqli_fetch_assoc($sql)){
                   <td></td>
                   <td colspan="2"> Total Sudah diBayar:</td>
                   
-                    <td><b><?php echo number_format($a['sudahbayar']);?></b></td>
+                    <td><b><?php echo safe_number_format($a['sudahbayar']?: 0);?></b></td>
                   <td>
                     <?php if($a['status']=='belum'){?>
                     <h5><span class="label label-danger">BELUM LUNAS</span></h5>
@@ -430,15 +429,15 @@ while($row=mysqli_fetch_assoc($sql)){
 
     if(isset($_POST['bayar'])){
    if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-          $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-          $metode = mysqli_real_escape_string($conn, $_POST["metode"]);
-          $jml= mysqli_real_escape_string($conn, $_POST["bayaran"]);
-          $ket = mysqli_real_escape_string($conn, $_POST["keterangan"]);
-          $tgl = mysqli_real_escape_string($conn, $_POST["tgl"]);
-          $sisa = mysqli_real_escape_string($conn, $_POST["sisa"]);
-            $sup = mysqli_real_escape_string($conn, $_POST["sup"]);
-            $sudah = mysqli_real_escape_string($conn, $_POST["sudah"]);
+            $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+          $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+          $metode = safe_mysqli_real_escape_string($conn, $_POST["metode"]);
+          $jml= safe_mysqli_real_escape_string($conn, $_POST["bayaran"]);
+          $ket = safe_mysqli_real_escape_string($conn, $_POST["keterangan"]);
+          $tgl = safe_mysqli_real_escape_string($conn, $_POST["tgl"]);
+          $sisa = safe_mysqli_real_escape_string($conn, $_POST["sisa"]);
+            $sup = safe_mysqli_real_escape_string($conn, $_POST["sup"]);
+            $sudah = safe_mysqli_real_escape_string($conn, $_POST["sudah"]);
           $user=$_SESSION['nama'];
 
           $sudahbayar=$sudah+$jml;
@@ -492,10 +491,10 @@ echo "<script type='text/javascript'>  alert('Berhasil, Pembayaran telah disimpa
 
     if(isset($_GET['hapus'])){
    if($_SERVER["REQUEST_METHOD"] == "GET"){
-            $no = mysqli_real_escape_string($conn, $_GET["no"]);
-          $nota = mysqli_real_escape_string($conn, $_GET["q"]);
-          $sudahbayar = mysqli_real_escape_string($conn, $_GET["s"]);
-          $jml= mysqli_real_escape_string($conn, $_GET["j"]);
+            $no = safe_mysqli_real_escape_string($conn, $_GET["no"]);
+          $nota = safe_mysqli_real_escape_string($conn, $_GET["q"]);
+          $sudahbayar = safe_mysqli_real_escape_string($conn, $_GET["s"]);
+          $jml= safe_mysqli_real_escape_string($conn, $_GET["j"]);
 
 
           $sudah2=$sudahbayar-$jml;

@@ -40,8 +40,8 @@ $halaman = "report_labarugi"; // halaman
 $dataapa = "Report"; // data
 $tabeldatabase = "bayar"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -170,8 +170,8 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 if(isset($_POST["rekap"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-$dari = mysqli_real_escape_string($conn, $_POST["dari"]);
-$sampai = mysqli_real_escape_string($conn, $_POST["sampai"]);
+$dari = safe_mysqli_real_escape_string($conn, $_POST["dari"]);
+$sampai = safe_mysqli_real_escape_string($conn, $_POST["sampai"]);
 
 $sqlx="SELECT SUM(total) AS retail FROM bayar WHERE keterangan !='Retur' AND tglbayar BETWEEN '" . $dari . "' AND  '" . $sampai . "' ";
 $hasilx=mysqli_query($conn,$sqlx);
@@ -225,7 +225,9 @@ $newdari ='Awal';
 $newdari = date("d-m-Y", strtotime($dari));
 }
 
-
+if ($sampai=="") {
+  $sampai= date("d-m-Y");
+}
 $newsampai = date("d-m-Y", strtotime($sampai));
 
 
@@ -327,7 +329,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                 <tr>
                   <td>1.</td>
                   <td>Pendapatan retail</td>
-                  <td> Rp. <?php echo number_format($retail);?>          
+                  <td> Rp. <?php echo safe_number_format($retail);?>          
                   </td>
                   
                 </tr>
@@ -335,7 +337,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                  <tr>
                   <td>2.</td>
                   <td>Pendapatan Non retail</td>
-                  <td>Rp. <?php echo number_format($totalsales);?>          
+                  <td>Rp. <?php echo safe_number_format($totalsales);?>          
                   </td>
                   
                 </tr>
@@ -343,7 +345,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                  <tr>
                   <td>3.</td>
                   <td>Modal Penjualan</td>
-                  <td>Rp. <?php echo number_format($biaya);?>         
+                  <td>Rp. <?php echo safe_number_format($biaya);?>         
                   </td>
                   
                 </tr>
@@ -351,7 +353,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                  <tr style="background-color:#D6EDEF">
                   <td></td>
                   <td><strong><h4>Gross Profit</h4></strong></td>
-                  <td>  <h4>Rp. <?php echo number_format($gross1);?></h4>                 
+                  <td>  <h4>Rp. <?php echo safe_number_format($gross1);?></h4>                 
                   </td>
                   
                 </tr>
@@ -359,7 +361,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                 <tr style="background-color:#D6EDEF" >
                   <td></td>
                   <td>Persentase terhadap total pendapatan</td>
-                  <td> <h4><?php echo number_format($prctg1);?> %</h4>                   
+                  <td> <h4><?php echo safe_number_format($prctg1);?> %</h4>                   
                   </td>
                   
                 </tr>
@@ -367,7 +369,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                  <tr>
                   <td>4.</td>
                   <td>Biaya Operasional</td>
-                  <td>Rp. <?php echo number_format($cost);?>                   
+                  <td>Rp. <?php echo safe_number_format($cost);?>                   
                   </td>
                   
                 </tr>
@@ -375,7 +377,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                  <tr style="background-color:#D6EDEF">
                   <td></td>
                   <td><strong><h4>Net Profit</h4></strong></td>
-                  <td><h4>Rp <?php echo number_format($net);?> </h4>                    
+                  <td><h4>Rp <?php echo safe_number_format($net);?> </h4>                    
                   </td>
                   
                 </tr>
@@ -415,7 +417,7 @@ $newsampai = date("d-m-Y", strtotime($sampai));
                   <td><?php echo ++$no;?></td>
                   <td><?php echo $fill['tipe'];?></td>
                   <td>
-                   <?php echo number_format($fill['cost']);?>
+                   <?php echo safe_number_format($fill['cost']);?>
                   </td>
                   <td><span class="badge bg-red">
                     <?php $persen = $fill['cost'];

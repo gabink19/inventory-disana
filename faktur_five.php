@@ -373,10 +373,10 @@ for ($i = 0; $i < $numofpage; $i++){
                                 $num++;
                                 foreach($val as $var){
                                     $nama = $var['nama'];
-                                    $harga = number_format($var['harga']);
+                                    $harga = safe_number_format($var['harga']);
                                     $jumlah = $var['jumlah'];
                                     $satuan = $var['satuan'];
-                                    $hargaakhir = number_format($var['hargaakhir']);
+                                    $hargaakhir = safe_number_format($var['hargaakhir']);
                                     echo "<tr style='border-bottom: 1px solid;'>
                                     <td></td>
                                     <td class='text-center' style='width:5%'>$det_no</td>
@@ -393,10 +393,10 @@ for ($i = 0; $i < $numofpage; $i++){
                             }else{
                                 foreach($val as $var){
                                     $nama = $var['nama'];
-                                    $harga = number_format($var['harga']);
+                                    $harga = safe_number_format($var['harga']);
                                     $jumlah = $var['jumlah'];
                                     $satuan = $var['satuan'];
-                                    $hargaakhir = number_format($var['hargaakhir']);
+                                    $hargaakhir = safe_number_format($var['hargaakhir']);
                                     echo "<tr style='border-bottom: 1px solid;'>
                                     <td class='text-center' style='width:5%'>$kat_no</td>
                                     <td colspan='3'>$nama</td>
@@ -430,21 +430,21 @@ for ($i = 0; $i < $numofpage; $i++){
                     
                     <td colspan="3">Pajak 11%</td>
                     <td colspan="3"></td>
-                    <td colspan="1" style="text-align:right"><?php echo number_format(($biaya), $decimal, $a_decimal, $thousand).',-';?></td>
+                    <td colspan="1" style="text-align:right"><?php echo safe_number_format(($biaya), $decimal, $a_decimal, $thousand).',-';?></td>
                 </tr>
                 <tr style="background: rgba(217,225,242,1.0);">
                     <td>&nbsp;</td>
                     
                     <td colspan="2">Diskon <?php echo $diskon;?>%</td>
-                    <td><?php echo number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>
+                    <td><?php echo safe_number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>
                     <td colspan="3">Jumlah</td>
-                    <td colspan="1" style="text-align:right"><?php echo number_format(($pot+$total), $decimal, $a_decimal, $thousand).',-';?></td>
+                    <td colspan="1" style="text-align:right"><?php echo safe_number_format(($pot+$total), $decimal, $a_decimal, $thousand).',-';?></td>
                 </tr>
                 <tr style="background: rgba(217,225,242,1.0);">
                     <td colspan="4">&nbsp;</td>
                     
                     <td colspan="3">Total (Rp)</td>
-                    <td style="text-align:right"><b><?php echo number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
+                    <td style="text-align:right"><b><?php echo safe_number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
                 </tr>
                 </tfoot>
 <?php } else {?>

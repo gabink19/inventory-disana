@@ -40,8 +40,8 @@ $halaman = "surat_pilih"; // halaman
 $dataapa = "Pilih Transaksi"; // data
 $tabeldatabase = "stok_keluar"; // tabel database
 $chmod = $chmenu4; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 

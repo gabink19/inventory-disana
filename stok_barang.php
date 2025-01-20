@@ -37,7 +37,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-aqua">
                                            <div class="inner">
-                                               <h3><sup style="font-size: 20px"></sup><?php echo number_format($stok1, $decimal, $a_decimal, $thousand).' '; ?></h3>
+                                               <h3><sup style="font-size: 20px"></sup><?php echo safe_number_format($stok1, $decimal, $a_decimal, $thousand).' '; ?></h3>
                                                <p>Stok Tersedia</p>
                                            </div>
                                            <div class="icon">
@@ -101,8 +101,8 @@ $halaman = "stok_barang"; // halaman
 $dataapa = "Stok Barang"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -280,13 +280,13 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sku']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['brand']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['terjual']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['terbeli']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['deposit']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sku']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['brand']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['terjual']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['terbeli']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['deposit']); ?></td>
           </tr><?php
           ;
         }
@@ -307,12 +307,12 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sku']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['brand']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['terjual']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['terbeli']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sku']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['brand']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['terjual']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['terbeli']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
           </tr>
       <?php
       $i++;

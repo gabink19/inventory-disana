@@ -37,8 +37,8 @@ $halaman = "hutang_beli"; // halaman
 $dataapa = "Hutang Pembelian"; // data
 $tabeldatabase = "buy_hutang"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -227,10 +227,10 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
 
             </td>
           
-            <td><?php  echo mysqli_real_escape_string($conn, date('d-m-Y',strtotime($fill['due']) )); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['hutang'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sudahbayar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, date('d-m-Y',strtotime($fill['due']) )); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['hutang'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sudahbayar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
             
 
             <td>
@@ -272,10 +272,10 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
             echo $r['nama'];?>
             </td>
       
-            <td><?php  echo mysqli_real_escape_string($conn, date('d-m-Y',strtotime($fill['due']) )); ?></td>
-          <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['hutang'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sudahbayar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, date('d-m-Y',strtotime($fill['due']) )); ?></td>
+          <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['hutang'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sudahbayar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
             
             <td>
              <?php if (($chmod >= 2 || $_SESSION['jabatan'] == 'admin')&&($fill['status']=='hutang')) { ?>

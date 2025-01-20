@@ -40,8 +40,8 @@ $halaman = "admin"; // halaman
 $dataapa = "Admin"; // data
 $tabeldatabase = "user"; // tabel database
 $chmod = $chmenu1; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 ?>
@@ -162,19 +162,19 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
       }
 
 
-                      $username = mysqli_real_escape_string($conn, $_POST["username"]);
+                      $username = safe_mysqli_real_escape_string($conn, $_POST["username"]);
                       $password = md5($_POST["password"]);
                       $password = sha1($password);
-                      $password = mysqli_real_escape_string($conn, $password);
+                      $password = safe_mysqli_real_escape_string($conn, $password);
                       $password2 = md5($_POST["password2"]);
                       $password2 = sha1($password2);
-                      $password2 = mysqli_real_escape_string($conn, $password2);
-                      $nama= mysqli_real_escape_string($conn, $_POST["nama"]);
-                      $jabatan= mysqli_real_escape_string($conn, $_POST["jabatan"]);
-                      $nohp= mysqli_real_escape_string($conn, $_POST["nohp"]);
-                      $alamat= mysqli_real_escape_string($conn,$_POST["alamat"]);
-                      $tgllahir= mysqli_real_escape_string($conn, $_POST["tgllahir"]);
-                      $tglaktif= mysqli_real_escape_string($conn, $_POST["tglaktif"]);
+                      $password2 = safe_mysqli_real_escape_string($conn, $password2);
+                      $nama= safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+                      $jabatan= safe_mysqli_real_escape_string($conn, $_POST["jabatan"]);
+                      $nohp= safe_mysqli_real_escape_string($conn, $_POST["nohp"]);
+                      $alamat= safe_mysqli_real_escape_string($conn,$_POST["alamat"]);
+                      $tgllahir= safe_mysqli_real_escape_string($conn, $_POST["tgllahir"]);
+                      $tglaktif= safe_mysqli_real_escape_string($conn, $_POST["tglaktif"]);
                       $namaavatar = $_FILES['avatar']['name'];
                       $ukuranavatar = $_FILES['avatar']['size'];
                       $tipeavatar = $_FILES['avatar']['type'];

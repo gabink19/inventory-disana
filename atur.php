@@ -40,8 +40,8 @@ $halaman = "stok_menipis"; // halaman
 $dataapa = "Stok Menipis"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -143,8 +143,8 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 if(isset($_POST['simpan'])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
         $bisnis = "";
-  $bisnis = mysqli_real_escape_string($conn, $_POST["bisnis"]);
-  $status = mysqli_real_escape_string($conn, $_POST["status"]);
+  $bisnis = safe_mysqli_real_escape_string($conn, $_POST["bisnis"]);
+  $status = safe_mysqli_real_escape_string($conn, $_POST["status"]);
 
              $sql="select * from backset";
                   $result=mysqli_query($conn,$sql);

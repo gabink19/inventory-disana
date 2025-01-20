@@ -43,8 +43,8 @@ $halaman = "stok-masuk"; // halaman
 $dataapa = "Stok"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
  
 ?>
@@ -277,13 +277,13 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-              $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-              $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-              $terjual = mysqli_real_escape_string($conn ,$_POST["terjual"]);
-              $terbeli = mysqli_real_escape_string($conn, $_POST["terbeli"]);
-              $jumlah = mysqli_real_escape_string($conn, $_POST["jumlah"]);
-              $stok = mysqli_real_escape_string($conn, $_POST["sisa"]);
-              $sup = mysqli_real_escape_string($conn, $_POST["supplier"]);
+              $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+              $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+              $terjual = safe_mysqli_real_escape_string($conn ,$_POST["terjual"]);
+              $terbeli = safe_mysqli_real_escape_string($conn, $_POST["terbeli"]);
+              $jumlah = safe_mysqli_real_escape_string($conn, $_POST["jumlah"]);
+              $stok = safe_mysqli_real_escape_string($conn, $_POST["sisa"]);
+              $sup = safe_mysqli_real_escape_string($conn, $_POST["supplier"]);
               $sisa = $stok;
               $kasir = $_SESSION["username"];
               $kegiatan = "menambah stok";

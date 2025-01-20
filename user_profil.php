@@ -40,8 +40,8 @@ $halaman = "user_profil"; // halaman
 $dataapa = "Profil User"; // data
 $tabeldatabase = "user"; // tabel database
 $chmod = $chmenu4; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
  
 ?>
@@ -272,11 +272,11 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
        <tbody>
                 <tr>
                   <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
                   
                 </tr>
                 <?php
@@ -299,11 +299,11 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
             
 
             

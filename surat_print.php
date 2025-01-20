@@ -188,11 +188,11 @@ $nota=$_GET['nota'];
   ?>
         <tr bgcolor="white">
             <td align="center"><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td align="center"><?php echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
             <td align="center"><?php  $cba =$fill['kode_barang'];
             $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT satuan FROM barang WHERE kode='$cba'"));
-            echo mysqli_real_escape_string($conn, $r['satuan']); ?>
+            echo safe_mysqli_real_escape_string($conn, $r['satuan']); ?>
             </td>
         </tr>
 <?php } }else{
@@ -204,8 +204,8 @@ $nota=$_GET['nota'];
 
         <tr bgcolor="white">
             <td align="center"><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td align="center"><?php echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td align="center"><?php echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
             <td align="center"><?php  $cba =$fill['kode'];
             $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT satuan FROM barang WHERE kode='$cba'"));
             $satuan = "Pcs";

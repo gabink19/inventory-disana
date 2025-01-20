@@ -33,8 +33,8 @@ $halaman = "set_pin"; // halaman
 $dataapa = "PIN"; // data
 $tabeldatabase = "pin"; // tabel database
 $chmod = $chmenu10; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -199,11 +199,11 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
     
 
-          $oldpin = mysqli_real_escape_string($conn, $_POST["password"]);
+          $oldpin = safe_mysqli_real_escape_string($conn, $_POST["password"]);
           
-          $pin = mysqli_real_escape_string($conn, $_POST["pin"]);
+          $pin = safe_mysqli_real_escape_string($conn, $_POST["pin"]);
          
-           $ubah = mysqli_real_escape_string($conn, $_POST["ubah"]);
+           $ubah = safe_mysqli_real_escape_string($conn, $_POST["ubah"]);
 
            $ch = $ubah + 1;
           

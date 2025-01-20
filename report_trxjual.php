@@ -95,8 +95,8 @@ $halaman = "report_trxjual"; // halaman
 $dataapa = "Laporan Transaksi Penjualan"; // data
 $tabeldatabase = "bayar"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -233,8 +233,8 @@ if($search == null || $search == "" ){
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM transaksimasuk WHERE nota ='$nota'";
@@ -247,12 +247,12 @@ $hasil1=mysqli_query($conn,$jml);
 $row1=mysqli_fetch_array($hasil1);
 $jmljual=$row1['tot_jual'];
    ?>
-   <td><?php  echo mysqli_real_escape_string($conn, $jmljual); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $jmljual); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
   <td>
   <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
     <button type="button" class="btn btn-info btn-xs no-print" onclick="window.location.href='stok_detail?id=1&trx=1&nota=<?php  echo $fill['nota']; ?>'">Detail</button>
@@ -278,8 +278,8 @@ $jmljual=$row1['tot_jual'];
                       <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM transaksimasuk WHERE nota ='$nota'";
@@ -293,11 +293,11 @@ $row1=mysqli_fetch_array($hasil1);
 $jmljual=$row1['tot_jual'];
    ?>
    
-  <td><?php  echo mysqli_real_escape_string($conn, $jmljual); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jmljual); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
   <td>
   <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
     <button type="button" class="btn btn-info btn-xs no-print" onclick="window.location.href='stok_detail?id=1&trx=1&nota=<?php  echo $fill['nota']; ?>'">Detail</button>

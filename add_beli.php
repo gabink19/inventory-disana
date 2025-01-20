@@ -44,8 +44,8 @@ $halaman = "beli"; // halaman
 $dataapa = "Pembelian"; // data
 $tabeldatabase = "transaksibeli"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -192,13 +192,13 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
     if(isset($_POST["tambah"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-              $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-              $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-              $barang = mysqli_real_escape_string($conn, $_POST["barang"]);
-              $hargabeli = mysqli_real_escape_string($conn, $_POST["hargabeli"]);
-              $jumlah = mysqli_real_escape_string($conn, $_POST["jumlah"]);
-              $hargaakhir = mysqli_real_escape_string($conn, $_POST["hargaakhir"]);
-              $stok = mysqli_real_escape_string($conn, $_POST["stok"]);
+              $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+              $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+              $barang = safe_mysqli_real_escape_string($conn, $_POST["barang"]);
+              $hargabeli = safe_mysqli_real_escape_string($conn, $_POST["hargabeli"]);
+              $jumlah = safe_mysqli_real_escape_string($conn, $_POST["jumlah"]);
+              $hargaakhir = safe_mysqli_real_escape_string($conn, $_POST["hargaakhir"]);
+              $stok = safe_mysqli_real_escape_string($conn, $_POST["stok"]);
               $kasir = $_SESSION["username"];
               $kegiatan = "membeli barang tanpa invoice";
               $status = "pending";
@@ -249,10 +249,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
     if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-              $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-              $tglnota = mysqli_real_escape_string($conn, $_POST["tglnota"]);
-              $supplier = mysqli_real_escape_string($conn, $_POST["supplier"]);
-              $keterangan = mysqli_real_escape_string($conn, $_POST["keterangan"]);
+              $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+              $tglnota = safe_mysqli_real_escape_string($conn, $_POST["tglnota"]);
+              $supplier = safe_mysqli_real_escape_string($conn, $_POST["supplier"]);
+              $keterangan = safe_mysqli_real_escape_string($conn, $_POST["keterangan"]);
               $kasir = $_SESSION["username"];
               $berhasil ="berhasil";
               $insert = ($_POST["insert"]);
@@ -376,7 +376,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                           <?php if($datatotal == "" || $datatotal == null){?>
                             <h1 align="center">Rp   <?php echo '0'.',-'; ?></h1>
                             <?php }else{ ?>
-                        <h1 align="center">Rp   <?php echo number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?></h1>
+                        <h1 align="center">Rp   <?php echo safe_number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?></h1>
                         <?php } ?>
                         </div>
                       </div>
@@ -507,11 +507,11 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
            <tbody>
            <tr>
            <td><?php echo ++$no_urut;?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
            <td>
            <?php  if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') { ?>
            <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href='component/delete/delete_produk?get=<?php echo '2'.'&'; ?>barang=<?php echo $fill['kode'].'&'; ?>jumlah=<?php echo $fill['jumlah'].'&'; ?>kode=<?php echo $kode.'&'; ?>no=<?php echo $fill['no'].'&'; ?>forward=<?php echo $forward.'&';?>forwardpage=<?php echo "add_".$forwardpage.'&'; ?>chmod=<?php echo $chmod; ?>'">Hapus</button>

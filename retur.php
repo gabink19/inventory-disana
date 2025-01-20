@@ -45,8 +45,8 @@ $dataapa = "Transaksi Retail"; // data
 $tabeldatabase = "bayar"; // tabel database
 $tabel = "transaksimasuk"; // tabel database
 $chmod = $chmenu2; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabel); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabel); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -227,16 +227,16 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
                       <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
 
             <?php  $tglbayar = date("d-m-Y",strtotime($fill['tglbayar'])); ?>
-            <td><?php  echo mysqli_real_escape_string($conn, $tglbayar); ?>            
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $tglbayar); ?>            
 
             </td>
 
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tipebayar']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tipebayar']); ?></td>
 
 
              <td><?php $nota=$fill['nota'];
@@ -290,15 +290,15 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
                       <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
            <?php  $tglbayar = date("d-m-Y",strtotime($fill['tglbayar'])); ?>
-            <td><?php  echo mysqli_real_escape_string($conn, $tglbayar); ?>             
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $tglbayar); ?>             
 
             </td>
 
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tipebayar']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tipebayar']); ?></td>
 
             <td><?php $nota=$fill['nota'];
             $sql1="SELECT * FROM retur where nota='$nota'";

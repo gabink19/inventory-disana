@@ -37,7 +37,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-aqua">
                                            <div class="inner">
-                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo number_format($data13, $decimal, $a_decimal, $thousand).',-'; ?></h3>
+                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo safe_number_format($data13, $decimal, $a_decimal, $thousand).',-'; ?></h3>
                                                <p>Total Semua</p>
                                            </div>
                                            <div class="icon">
@@ -51,7 +51,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-yellow">
                                            <div class="inner">
-                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo number_format($data23, $decimal, $a_decimal, $thousand).',-'; ?></h3>
+                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo safe_number_format($data23, $decimal, $a_decimal, $thousand).',-'; ?></h3>
                                                <p>Total Tahun Ini</p>
                                            </div>
                                            <div class="icon">
@@ -65,7 +65,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-green">
                                            <div class="inner">
-                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo number_format($data33, $decimal, $a_decimal, $thousand).',-'; ?></h3>
+                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo safe_number_format($data33, $decimal, $a_decimal, $thousand).',-'; ?></h3>
                                                <p>Total Bulan Ini</p>
                                            </div>
                                            <div class="icon">
@@ -79,7 +79,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-red">
                                            <div class="inner">
-                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo number_format($data43, $decimal, $a_decimal, $thousand).',-'; ?></h3>
+                                               <h3 style="font-size: 30px"><sup style="font-size: 20px">Rp </sup><?php echo safe_number_format($data43, $decimal, $a_decimal, $thousand).',-'; ?></h3>
                                                <p>Total Hari Ini</p>
                                            </div>
                                            <div class="icon">
@@ -101,8 +101,8 @@ $halaman = "report_income"; // halaman
 $dataapa = "Income"; // data
 $tabeldatabase = "bayar"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $bulan = $_POST['bulan'];
 $tahun = $_POST['tahun'];
 
@@ -318,8 +318,8 @@ if($bulan == '1'){
                       <tbody>
  <tr>
    <td><?php echo ++$no_urut;?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
    <?php
  $nota = $fill['nota'];
  $sqle="SELECT COUNT( nota ) AS data FROM transaksimasuk WHERE nota ='$nota'";
@@ -327,11 +327,11 @@ if($bulan == '1'){
  $rowa=mysqli_fetch_assoc($hasile);
  $jumlahbayar=$rowa['data'];
     ?>
-   <td><?php  echo mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total']-$fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total']-$fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
    <td>
    <?php  if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
      <button type="button" class="btn btn-info btn-xs no-print" onclick="window.location.href='stok_detail?id=1&trx=1&nota=<?php  echo $fill['nota']; ?>'">Detail</button>
@@ -357,8 +357,8 @@ if($bulan == '1'){
                        <tbody>
  <tr>
    <td><?php echo ++$no_urut;?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
    <?php
  $nota = $fill['nota'];
  $sqle="SELECT COUNT( nota ) AS data FROM transaksimasuk WHERE nota ='$nota'";
@@ -366,11 +366,11 @@ if($bulan == '1'){
  $rowa=mysqli_fetch_assoc($hasile);
  $jumlahbayar=$rowa['data'];
     ?>
-   <td><?php  echo mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total']-$fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total']-$fill['keluar'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
    <td>
    <?php  if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
      <button type="button" class="btn btn-info btn-xs no-print" onclick="window.location.href='stok_detail?id=1&trx=1&nota=<?php  echo $fill['nota']; ?>'">Detail</button>

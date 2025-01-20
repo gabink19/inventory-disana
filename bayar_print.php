@@ -40,8 +40,8 @@ $halaman = "bayar_struk"; // halaman
 $dataapa = "Transaksi Kasir"; // data
 $tabeldatabase = "bayar"; // tabel database
 $chmod = $chmenu6; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 $nota = $_GET['q'];
 

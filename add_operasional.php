@@ -40,8 +40,8 @@ $halaman = "operasional"; // halaman
 $dataapa = "Operasional"; // data
 $tabeldatabase = "operasional"; // tabel database
 $chmod = $chmenu7; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -237,13 +237,13 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-          $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-          $biaya = mysqli_real_escape_string($conn, $_POST["biaya"]);
-          $tanggal = mysqli_real_escape_string($conn, $_POST["tanggal"]);
-          $keterangan = mysqli_real_escape_string($conn, $_POST["keterangan"]);
-          $kasir = mysqli_real_escape_string($conn, $_SESSION["username"]);
-          $akun = mysqli_real_escape_string($conn, $_POST["akun"]);
+          $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+          $biaya = safe_mysqli_real_escape_string($conn, $_POST["biaya"]);
+          $tanggal = safe_mysqli_real_escape_string($conn, $_POST["tanggal"]);
+          $keterangan = safe_mysqli_real_escape_string($conn, $_POST["keterangan"]);
+          $kasir = safe_mysqli_real_escape_string($conn, $_SESSION["username"]);
+          $akun = safe_mysqli_real_escape_string($conn, $_POST["akun"]);
           $insert = ($_POST["insert"]);
 
 

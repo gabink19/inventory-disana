@@ -44,8 +44,8 @@ $halaman = "add_quotation"; // halaman
 $dataapa = "Penawaran"; // data
 $tabeldatabase = "quotation_list"; // tabel database
 $chmod = $chmenu3; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 $tabel = "quotation";
 
@@ -173,17 +173,17 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
     if(isset($_POST["tambah"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-              $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-              $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-              $barang = mysqli_real_escape_string($conn, $_POST["barang"]);
-              $hargajual = mysqli_real_escape_string($conn, $_POST["hargajual"]);
-              $hargabeli = mysqli_real_escape_string($conn, $_POST["hargabeli"]);
-              $jumlah = mysqli_real_escape_string($conn, $_POST["jumlah"]);
+              $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+              $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+              $barang = safe_mysqli_real_escape_string($conn, $_POST["barang"]);
+              $hargajual = safe_mysqli_real_escape_string($conn, $_POST["hargajual"]);
+              $hargabeli = safe_mysqli_real_escape_string($conn, $_POST["hargabeli"]);
+              $jumlah = safe_mysqli_real_escape_string($conn, $_POST["jumlah"]);
 
-              $modal = $hargabeli * $jumlah;
+              $modal = (float)$hargabeli * (float)$jumlah;
 
-              $hargaakhir = mysqli_real_escape_string($conn, $_POST["hargaakhir"]);
-              $stok = mysqli_real_escape_string($conn, $_POST["stok"]);
+              $hargaakhir = safe_mysqli_real_escape_string($conn, $_POST["hargaakhir"]);
+              $stok = safe_mysqli_real_escape_string($conn, $_POST["stok"]);
               
 
 
@@ -300,7 +300,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                           <?php if($datatotal == "" || $datatotal == null){?>
                             <h1 align="center">Rp   <?php echo '0'.',-'; ?></h1>
                             <?php }else{ ?>
-                        <h1 align="center">Rp   <?php echo number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?></h1>
+                        <h1 align="center">Rp   <?php echo safe_number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?></h1>
                         <?php } ?>
                         </div>
                       </div>
@@ -440,12 +440,12 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
           
            <td><?php  $cba =$fill['kode'];
         $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT sku FROM barang WHERE kode='$cba'"));
-       echo mysqli_real_escape_string($conn, $r['sku']); ?>
+       echo safe_mysqli_real_escape_string($conn, $r['sku']); ?>
                         </td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
            <td>
            <?php  if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') { ?>
            <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href='component/delete/delete_master?no=<?php echo $fill['no'].'&'; ?>forward=<?php echo $forward.'&';?>forwardpage=<?php echo $forwardpage.'&'; ?>chmod=<?php echo $chmod; ?>'">Hapus</button>

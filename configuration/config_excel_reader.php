@@ -892,7 +892,7 @@ class Spreadsheet_Excel_Reader {
 			$dec = $matches[2];
 			$right = $matches[3];
 			if ($has_commas) {
-				$formatted = number_format($num,strlen($right));
+				$formatted = safe_number_format($num,strlen($right));
 			}
 			else {
 				$sprintf_pattern = "%1.".strlen($right)."f";

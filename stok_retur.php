@@ -40,8 +40,8 @@ $halaman = "stok_retur"; // halaman
 $dataapa = "retur"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -90,10 +90,10 @@ if ($search != null || $search != "") {
 <?php 
 if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
- $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
- $sisa = mysqli_real_escape_string($conn, $_POST["sisa"]);
- $retur = mysqli_real_escape_string($conn, $_POST["retur"]);
- $pindah = mysqli_real_escape_string($conn, $_POST["pindah"]);
+ $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+ $sisa = safe_mysqli_real_escape_string($conn, $_POST["sisa"]);
+ $retur = safe_mysqli_real_escape_string($conn, $_POST["retur"]);
+ $pindah = safe_mysqli_real_escape_string($conn, $_POST["pindah"]);
 
 $sisaakhir = $sisa + $pindah;
 $returakhir = $retur - $pindah;
@@ -188,12 +188,12 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
                       <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?>            
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?>            
 
             </td>
 
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
             
 
 
@@ -231,12 +231,12 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
                       <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?>            
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?>            
 
             </td>
 
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['retur']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['retur']); ?></td>
             
             
             

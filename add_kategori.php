@@ -40,8 +40,8 @@ $halaman = "kategori"; // halaman
 $dataapa = "kategori"; // data
 $tabeldatabase = "kategori"; // tabel database
 $chmod = $chmenu4; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -185,8 +185,8 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-          $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
+          $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
           $insert = ($_POST["insert"]);
 
 

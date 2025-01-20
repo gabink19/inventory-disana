@@ -9,10 +9,10 @@ if(isset($_POST["diterima"])){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
-$no = mysqli_real_escape_string($conn, $_POST["no"]);
-$nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-$kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-$terima = mysqli_real_escape_string($conn, $_POST["terima"]);
+$no = safe_mysqli_real_escape_string($conn, $_POST["no"]);
+$nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+$kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+$terima = safe_mysqli_real_escape_string($conn, $_POST["terima"]);
 
 
 $kasir = $_SESSION["username"];

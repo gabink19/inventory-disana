@@ -703,7 +703,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                         // minimun width of formatted number (including dot)
                         $minWidth = strlen($left) + strlen($dec) + strlen($right);
                         if ($useThousands) {
-                            $value = number_format(
+                            $value = safe_number_format(
                                 $value,
                                 strlen($right),
                                 PHPExcel_Shared_String::getDecimalSeparator(),

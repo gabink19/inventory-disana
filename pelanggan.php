@@ -37,8 +37,8 @@ $halaman = "pelanggan"; // halaman
 $dataapa = "Pelanggan"; // data
 $tabeldatabase = "pelanggan"; // tabel database
 $chmod = $chmenu3; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -188,12 +188,12 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['idpelanggan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgldaftar']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nohp']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['email']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['alamat']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['idpelanggan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgldaftar']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nohp']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['email']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['alamat']); ?></td>
             
 
             <td>
@@ -226,11 +226,11 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['idpelanggan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgldaftar']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nohp']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, $fill['email']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['idpelanggan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgldaftar']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nohp']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['email']); ?></td>
                <td><?php  if($fill['status']=='pelanggan'){
                 echo '<span class="label label-success">Berlangganan</span>';
                        } else {
@@ -239,7 +239,7 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                ?>
                  
                </td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['alamat']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['alamat']); ?></td>
             
             <td>
             <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>

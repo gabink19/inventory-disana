@@ -10,6 +10,11 @@ pagination();
 ?>
 
 <?php
+$decimal ="0";
+$a_decimal =",";
+$thousand =".";
+?>
+<?php
 if (!login_check()) {
 ?>
 <meta http-equiv="refresh" content="0; url=logout" />
@@ -40,8 +45,8 @@ $halaman = "penjualan_detail"; // halaman
 $dataapa = "Detail Penjualan"; // data
 $tabeldatabase = "invoicejual"; // tabel database
 $chmod = $chmenu6; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 $q=$_GET['q'];
  
@@ -201,10 +206,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
            ?>
              
            </td>
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['hargajual'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['hargajual']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
           </tr>
            <?php
            $i++;
@@ -215,7 +220,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 <?php if($sum['potongan']>0){?>
             <tr>
                 <td colspan="5" style="text-align:right">Sub Total</td>
-                <td><?php echo number_format($sum['potongan']+$sum['total']);?></td>
+                <td><?php echo safe_number_format($sum['potongan']+$sum['total']);?></td>
                 <td>
                  
                 </td>
@@ -224,7 +229,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
              <tr>
                 <td colspan="5" style="text-align:right">Diskon <?php echo $sum['diskon'];?>%</td>
-                <td><?php echo number_format($sum['potongan']);?></td>
+                <td><?php echo safe_number_format($sum['potongan']);?></td>
                 <td>
                
                 </td>

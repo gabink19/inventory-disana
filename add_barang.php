@@ -40,8 +40,8 @@ $halaman = "barang"; // halaman
 $dataapa = "Barang"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu4; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 $id = $_GET['q'];
 
@@ -438,27 +438,27 @@ error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));?>
    if($_SERVER["REQUEST_METHOD"] == "POST"){
      if(isset($_POST['savebarang'])){
 
-          $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-            $sku = mysqli_real_escape_string($conn, $_POST["sku"]);
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-           $satuan = mysqli_real_escape_string($conn, $_POST["satuan"]);
-            $kategori = mysqli_real_escape_string($conn, $_POST["kategori"]);
-          $hargabeli = mysqli_real_escape_string($conn, $_POST["harga_beli"]);
-          $hargajual = mysqli_real_escape_string($conn, $_POST["harga_jual"]);
-           $sisa = mysqli_real_escape_string($conn, $_POST["stok"]);
-            $stokmin = mysqli_real_escape_string($conn, $_POST["stok_minimal"]);
-             $satuan = mysqli_real_escape_string($conn, $_POST["satuan"]);
-            $ukuran = mysqli_real_escape_string($conn, $_POST["ukuran"]);
-             $warna = mysqli_real_escape_string($conn, $_POST["warna"]);
-          $brand = mysqli_real_escape_string($conn, $_POST["merek"]);
-           $rak = mysqli_real_escape_string($conn, $_POST["lokasi"]);
-            $exp = mysqli_real_escape_string($conn, $_POST["expired"]);
+          $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+            $sku = safe_mysqli_real_escape_string($conn, $_POST["sku"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+           $satuan = safe_mysqli_real_escape_string($conn, $_POST["satuan"]);
+            $kategori = safe_mysqli_real_escape_string($conn, $_POST["kategori"]);
+          $hargabeli = safe_mysqli_real_escape_string($conn, $_POST["harga_beli"]);
+          $hargajual = safe_mysqli_real_escape_string($conn, $_POST["harga_jual"]);
+           $sisa = safe_mysqli_real_escape_string($conn, $_POST["stok"]);
+            $stokmin = safe_mysqli_real_escape_string($conn, $_POST["stok_minimal"]);
+             $satuan = safe_mysqli_real_escape_string($conn, $_POST["satuan"]);
+            $ukuran = safe_mysqli_real_escape_string($conn, $_POST["ukuran"]);
+             $warna = safe_mysqli_real_escape_string($conn, $_POST["warna"]);
+          $brand = safe_mysqli_real_escape_string($conn, $_POST["merek"]);
+           $rak = safe_mysqli_real_escape_string($conn, $_POST["lokasi"]);
+            $exp = safe_mysqli_real_escape_string($conn, $_POST["expired"]);
 
             $usr=$_SESSION['nama'];
             $now=date('Y-m-d');
 
-             $ket = mysqli_real_escape_string($conn, $_POST["keterangan"]);         
-          $barcode = mysqli_real_escape_string($conn, $_POST["barcode"]);
+             $ket = safe_mysqli_real_escape_string($conn, $_POST["keterangan"]);         
+          $barcode = safe_mysqli_real_escape_string($conn, $_POST["barcode"]);
           $namaavatar = $_FILES['avatar']['name'];
                       $ukuranavatar = $_FILES['avatar']['size'];
                       $tipeavatar = $_FILES['avatar']['type'];

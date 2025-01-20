@@ -40,8 +40,8 @@ $halaman = "retur"; // halaman
 $dataapa = "Retur Barang"; // data
 $tabeldatabase = "dataretur"; // tabel database
 $chmod = $chmenu2; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 $nota = $_GET['nota'];
  
@@ -81,16 +81,16 @@ if ($search != null || $search != "") {
 if(isset($_POST["retur"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-            $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-              $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-              $harga = mysqli_real_escape_string($conn, $_POST["harga"]);
-              $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-              $hargabeli = mysqli_real_escape_string($conn, $_POST["hargabeli"]);
-              $jumlah = mysqli_real_escape_string($conn, $_POST["jumlah"]);
-               $retur = mysqli_real_escape_string($conn, $_POST["return"]);
-                $no = mysqli_real_escape_string($conn, $_POST["no"]);
-                $terjual = mysqli_real_escape_string($conn, $_POST["sold"]);
-                $awal = mysqli_real_escape_string($conn, $_POST["brg"]);
+            $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+              $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+              $harga = safe_mysqli_real_escape_string($conn, $_POST["harga"]);
+              $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+              $hargabeli = safe_mysqli_real_escape_string($conn, $_POST["hargabeli"]);
+              $jumlah = safe_mysqli_real_escape_string($conn, $_POST["jumlah"]);
+               $retur = safe_mysqli_real_escape_string($conn, $_POST["return"]);
+                $no = safe_mysqli_real_escape_string($conn, $_POST["no"]);
+                $terjual = safe_mysqli_real_escape_string($conn, $_POST["sold"]);
+                $awal = safe_mysqli_real_escape_string($conn, $_POST["brg"]);
 
                 $sisa = $jumlah - $retur;
                 $hargaakhir = $sisa * $harga;
@@ -168,8 +168,8 @@ if(isset($_POST["retur"])){
 <?php 
 if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
- $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
- $data = mysqli_real_escape_string($conn, $_POST["datatotal"]);
+ $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+ $data = safe_mysqli_real_escape_string($conn, $_POST["datatotal"]);
   $today=date('Y-m-d');
   $kasir = $_SESSION["username"];
   $status ="Retur";
@@ -277,17 +277,17 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                 </tr>
                 <tr>
                   <td><?php echo $nota;?></td>
-                  <td>Rp <?php echo number_format($biaya, $decimal, $a_decimal, $thousand).',-'; ?></td>
-                  <td>Rp <?php echo number_format($subtotal, $decimal, $a_decimal, $thousand).',-'; ?></td>
+                  <td>Rp <?php echo safe_number_format($biaya, $decimal, $a_decimal, $thousand).',-'; ?></td>
+                  <td>Rp <?php echo safe_number_format($subtotal, $decimal, $a_decimal, $thousand).',-'; ?></td>
                   <td>
-                   Rp <?php echo number_format($diskon, $decimal, $a_decimal, $thousand).',-'; ?>
+                   Rp <?php echo safe_number_format($diskon, $decimal, $a_decimal, $thousand).',-'; ?>
                   </td>
-                  <td>Rp <?php echo number_format($total, $decimal, $a_decimal, $thousand).',-'; ?></td>
+                  <td>Rp <?php echo safe_number_format($total, $decimal, $a_decimal, $thousand).',-'; ?></td>
                    <td>Rp 
-                    <?php echo number_format($bayar, $decimal, $a_decimal, $thousand).',-'; ?>
+                    <?php echo safe_number_format($bayar, $decimal, $a_decimal, $thousand).',-'; ?>
                   </td>
                    <td>Rp 
-                   <?php echo number_format($kembali, $decimal, $a_decimal, $thousand).',-'; ?>
+                   <?php echo safe_number_format($kembali, $decimal, $a_decimal, $thousand).',-'; ?>
                   </td>
                 </tr>
 
@@ -354,7 +354,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
                          <!-- Default box -->
                          
-                         <h1 align="center">Rp   <?php echo number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?></h1>
+                         <h1 align="center">Rp   <?php echo safe_number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?></h1>
                         
       
         </div>

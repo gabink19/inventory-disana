@@ -120,15 +120,15 @@ etc();session();connect();
             ?>
 
             <tr>
-              <td colspan="6" style="width:240px;"><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+              <td colspan="6" style="width:240px;"><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
               </tr>
 
               <tr>
 
               <td colspan="2" style="width:76.8px;">Qty : </td>
-              <td style="width:43.2px;"><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-              <td style="width:48px;" align="right">x <?php  echo number_format(($fill['harga']), $decimal, $a_decimal, $thousand).',-'; ?></td>
-              <td style="width:72px;" colspan="2" align="right"><?php  echo number_format(($fill['hargaakhir']), $decimal, $a_decimal, $thousand).',-'; ?></td>
+              <td style="width:43.2px;"><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+              <td style="width:48px;" align="right">x <?php  echo safe_number_format(($fill['harga']), $decimal, $a_decimal, $thousand).',-'; ?></td>
+              <td style="width:72px;" colspan="2" align="right"><?php  echo safe_number_format(($fill['hargaakhir']), $decimal, $a_decimal, $thousand).',-'; ?></td>
               </tr>
 
             <tr class="siv">
@@ -147,13 +147,13 @@ etc();session();connect();
           <td colspan="2" style="width:76.8px;">Total Qty</td>
           <td style="width:43.2px;"><?php echo $totalqty; ?></td>
           <td style="width:48px;"><b>Total</b></td>
-          <td style="width:72px;" colspan="2" align="right"><b><?php echo number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
+          <td style="width:72px;" colspan="2" align="right"><b><?php echo safe_number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
          </tr>
 
         <tr>
           <td colspan="3" style="width:120px;"></td>
           <td style="width:48px;">Bayar</td>
-          <td style="width:72px;" colspan="2" align="right"><?php echo number_format($bayar, $decimal, $a_decimal, $thousand).',-';?></td>
+          <td style="width:72px;" colspan="2" align="right"><?php echo safe_number_format($bayar, $decimal, $a_decimal, $thousand).',-';?></td>
           </tr>
 
        
@@ -161,7 +161,7 @@ etc();session();connect();
         <tr>
           <td colspan="3" style="width:116px;"></td>
           <td style="width:52px;">Kembali</td>
-          <td style="width:72px;" colspan="2" align="right"><?php echo number_format($kembali, $decimal, $a_decimal, $thousand).',-';?></td>
+          <td style="width:72px;" colspan="2" align="right"><?php echo safe_number_format($kembali, $decimal, $a_decimal, $thousand).',-';?></td>
           </tr>
 
            <tr class="siv solid">

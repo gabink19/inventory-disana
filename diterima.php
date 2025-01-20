@@ -51,8 +51,8 @@ $nota = $_GET['nota'];
 $chmod = $chmenu4; // Hak akses Menu
 
 
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 ?>
 
@@ -202,25 +202,25 @@ $namakasir=$rowax['nama'];
                       <tbody>
 <tr>
   
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
   <td><?php 
           $awal1 = preg_replace("/(\d+)\D+(\d+)\D+(\d+)/","$3-$2-$1",$fill['tglsale']);
           
           ?>
-    <?php  echo mysqli_real_escape_string($conn, $awal1); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
+    <?php  echo safe_mysqli_real_escape_string($conn, $awal1); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
   <td>
              
-                  <?php  echo mysqli_real_escape_string($conn, $fill['total']); ?>
+                  <?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?>
 
             </td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
   
   <?php if($id!='1'){ ?>
   <td>
 
 					 <?php	if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') { ?>
-             <?php  echo mysqli_real_escape_string($conn, $fill['status']); ?>
+             <?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?>
    					 <?php } else {}?>
 
              
@@ -308,16 +308,16 @@ $namakasir=$rowax['nama'];
      <input type="hidden" name="no" value="<?php echo $fill['no'];?>" readonly >
      <input type="hidden" name="nota" value="<?php echo $fill['nota'];?>" readonly >
   </td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?>
     <input type="hidden" name="kode" value="<?php echo $fill['kode'];?>" readonly >
   </td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-  <td><?php  echo number_format(($fill['jumlah']), $decimal, $a_decimal, $thousand).''; ?>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+  <td><?php  echo safe_number_format(($fill['jumlah']), $decimal, $a_decimal, $thousand).''; ?>
     
   </td>
   <td><?php if($fill['terima']==0){?>
     <input type="text" name="terima" value="<?php echo $fill['jumlah'];?>" >
-  <?php } else { echo number_format(($fill['terima']), $decimal, $a_decimal, $thousand).'';
+  <?php } else { echo safe_number_format(($fill['terima']), $decimal, $a_decimal, $thousand).'';
    } ?>
 
 
@@ -389,8 +389,8 @@ if (mysqli_num_rows($cekres)>0){
  if(isset($_POST["simpan"])){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-$nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-$org = mysqli_real_escape_string($conn, $_POST["org"]);
+$nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+$org = safe_mysqli_real_escape_string($conn, $_POST["org"]);
 
 
 

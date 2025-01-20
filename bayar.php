@@ -41,8 +41,8 @@ $halaman = "barang"; // halaman
 $dataapa = "Barang"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu2; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 $nota= $_GET['nota'];
@@ -88,16 +88,16 @@ $nota= $_GET['nota'];
 
     if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
-        $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-         $tglnota = mysqli_real_escape_string($conn, $_POST["tglnota"]);
-         $diskon = mysqli_real_escape_string($conn, $_POST["diskon"]);
-         $total = mysqli_real_escape_string($conn, $_POST["total"]);
-         $biaya = mysqli_real_escape_string($conn, $_POST["biaya"]);
-         $bayar = mysqli_real_escape_string($conn, $_POST["bayar"]);
-         $kembali = mysqli_real_escape_string($conn, $_POST["kembali"]);
-         $tipe = mysqli_real_escape_string($conn, $_POST["tipe"]);
-         $ket = mysqli_real_escape_string($conn, $_POST["keterangan"]);
-         $databelitotal = mysqli_real_escape_string($conn, $_POST["beli"]);
+        $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+         $tglnota = safe_mysqli_real_escape_string($conn, $_POST["tglnota"]);
+         $diskon = safe_mysqli_real_escape_string($conn, $_POST["diskon"]);
+         $total = safe_mysqli_real_escape_string($conn, $_POST["total"]);
+         $biaya = safe_mysqli_real_escape_string($conn, $_POST["biaya"]);
+         $bayar = safe_mysqli_real_escape_string($conn, $_POST["bayar"]);
+         $kembali = safe_mysqli_real_escape_string($conn, $_POST["kembali"]);
+         $tipe = safe_mysqli_real_escape_string($conn, $_POST["tipe"]);
+         $ket = safe_mysqli_real_escape_string($conn, $_POST["keterangan"]);
+         $databelitotal = safe_mysqli_real_escape_string($conn, $_POST["beli"]);
           $jam=date('h:i');
 
           $kasir = $_SESSION["username"];
@@ -219,10 +219,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
            <tr>
            <td><?php echo ++$no_urut;?></td>
            
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
            
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?> x <?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?> x <?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
           </tr>
            <?php
            $i++;
@@ -275,7 +275,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                   <input type="hidden" value="<?php echo $datatotal;?>" class="form-control" id="subtotal">
                   <input type="hidden" value="<?php echo $databelitotal;?>" class="form-control" name="beli">
                   
-                  <th ><input type="text" value="<?php echo number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?>" class="form-control" readonly></th>
+                  <th ><input type="text" value="<?php echo safe_number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?>" class="form-control" readonly></th>
                 </tr>
                 <tr>
                  
@@ -525,15 +525,15 @@ input {
             ?>
 
             <tr>
-              <td colspan="5" style="width:240px;"><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+              <td colspan="5" style="width:240px;"><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
               </tr>
 
               <tr>
 
               <td colspan="2" style="width:76.8px;">Qty : </td>
-              <td ><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?> x</td>
-              <td style="width:40px;" align="center"><?php  echo number_format(($fill['harga']), $decimal, $a_decimal, $thousand).',-'; ?></td>
-              <td style="width:72px;" colspan="2" align="right"><?php  echo number_format(($fill['hargaakhir']), $decimal, $a_decimal, $thousand).',-'; ?></td>
+              <td ><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?> x</td>
+              <td style="width:40px;" align="center"><?php  echo safe_number_format(($fill['harga']), $decimal, $a_decimal, $thousand).',-'; ?></td>
+              <td style="width:72px;" colspan="2" align="right"><?php  echo safe_number_format(($fill['hargaakhir']), $decimal, $a_decimal, $thousand).',-'; ?></td>
               </tr>
 
             <tr class="siv">
@@ -552,7 +552,7 @@ input {
           <td colspan="2" style="width:76.8px;">Total Qty</td>
           <td style="width:43.2px;"><?php echo $totalqty; ?></td>
           <td style="width:48px;"><b>Sub Total</b></td>
-          <td style="width:72px;" colspan="2" align="right"><b><?php echo number_format($datatotal, $decimal, $a_decimal, $thousand).',-';?></b></td>
+          <td style="width:72px;" colspan="2" align="right"><b><?php echo safe_number_format($datatotal, $decimal, $a_decimal, $thousand).',-';?></b></td>
          </tr>
 
         <tr>

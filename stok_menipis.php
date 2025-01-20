@@ -40,8 +40,8 @@ $halaman = "stok_menipis"; // halaman
 $dataapa = "Stok Limit"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 
  
@@ -149,10 +149,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
        <tbody>
                 <tr>
                   <td><?php echo ++$no_urut;?></td>
-            <<td><?php  echo mysqli_real_escape_string($conn, $fill['sku']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['stokmin']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <<td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sku']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['stokmin']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
                   
                 </tr>
                 <?php
@@ -175,9 +175,9 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sku']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['stokmin']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sku']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['stokmin']); ?></td>
             <td> <?php if($fill['sisa']>=10){?><span class="badge bg-yellow"><?php echo $fill['stok'];?></span><?php } else { ?> <span class="badge bg-red"><?php echo $fill['stok'];?></span> <?php  } ?>
 
                 </td>

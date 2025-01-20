@@ -129,10 +129,10 @@ function restore($host, $user, $pass, $dbname, $file){
 if(isset($_POST['restore'])){
 
 
-    $host = mysqli_real_escape_string($conn, $_POST["servername"]);
-    $pass = mysqli_real_escape_string($conn, $_POST["password"]);
-    $username = mysqli_real_escape_string($conn, $_POST["user"]);
-    $dbname = mysqli_real_escape_string($conn, $_POST["db"]);
+    $host = safe_mysqli_real_escape_string($conn, $_POST["servername"]);
+    $pass = safe_mysqli_real_escape_string($conn, $_POST["password"]);
+    $username = safe_mysqli_real_escape_string($conn, $_POST["user"]);
+    $dbname = safe_mysqli_real_escape_string($conn, $_POST["db"]);
 
     include "configuration/config_connect.php";
                     restore($host, $username, $pass, $dbname, $_FILES['file']);

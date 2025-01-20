@@ -37,8 +37,8 @@ $halaman = "merek"; // halaman
 $dataapa = "merek"; // data
 $tabeldatabase = "brand"; // tabel database
 $chmod = $chmenu4; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -202,8 +202,8 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
 					  <td><?php echo ++$no_urut;?></td>
-					  <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-					  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+					  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+					  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
 					  <td>
 					  <?php	if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
 					<button type="button" class="btn btn-success btn-xs" onclick="window.location.href='add_<?php echo $halaman;?>?no=<?php  echo $fill['no']; ?>'">Edit</button>
@@ -232,8 +232,8 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
 					  <td><?php echo ++$no_urut;?></td>
-					  <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-					  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+					  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+					  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
 					  <td>
 					  <?php	if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
 					<button type="button" class="btn btn-success btn-xs" onclick="window.location.href='add_<?php echo $halaman;?>?no=<?php  echo $fill['no']; ?>'">Edit</button>

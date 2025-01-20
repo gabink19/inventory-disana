@@ -39,7 +39,7 @@ $decimal ="0";
 $a_decimal =",";
 $thousand =".";
 $denom="Rp";
-	$labelatas= $denom . ' ' . number_format($data_barcode['hargajual'], $decimal, $a_decimal, $thousand).'';
+	$labelatas= $denom . ' ' . safe_number_format($data_barcode['hargajual'], $decimal, $a_decimal, $thousand).'';
 }
 
 
@@ -55,7 +55,7 @@ $decimal ="0";
 $a_decimal =",";
 $thousand =".";
 $denom="Rp";
-	$labelbawah= $denom . ' ' . number_format($data_barcode['hargajual'], $decimal, $a_decimal, $thousand).'';
+	$labelbawah= $denom . ' ' . safe_number_format($data_barcode['hargajual'], $decimal, $a_decimal, $thousand).'';
 }
 
 

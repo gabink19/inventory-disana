@@ -44,8 +44,8 @@ $halaman = "stok_sesuaikan"; // halaman
 $dataapa = "Penyesuaian"; // data
 $tabeldatabase = "stok_sesuai"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 $tabel = "stok_sesuai_daftar";
@@ -118,12 +118,12 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
     if(isset($_POST["sesuai"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
-               $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-                $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-                 $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-                  $stok = mysqli_real_escape_string($conn, $_POST["stok"]);
-                  $tersedia = mysqli_real_escape_string($conn, $_POST["tersedia"]);
-                   $ket = mysqli_real_escape_string($conn, $_POST["ket"]);
+               $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+                $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+                 $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+                  $stok = safe_mysqli_real_escape_string($conn, $_POST["stok"]);
+                  $tersedia = safe_mysqli_real_escape_string($conn, $_POST["tersedia"]);
+                   $ket = safe_mysqli_real_escape_string($conn, $_POST["ket"]);
                   $kegiatan="Penyesuaian STOK";
                   $usr=$_SESSION['nama'];
                   $tgl=date('Y-m-d');
@@ -178,8 +178,8 @@ if($stok!=$tersedia){
 
     if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
-               $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-                $ket = mysqli_real_escape_string($conn, $_POST["keterangan"]);
+               $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+                $ket = safe_mysqli_real_escape_string($conn, $_POST["keterangan"]);
                 $date=date('Y-m-d');
                 $usr=$_SESSION['nama'];
 
@@ -400,16 +400,16 @@ if($stok!=$tersedia){
            <td><?php echo ++$no_urut;?></td>
            <td><?php  $cba =$fill['kode_brg'];
         $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT sku FROM barang WHERE kode='$cba'"));
-       echo mysqli_real_escape_string($conn, $r['sku']); ?>
+       echo safe_mysqli_real_escape_string($conn, $r['sku']); ?>
                         </td>
 
                          
 
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
           
-           <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sebelum'])); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sesudah']) ); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['selisih']) ); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sebelum'])); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sesudah']) ); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['selisih']) ); ?></td>
            <td>
            <?php  if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') { ?>
            <button type="button" class="btn btn-danger btn-xs" onclick="window.location.href='component/delete/delete_sesuai?kode=<?php echo $fill['kode_brg'].'&'; ?>&nota=<?php echo $fill['nota'].'&'; ?>no=<?php echo $fill['no'].'&'; ?>forward=<?php echo $tabel.'&';?>forwardpage=<?php echo "".$forwardpage.'&'; ?>sebelum=<?php echo $fill['sebelum'].'&';?>chmod=<?php echo $chmod; ?>'">BATAL</button>

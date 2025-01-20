@@ -37,7 +37,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-aqua">
                                            <div class="inner">
-                                               <h4><sup style="font-size: 20px"></sup><b><?php echo number_format($val1, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
+                                               <h4><sup style="font-size: 20px"></sup><b><?php echo safe_number_format($val1, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
                                                <p>Total Estimasi Modal</p>
                                            </div>
                                            <div class="icon">
@@ -51,7 +51,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-yellow">
                                            <div class="inner">
-                                               <h4><sup style="font-size: 20px"></sup><b><?php echo number_format($val2, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
+                                               <h4><sup style="font-size: 20px"></sup><b><?php echo safe_number_format($val2, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
                                                <p>Total Estimasi Pemasukan</p>
                                            </div>
                                            <div class="icon">
@@ -65,7 +65,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-green">
                                            <div class="inner">
-                                               <h4><sup style="font-size: 20px"></sup><b><?php echo number_format($val3, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
+                                               <h4><sup style="font-size: 20px"></sup><b><?php echo safe_number_format($val3, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
                                                <p>Total Estimasi Laba</p>
                                            </div>
                                            <div class="icon">
@@ -79,7 +79,7 @@ $thousand =".";
                                        <!-- small box -->
                                        <div class="small-box bg-red">
                                            <div class="inner">
-                                               <h4><sup style="font-size: 20px"></sup><b><?php echo number_format($val4, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
+                                               <h4><sup style="font-size: 20px"></sup><b><?php echo safe_number_format($val4, $decimal, $a_decimal, $thousand).' '; ?></b></h4>
                                                <p>Total Omzet (Sudah Terjual)</p>
                                            </div>
                                            <div class="icon">
@@ -101,8 +101,8 @@ $halaman = "stok_valuasi"; // halaman
 $dataapa = "Estimasi Stok"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -279,14 +279,14 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sku']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sku']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
           
           
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sisa']*$fill['hargabeli'])); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sisa']*$fill['hargajual'])); ?></td>
-          <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sisa']*($fill['hargajual']-$fill['hargabeli']) )); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sisa']*$fill['hargabeli'])); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sisa']*$fill['hargajual'])); ?></td>
+          <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sisa']*($fill['hargajual']-$fill['hargabeli']) )); ?></td>
           </tr><?php
           ;
         }
@@ -307,13 +307,13 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sku']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sku']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
                    
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sisa']*$fill['hargabeli'])); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sisa']*$fill['hargajual'])); ?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['sisa']*($fill['hargajual']-$fill['hargabeli']) )); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sisa']*$fill['hargabeli'])); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sisa']*$fill['hargajual'])); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['sisa']*($fill['hargajual']-$fill['hargabeli']) )); ?></td>
           </tr>
       <?php
       $i++;

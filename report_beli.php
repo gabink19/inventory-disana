@@ -105,8 +105,8 @@ $halaman = "report_beli"; // halaman
 $dataapa = "Pembelian"; // data
 $tabeldatabase = "buy"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $bulan = $_POST['bulan'];
 $tahun = $_POST['tahun'];
 
@@ -308,9 +308,9 @@ while ($fill = mysqli_fetch_assoc($hasil)){ ?>
 
                 <tr>
                   <td><?php echo ++$no_urut;?></td>
-                  <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
+                  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
                   <td>Rp 
-                   <?php  echo mysqli_real_escape_string($conn, $fill['cost']); ?>
+                   <?php  echo safe_mysqli_real_escape_string($conn, $fill['cost']); ?>
                     </div>
                   </td>
                   
@@ -406,8 +406,8 @@ while ($fill = mysqli_fetch_assoc($hasil)){ ?>
 
               <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nopo']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nopo']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM invoicebeli WHERE nota ='$nota'";
@@ -422,12 +422,12 @@ $jmlbeli=$row1['tot_beli'];
 
    ?>
    
-  <td><?php  echo mysqli_real_escape_string($conn, $jmlbeli); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
-    <td><?php  echo mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jmlbeli); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
+    <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
  </tr>
       <?php
       $i++;

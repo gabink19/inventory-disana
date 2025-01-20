@@ -31,6 +31,21 @@ function breadcrumb() { include 'component/core/breadcrumb.php'; } // Breadcrumb
 function etc() { include 'configuration/config_etc.php'; } // etc Configuration
 function encryption() { include 'configuration/config_encrypt.php'; } // encrypt Configuration
 
+function safe_number_format($value, $decimals = 2, $decimal_separator = '.', $thousands_separator = ',') {
+    // Ganti nilai NULL dengan 0
+    $numeric_value = is_numeric($value) ? $value : 0;
 
+    // Format angka
+    return number_format($numeric_value, $decimals, $decimal_separator, $thousands_separator);
+}
+function safe_mysqli_real_escape_string(mysqli $connection, $string) {
+    // Pastikan nilai $string tidak NULL, gunakan string kosong sebagai default
+    $string = $string ?? '';
 
+    // Escape string menggunakan mysqli_real_escape_string
+    return mysqli_real_escape_string($connection, $string);
+}
+$decimal ="0";
+$a_decimal =",";
+$thousand =".";
 ?>

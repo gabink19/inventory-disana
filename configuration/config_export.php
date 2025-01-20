@@ -31,8 +31,8 @@ header("Content-Disposition: attachment; filename=$forward.xls");
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM transaksimasuk WHERE nota ='$nota'";
@@ -40,11 +40,11 @@ $hasile=mysqli_query($conn,$sqle);
 $rowa=mysqli_fetch_assoc($hasile);
 $jumlahbayar=$rowa['data'];
    ?>
-  <td><?php  echo mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
             </tr><?php
           ;
         }
@@ -79,12 +79,12 @@ $jumlahbayar=$rowa['data'];
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kategori']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['terjual']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['terbeli']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kategori']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['terjual']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['terbeli']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
   
             </tr><?php
           ;
@@ -120,8 +120,8 @@ $jumlahbayar=$rowa['data'];
                      <tbody>
     <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM invoicebeli WHERE nota ='$nota'";
@@ -136,12 +136,12 @@ $jmlbeli=$row1['tot_beli'];
 
    ?>
    
-  <td><?php  echo mysqli_real_escape_string($conn, $jmlbeli); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
-   <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
-    <td><?php  echo mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jmlbeli); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
+   <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
+    <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['diterima']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
  </tr><?php
           ;
         }
@@ -186,8 +186,8 @@ if($tahun == null || $tahun == ""){
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn , $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn , $fill['tglbayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn , $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn , $fill['tglbayar']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM transaksimasuk WHERE nota ='$nota'";
@@ -195,11 +195,11 @@ $hasile=mysqli_query($conn,$sqle);
 $rowa=mysqli_fetch_assoc($hasile);
 $jumlahbayar=$rowa['data'];
    ?>
-  <td><?php  echo mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['bayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kembali']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
   <td>
             </tr><?php
           ;
@@ -245,8 +245,8 @@ if($tahun == null || $tahun == ""){
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbayar']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM transaksimasuk WHERE nota ='$nota'";
@@ -254,11 +254,11 @@ $hasile=mysqli_query($conn,$sqle);
 $rowa=mysqli_fetch_assoc($hasile);
 $jumlahbayar=$rowa['data'];
    ?>
-  <td><?php  echo mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['keluar']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']-$fill['keluar']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jumlahbayar); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keluar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']-$fill['keluar']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
   <td>
             </tr><?php
           ;
@@ -297,12 +297,12 @@ if($tahun == null || $tahun == ""){
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['biaya'])); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tanggal']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['biaya'])); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
             </tr><?php
           ;
         }
@@ -347,15 +347,15 @@ if($tahun == null || $tahun == ""){
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['total'])); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['diskon'])); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglsale']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['total'])); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['diskon'])); ?></td>
   <td><?php  $pgn = $fill['pelanggan'];
   $sql = "SELECT nama FROM pelanggan where kode='$pgn'";
   $r =mysqli_fetch_assoc(mysqli_query($conn, $sql));
-  echo mysqli_real_escape_string($conn, $r['nama']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  echo safe_mysqli_real_escape_string($conn, $r['nama']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
             </tr><?php
           ;
         }
@@ -399,15 +399,15 @@ if($tahun == null || $tahun == ""){
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['namauser']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['namauser']); ?></td>
             <?php  $tgl = date("d-m-Y",strtotime($fill['tgl'])); ?>
-            <td><?php  echo mysqli_real_escape_string($conn, $tgl); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['status']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $tgl); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kegiatan']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['sisa']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['status']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td>
           </tr><?php
           ;
         }

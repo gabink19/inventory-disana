@@ -39,8 +39,8 @@ include "configuration/config_chmod.php";
 $halaman = "index"; // halaman
 $dataapa = "Dashboard"; // data
 $tabeldatabase = "index"; // tabel database
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $chmod = $chmenu1; // Hak akses Menu
 $search = $_POST['search'];
 ?>

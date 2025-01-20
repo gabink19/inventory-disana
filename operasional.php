@@ -37,8 +37,8 @@ $halaman = "operasional"; // halaman
 $dataapa = "Operasional"; // data
 $tabeldatabase = "operasional"; // tabel database
 $chmod = $chmenu7; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 $cek=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM operasional_view"));
@@ -222,14 +222,14 @@ if ($chmod >= 5 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
             
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-    <?php if($cek['tipe_view']!=0){?>           <td><?php  echo mysqli_real_escape_string($conn, $fill['tipe']); ?></td><?php } ?>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+    <?php if($cek['tipe_view']!=0){?>           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tipe']); ?></td><?php } ?>
              <?php  $tgl = date("d-m-Y",strtotime($fill['tanggal'])); ?>
-   <?php if($cek['tgl_view']!=0){?>           <td><?php  echo mysqli_real_escape_string($conn, $tgl); ?></td> <?php } ?>
-   <?php if($cek['biaya_view']!=0){?>          <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['biaya'], $decimal, $a_decimal, $thousand).',-'); ?></td><?php } ?>
-   <?php if($cek['ket_view']!=0){?>          <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td><?php } ?>
+   <?php if($cek['tgl_view']!=0){?>           <td><?php  echo safe_mysqli_real_escape_string($conn, $tgl); ?></td> <?php } ?>
+   <?php if($cek['biaya_view']!=0){?>          <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['biaya'], $decimal, $a_decimal, $thousand).',-'); ?></td><?php } ?>
+   <?php if($cek['ket_view']!=0){?>          <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td><?php } ?>
             <td>
             <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
           <button type="button" class="btn btn-success btn-xs" onclick="window.location.href='add_<?php echo $halaman;?>?no=<?php  echo $fill['no']; ?>'">Edit</button>
@@ -258,14 +258,14 @@ if ($chmod >= 5 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
 
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-   <?php if($cek['tipe_view']!=0){?>          <td><?php  echo mysqli_real_escape_string($conn, $fill['tipe']); ?></td><?php } ?>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+   <?php if($cek['tipe_view']!=0){?>          <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tipe']); ?></td><?php } ?>
             <?php  $tgl = date("d-m-Y",strtotime($fill['tanggal'])); ?>
-   <?php if($cek['tgl_view']!=0){?>          <td><?php  echo mysqli_real_escape_string($conn, $tgl); ?></td><?php } ?>
-   <?php if($cek['biaya_view']!=0){?>          <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['biaya'], $decimal, $a_decimal, $thousand).',-'); ?></td><?php } ?>
-     <?php if($cek['ket_view']!=0){?>        <td><?php  echo mysqli_real_escape_string($conn, $fill['keterangan']); ?></td><?php } ?>
+   <?php if($cek['tgl_view']!=0){?>          <td><?php  echo safe_mysqli_real_escape_string($conn, $tgl); ?></td><?php } ?>
+   <?php if($cek['biaya_view']!=0){?>          <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['biaya'], $decimal, $a_decimal, $thousand).',-'); ?></td><?php } ?>
+     <?php if($cek['ket_view']!=0){?>        <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['keterangan']); ?></td><?php } ?>
             <td>
             <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
           <button type="button" class="btn btn-success btn-xs" onclick="window.location.href='add_<?php echo $halaman;?>?no=<?php  echo $fill['no']; ?>'">Edit</button>

@@ -40,8 +40,8 @@ $halaman = "payment_options"; // halaman
 $dataapa = "Pilihan Pembayaran"; // data
 $tabeldatabase = "options"; // tabel database
 $chmod = $chmenu4; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -209,7 +209,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
     while ($fill = mysqli_fetch_assoc($hasil)){
     ?>
                   <td><?php echo ++$no;?></td>
-                  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+                  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
                   <td><button type="button" class="btn btn-danger btn-xs" onclick="window.location.href='payment_options?no=<?php echo $fill['no'];?>'">Hapus</button></td>
                  
                 </tr>
@@ -240,7 +240,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
     while ($fill = mysqli_fetch_assoc($hasil)){
     ?>
                    <td><?php echo ++$no;?></td>
-                  <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+                  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
                  <td><button type="button" class="btn btn-danger btn-xs" onclick="window.location.href='payment_options?no=<?php echo $fill['no'];?>'">Hapus</button></td>
                   
                 </tr>
@@ -274,7 +274,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
      if(isset($_POST["pay"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
           
              $sql="select * from $tabeldatabase where nama='$nama'";
         $result=mysqli_query($conn,$sql);
@@ -302,7 +302,7 @@ echo "<script type='text/javascript'>window.location = '$halaman';</script>";
      if(isset($_POST["bank"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
           
              $sql="select * from $tabeldatabase where nama='$nama'";
         $result=mysqli_query($conn,$sql);

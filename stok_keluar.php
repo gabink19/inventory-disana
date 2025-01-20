@@ -37,8 +37,8 @@ $halaman = "stok_keluar"; // halaman
 $dataapa = "Barang Keluar"; // data
 $tabeldatabase = "stok_keluar"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -206,13 +206,13 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
                <td>
 
                 <?php if($fill['pelanggan']!='customer'){
 
-                 echo mysqli_real_escape_string($conn, $fill['pelanggan']); 
+                 echo safe_mysqli_real_escape_string($conn, $fill['pelanggan']); 
                  }?>
 
                </td>
@@ -250,11 +250,11 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
                <td> <?php if($fill['pelanggan']!='customer'){
 
-                 echo mysqli_real_escape_string($conn, $fill['pelanggan']);
+                 echo safe_mysqli_real_escape_string($conn, $fill['pelanggan']);
                  }?>
                </td>
             <td>

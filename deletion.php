@@ -40,8 +40,8 @@ $halaman = "deletion"; // halaman
 $dataapa = "Penghapusan"; // data
 
 $chmod = 5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+// $forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+// $forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $kode = $_GET['k'];
 $tabel = $_GET['f'];
 $next = $_GET['page'];
@@ -270,9 +270,9 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
-$kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-$next = mysqli_real_escape_string($conn, $_POST["next"]);
-$tabel = mysqli_real_escape_string($conn, $_POST["tabel"]);
+$kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+$next = safe_mysqli_real_escape_string($conn, $_POST["next"]);
+$tabel = safe_mysqli_real_escape_string($conn, $_POST["tabel"]);
 
 //hapus barang
 if(isset($_POST['produk'])){

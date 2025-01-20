@@ -41,8 +41,8 @@ $halaman = "invoice_beli"; // halaman
 $dataapa = "Invoice Pembelian"; // data
 $tabeldatabase = "invoicebeli"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $tabel = "buy";
 $today = date('Y-m-d');
  
@@ -284,10 +284,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
             <tbody>
             <tr>
               <td><?php echo ++$no_urut;?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
             </tr>
             
 
@@ -355,7 +355,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
               
               <tr>
                 <th>Total:</th>
-                <td>Rp. <?php echo number_format($totalprice, $decimal, $a_decimal, $thousand).',-';?></td>
+                <td>Rp. <?php echo safe_number_format($totalprice, $decimal, $a_decimal, $thousand).',-';?></td>
               </tr>
             </table>
           </div>
@@ -530,14 +530,14 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
     if(isset($_POST['save1'])){
    if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-          $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-          $sup = mysqli_real_escape_string($conn, $_POST["sup"]);
-          $metode = mysqli_real_escape_string($conn, $_POST["metode"]);
-           $bank = mysqli_real_escape_string($conn, $_POST["bank"]);
-          $jml= mysqli_real_escape_string($conn, $_POST["jml"]);
-          $ket = mysqli_real_escape_string($conn, $_POST["ref"]);
-          $tgl = mysqli_real_escape_string($conn, $_POST["tgl"]);
+            $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+          $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+          $sup = safe_mysqli_real_escape_string($conn, $_POST["sup"]);
+          $metode = safe_mysqli_real_escape_string($conn, $_POST["metode"]);
+           $bank = safe_mysqli_real_escape_string($conn, $_POST["bank"]);
+          $jml= safe_mysqli_real_escape_string($conn, $_POST["jml"]);
+          $ket = safe_mysqli_real_escape_string($conn, $_POST["ref"]);
+          $tgl = safe_mysqli_real_escape_string($conn, $_POST["tgl"]);
           $tagihan=mysqli_real_escape_string($conn, $_POST["tagihan"]);
           
 
@@ -656,14 +656,14 @@ $sql=mysqli_query($conn,"UPDATE buy SET status='dibayar',sudahbayar='$sudahbayar
 if(isset($_POST['hutang'])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-         $nota = mysqli_real_escape_string($conn, $_POST['nota']);
-         $tgl = mysqli_real_escape_string($conn, $_POST['tgl']);
-         $due = mysqli_real_escape_string($conn, $_POST['duedate']);
-         $kreditur = mysqli_real_escape_string($conn, $_POST['kreditur']);
-         $jml = mysqli_real_escape_string($conn, $_POST['hutang1']);
-         $hutang = mysqli_real_escape_string($conn, $_POST['hutang2']);
-          $nopo = mysqli_real_escape_string($conn, $_POST['nopo']);
-         $ket = mysqli_real_escape_string($conn, $_POST['keterangan']);
+         $nota = safe_mysqli_real_escape_string($conn, $_POST['nota']);
+         $tgl = safe_mysqli_real_escape_string($conn, $_POST['tgl']);
+         $due = safe_mysqli_real_escape_string($conn, $_POST['duedate']);
+         $kreditur = safe_mysqli_real_escape_string($conn, $_POST['kreditur']);
+         $jml = safe_mysqli_real_escape_string($conn, $_POST['hutang1']);
+         $hutang = safe_mysqli_real_escape_string($conn, $_POST['hutang2']);
+          $nopo = safe_mysqli_real_escape_string($conn, $_POST['nopo']);
+         $ket = safe_mysqli_real_escape_string($conn, $_POST['keterangan']);
           
         
          $status ="hutang";

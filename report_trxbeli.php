@@ -95,8 +95,8 @@ $halaman = "report_trxbeli"; // halaman
 $dataapa = "Laporan Transaksi Pembelian"; // data
 $tabeldatabase = "beli"; // tabel database
 $chmod = $chmenu9; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -232,8 +232,8 @@ if($search == null || $search == "" ){
                      <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbeli']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbeli']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM transaksibeli WHERE nota ='$nota'";
@@ -247,10 +247,10 @@ $row1=mysqli_fetch_array($hasil1);
 $jmlbeli=$row1['tot_beli'];
 
    ?>
-  <td><?php  echo mysqli_real_escape_string($conn, $jmlbeli); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jmlbeli); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
   <td>
   <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
     <button type="button" class="btn btn-info btn-xs" onclick="window.location.href='stok_detail?id=1&trx=2&nota=<?php  echo $fill['nota']; ?>'">Detail</button>
@@ -276,8 +276,8 @@ $jmlbeli=$row1['tot_beli'];
                       <tbody>
 <tr>
   <td><?php echo ++$no_urut;?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['tglbeli']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tglbeli']); ?></td>
   <?php
 $nota = $fill['nota'];
 $sqle="SELECT COUNT( nota ) AS data FROM transaksibeli WHERE nota ='$nota'";
@@ -290,10 +290,10 @@ $hasil1=mysqli_query($conn,$jml);
 $row1=mysqli_fetch_array($hasil1);
 $jmlbeli=$row1['tot_beli'];
    ?>
-  <td><?php  echo mysqli_real_escape_string($conn, $jmlbeli); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['total']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
-  <td><?php  echo mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $jmlbeli); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['total']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
+  <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kasir']); ?></td>
   <td>
   <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
     <button type="button" class="btn btn-info btn-xs" onclick="window.location.href='stok_detail?id=1&trx=2&nota=<?php  echo $fill['nota']; ?>'">Detail</button>

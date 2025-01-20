@@ -40,8 +40,8 @@ $halaman = "quotation_conv_final"; // halaman
 $dataapa = "Penjualan"; // data
 $tabeldatabase = "barang"; // tabel database
 $chmod = $chmenu3; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 $nota= $_GET['nota'];
@@ -95,7 +95,7 @@ $a=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM quotation WHERE nota='$q
     if(isset($_POST["simpan"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
            
-            $cust = mysqli_real_escape_string($conn, $_POST["pelanggan"]);
+            $cust = safe_mysqli_real_escape_string($conn, $_POST["pelanggan"]);
             
             if($cust == ''){ 
                 $pelanggan = '0001';
@@ -103,21 +103,21 @@ $a=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM quotation WHERE nota='$q
             } else { $pelanggan = $cust;
             }
 
-              $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-                  $nomor = mysqli_real_escape_string($conn, $_POST["nomor"]);
-                   $quo = mysqli_real_escape_string($conn, $_POST["quo"]);
-              $duedate = mysqli_real_escape_string($conn, $_POST["duedate"]);
-              $diskon = mysqli_real_escape_string($conn, $_POST["diskon"]);
-               $pot = mysqli_real_escape_string($conn, $_POST["potongan"]);
-                $biaya = mysqli_real_escape_string($conn, $_POST["biaya"]);
-              $total = mysqli_real_escape_string($conn, $_POST["total"]);
-              $tglnota = mysqli_real_escape_string($conn, $_POST["tglnota"]);
+              $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+                  $nomor = safe_mysqli_real_escape_string($conn, $_POST["nomor"]);
+                   $quo = safe_mysqli_real_escape_string($conn, $_POST["quo"]);
+              $duedate = safe_mysqli_real_escape_string($conn, $_POST["duedate"]);
+              $diskon = safe_mysqli_real_escape_string($conn, $_POST["diskon"]);
+               $pot = safe_mysqli_real_escape_string($conn, $_POST["potongan"]);
+                $biaya = safe_mysqli_real_escape_string($conn, $_POST["biaya"]);
+              $total = safe_mysqli_real_escape_string($conn, $_POST["total"]);
+              $tglnota = safe_mysqli_real_escape_string($conn, $_POST["tglnota"]);
 
-               $databelitotal = mysqli_real_escape_string($conn, $_POST["beli"]);
+               $databelitotal = safe_mysqli_real_escape_string($conn, $_POST["beli"]);
              
               
               
-              $keterangan = mysqli_real_escape_string($conn, $_POST["keterangan"]);
+              $keterangan = safe_mysqli_real_escape_string($conn, $_POST["keterangan"]);
               $kasir = $_SESSION["username"];
               $berhasil = "berhasil";
               $belum = "belum";
@@ -236,10 +236,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
            <tr>
            <td><?php echo ++$no_urut;?></td>
            
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
            
-           <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?> x <?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-           <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?> x <?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+           <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
           </tr>
            <?php
            $i++;
@@ -293,7 +293,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                   <input type="hidden" value="<?php echo $databelitotal;?>" class="form-control" name="beli">
                   
                   
-                  <th ><input type="text" value="<?php echo number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?>" class="form-control" readonly></th>
+                  <th ><input type="text" value="<?php echo safe_number_format($datatotal, $decimal, $a_decimal, $thousand).',-'; ?>" class="form-control" readonly></th>
                 </tr>
                 <tr>
 

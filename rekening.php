@@ -33,8 +33,8 @@ $halaman = "rekening"; // halaman
 $dataapa = "Rekening"; // data
 $tabeldatabase = "rekening"; // tabel database
 $chmod = $chmenu10; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -220,10 +220,10 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 if(isset($_POST['simpan'])){
    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-          $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-          $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-          $norek = mysqli_real_escape_string($conn, $_POST["norek"]);
-          $bank = mysqli_real_escape_string($conn, $_POST["bank"]);
+          $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+          $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+          $norek = safe_mysqli_real_escape_string($conn, $_POST["norek"]);
+          $bank = safe_mysqli_real_escape_string($conn, $_POST["bank"]);
           $insert = ($_POST["insert"]);
 
 
@@ -352,10 +352,10 @@ function myFunction() {
                 <tbody>
                <tr>
                <td><?php echo ++$no_urut;?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['bank']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['norek']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['bank']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['norek']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
                <td>
                <?php  if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
                 <?php  if ( $fill['nama'] != 'admin') { ?>
@@ -385,10 +385,10 @@ function myFunction() {
                  <tbody>
                <tr>
                <td><?php echo ++$no_urut;?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['kode']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['bank']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['norek']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['kode']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['bank']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['norek']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
                
 
                <td>

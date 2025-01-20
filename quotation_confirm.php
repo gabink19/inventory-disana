@@ -40,8 +40,8 @@ $halaman = "quotation_confirm"; // halaman
 $dataapa = "Konfirmasi"; // data
 $tabeldatabase = "quotation"; // tabel database
 $chmod = $chmenu3; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $q = $_GET['q'];
 
 
@@ -68,8 +68,8 @@ $q = $_GET['q'];
   if(isset($_POST["cancel"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-        $quo = mysqli_real_escape_string($conn, $_POST["quo"]);
+        $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+        $quo = safe_mysqli_real_escape_string($conn, $_POST["quo"]);
 
         $sql=mysqli_query($conn,"SELECT * FROM invoicejual WHERE nota='$nota'");
         while($row=mysqli_fetch_assoc($sql)){

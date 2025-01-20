@@ -37,8 +37,8 @@ $halaman = "stok_keluar_batal"; // halaman
 $dataapa = "Barang Keluar"; // data
 $tabeldatabase = "stok_keluar_daftar"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 
@@ -192,14 +192,14 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
             <td>
               <?php  $cba =$fill['kode_barang'];
         $r=mysqli_fetch_assoc(mysqli_query($conn,"SELECT sku FROM barang WHERE kode='$cba'"));
-       echo mysqli_real_escape_string($conn, $r['sku']); ?>
+       echo safe_mysqli_real_escape_string($conn, $r['sku']); ?>
             </td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-                <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+                <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
             <td>
            
            <?php  if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') { ?>

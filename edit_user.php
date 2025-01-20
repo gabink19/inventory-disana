@@ -40,8 +40,8 @@ $halaman = "edit_user"; // halaman
 $dataapa = "Edit User"; // data
 $tabeldatabase = "user"; // tabel database
 $chmod = 5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -112,14 +112,14 @@ if ($search != null || $search != "") {
 
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-                      $username = mysqli_real_escape_string($conn, $_POST["username"]);
+                      $username = safe_mysqli_real_escape_string($conn, $_POST["username"]);
                       
-                      $nama= mysqli_real_escape_string($conn, $_POST["nama"]);
-                      $jabatan= mysqli_real_escape_string($conn, $_POST["jabatan"]);
-                      $nohp= mysqli_real_escape_string($conn, $_POST["nohp"]);
-                      $alamat= mysqli_real_escape_string($conn,$_POST["alamat"]);
-                      $tgllahir= mysqli_real_escape_string($conn, $_POST["tgllahir"]);
-                      $last= mysqli_real_escape_string($conn, $_POST["lastavatar"]);
+                      $nama= safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+                      $jabatan= safe_mysqli_real_escape_string($conn, $_POST["jabatan"]);
+                      $nohp= safe_mysqli_real_escape_string($conn, $_POST["nohp"]);
+                      $alamat= safe_mysqli_real_escape_string($conn,$_POST["alamat"]);
+                      $tgllahir= safe_mysqli_real_escape_string($conn, $_POST["tgllahir"]);
+                      $last= safe_mysqli_real_escape_string($conn, $_POST["lastavatar"]);
                       $namaavatar = $_FILES['avatar']['name'];
                       $ukuranavatar = $_FILES['avatar']['size'];
                       $tipeavatar = $_FILES['avatar']['type'];

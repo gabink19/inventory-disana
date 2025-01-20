@@ -37,11 +37,11 @@ $username=$password="";
 
 
 $tabeldatabase = "user"; // tabel database
-$forward = mysqli_real_escape_string($conn, $tabeldatabase);
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase);
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-  $username= mysqli_real_escape_string($conn, $_POST['txtuser']);
-  $password= mysqli_real_escape_string($conn, $_POST['txtpass']);
+  $username= safe_mysqli_real_escape_string($conn, $_POST['txtuser']);
+  $password= safe_mysqli_real_escape_string($conn, $_POST['txtpass']);
   $password=md5($password);
   $password=sha1($password);
 

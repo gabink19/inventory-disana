@@ -43,8 +43,8 @@ menu();
 $halaman = "index"; // halaman
 $dataapa = "Dashboard"; // data
 $tabeldatabase = "index"; // tabel database
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 //$search = $_POST['search'];
 // hak tampil dashboard
@@ -373,37 +373,37 @@ if ($_SESSION['jabatan'] == 'admin' || $hak >='1') {?>
                 <tbody>
                       <tr>
                <td>Sudah Jatuh Tempo</td>
-              <td><h4><?php echo number_format($buynow);?></h4></td>
+              <td><h4><?php echo safe_number_format($buynow);?></h4></td>
               <td>Segera Jatuh Tempo</td>
-              <td><h4><?php echo number_format($salenow);?></h4></td>
+              <td><h4><?php echo safe_number_format($salenow);?></h4></td>
             </tr>
 
               <tr>
                <td>Jatuh Tempo <30 hari</td>
-              <td><h4><?php echo number_format($buy30);?></h4></td>
+              <td><h4><?php echo safe_number_format($buy30);?></h4></td>
               <td>Jatuh Tempo <30 hari</td>
-              <td><h4><?php echo number_format($sale30);?></h4></td>              
+              <td><h4><?php echo safe_number_format($sale30);?></h4></td>              
             </tr>
 
             <tr>
                <td>Jatuh Tempo 30-60 hari</td>
-              <td><h4><?php echo number_format($buy3060);?></h4></td>
+              <td><h4><?php echo safe_number_format($buy3060);?></h4></td>
               <td>Jatuh Tempo 30-60 hari</td>
-              <td><h4><?php echo number_format($sale3060);?></h4></td>              
+              <td><h4><?php echo safe_number_format($sale3060);?></h4></td>              
             </tr>
 
              <tr>
                <td>Jatuh Tempo 60-90 hari</td>
-              <td><h4><?php echo number_format($buy6090);?></h4></td>
+              <td><h4><?php echo safe_number_format($buy6090);?></h4></td>
               <td>Jatuh Tempo 60-90 hari</td>
-              <td><h4><?php echo number_format($sale6090);?></h4></td>              
+              <td><h4><?php echo safe_number_format($sale6090);?></h4></td>              
             </tr>
 
              <tr>
                <td>Jatuh Tempo >90 hari</td>
-              <td><h4><?php echo number_format($buy90);?></h4></td>
+              <td><h4><?php echo safe_number_format($buy90);?></h4></td>
               <td>Jatuh Tempo >90 hari</td>
-              <td><h4><?php echo number_format($sale90);?></h4></td>              
+              <td><h4><?php echo safe_number_format($sale90);?></h4></td>              
             </tr>
 
 
@@ -450,32 +450,32 @@ if ($_SESSION['jabatan'] == 'admin' || $hak >='1') {?>
                 <tbody>
                       <tr>
                <td>Pendapatan Retail</td>
-              <td><h4><?php echo number_format($rebulan);?></h4></td>
-              <td><h4><?php echo number_format($rebulanlalu);?></h4></td>
-              <td><h4><?php echo number_format($retahun);?></h4></td>
+              <td><h4><?php echo safe_number_format($rebulan);?></h4></td>
+              <td><h4><?php echo safe_number_format($rebulanlalu);?></h4></td>
+              <td><h4><?php echo safe_number_format($retahun);?></h4></td>
             </tr>
 
               <tr>
                <td>Pendapatan Non Retail</td>
-              <td><h4><?php echo number_format($salemonth);?></td>
-              <td><h4><?php echo number_format($salelastmonth);?></td>
-              <td><h4><?php echo number_format($saleyear);?></h4></td>              
+              <td><h4><?php echo safe_number_format($salemonth);?></td>
+              <td><h4><?php echo safe_number_format($salelastmonth);?></td>
+              <td><h4><?php echo safe_number_format($saleyear);?></h4></td>              
             </tr>
 
             
              <tr>
                <td>Biaya Operasional</td>
-              <td><h4><?php echo number_format($opmonth);?></td>
-              <td><h4><?php echo number_format($oplastm);?></td>
-              <td><h4><?php echo number_format($opyear);?></td>              
+              <td><h4><?php echo safe_number_format($opmonth);?></td>
+              <td><h4><?php echo safe_number_format($oplastm);?></td>
+              <td><h4><?php echo safe_number_format($opyear);?></td>              
             </tr>
 
 
              <tr>
                <td>Net Income</td>
-              <td><h4><?php echo number_format($sum1);?></td>
-              <td><h4><?php echo number_format($sum2);?></td>
-              <td><h4><?php echo number_format($sum3);?></td>              
+              <td><h4><?php echo safe_number_format($sum1);?></td>
+              <td><h4><?php echo safe_number_format($sum2);?></td>
+              <td><h4><?php echo safe_number_format($sum3);?></td>              
             </tr>
 
              
@@ -742,7 +742,7 @@ if ($_SESSION['jabatan'] == 'admin' || $hak >='1') {?>
 if(isset($_POST['save'])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-         $url = mysqli_real_escape_string($conn, $_POST['url']);
+         $url = safe_mysqli_real_escape_string($conn, $_POST['url']);
 
          $sqlu = "UPDATE backset SET url='$url' ";
          $query = mysqli_query($conn, $sqlu);

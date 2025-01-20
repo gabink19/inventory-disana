@@ -40,8 +40,8 @@ $halaman = "quotation_conv"; // halaman
 $dataapa = "Konversi penawaran"; // data
 $tabeldatabase = "quotation"; // tabel database
 $chmod = $chmenu3; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $nota = $_GET['q'];
 
 
@@ -93,15 +93,15 @@ if ($search != null || $search != "") {
   if(isset($_POST["conv"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-        $nama = mysqli_real_escape_string($conn, $_POST["nama"]);
-        $nota = mysqli_real_escape_string($conn, $_POST["nota"]);
-        $quo = mysqli_real_escape_string($conn, $_POST["quo"]);
-        $harga = mysqli_real_escape_string($conn, $_POST["harga"]);
-        $jumlah = mysqli_real_escape_string($conn, $_POST["jumlah"]);
-        $hargaakhir = mysqli_real_escape_string($conn, $_POST["hargaakhir"]);
-        $modal = mysqli_real_escape_string($conn, $_POST["modal"]);
-         $nom = mysqli_real_escape_string($conn, $_POST["nom"]);
+        $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+        $nama = safe_mysqli_real_escape_string($conn, $_POST["nama"]);
+        $nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+        $quo = safe_mysqli_real_escape_string($conn, $_POST["quo"]);
+        $harga = safe_mysqli_real_escape_string($conn, $_POST["harga"]);
+        $jumlah = safe_mysqli_real_escape_string($conn, $_POST["jumlah"]);
+        $hargaakhir = safe_mysqli_real_escape_string($conn, $_POST["hargaakhir"]);
+        $modal = safe_mysqli_real_escape_string($conn, $_POST["modal"]);
+         $nom = safe_mysqli_real_escape_string($conn, $_POST["nom"]);
 
           $kasir = $_SESSION["username"];
               $kegiatan = "menjual barang hasil penawaran";
@@ -133,10 +133,10 @@ if ($search != null || $search != "") {
   if(isset($_POST["unconv"])){
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        $kode = mysqli_real_escape_string($conn, $_POST["kode"]);
-        $quo = mysqli_real_escape_string($conn, $_POST["quo"]);
-          $nom = mysqli_real_escape_string($conn, $_POST["nom"]);
-          $jumlah = mysqli_real_escape_string($conn, $_POST["jumlah"]);
+        $kode = safe_mysqli_real_escape_string($conn, $_POST["kode"]);
+        $quo = safe_mysqli_real_escape_string($conn, $_POST["quo"]);
+          $nom = safe_mysqli_real_escape_string($conn, $_POST["nom"]);
+          $jumlah = safe_mysqli_real_escape_string($conn, $_POST["jumlah"]);
            $kegiatan = "menjual barang hasil penawaran";
 
            $sqle3="SELECT * FROM barang where kode='$kode'";

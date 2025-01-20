@@ -325,7 +325,7 @@ class PHPExcel_Calculation_TextData
             $decimals = 0;
         }
         if (!$no_commas) {
-            $valueResult = number_format($valueResult, $decimals);
+            $valueResult = safe_number_format($valueResult, $decimals);
         }
 
         return (string) $valueResult;

@@ -40,8 +40,8 @@ $halaman = "edit_user"; // halaman
 $dataapa = "Edit User"; // data
 $tabeldatabase = "user"; // tabel database
 $chmod = 5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 $insert = $_POST['insert'];
 
@@ -106,14 +106,14 @@ if ($search != null || $search != "") {
 
        if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-                      $username = mysqli_real_escape_string($conn, $_POST["username"]);
+                      $username = safe_mysqli_real_escape_string($conn, $_POST["username"]);
                       $password = md5($_POST["password"]);
                       $password = sha1($password);
-                      $password = mysqli_real_escape_string($conn, $password);
+                      $password = safe_mysqli_real_escape_string($conn, $password);
                       $password2 = md5($_POST["password2"]);
                       $password2 = sha1($password2);
-                      $password2 = mysqli_real_escape_string($conn, $password2);
-                      $nama= mysqli_real_escape_string($conn, $_POST["nama"]);
+                      $password2 = safe_mysqli_real_escape_string($conn, $password2);
+                      $nama= safe_mysqli_real_escape_string($conn, $_POST["nama"]);
                       
                       $insert = ($_POST["insert"]);
                       $no = ($_GET["no"]);

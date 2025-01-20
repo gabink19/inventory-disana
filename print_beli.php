@@ -35,8 +35,8 @@ $halaman = "invoice_beli"; // halaman
 $dataapa = "Invoice Pembelian"; // data
 $tabeldatabase = "invoicebeli"; // tabel database
 $chmod = $chmenu5; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $tabel = "buy";
 
  
@@ -182,10 +182,10 @@ $tabel = "buy";
             <tbody>
             <tr>
               <td><?php echo ++$no_urut;?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
             </tr>
             
 
@@ -251,7 +251,7 @@ $tabel = "buy";
               
               <tr>
                 <th>Total:</th>
-                <td>Rp. <?php echo number_format($totalprice, $decimal, $a_decimal, $thousand).',-';?></td>
+                <td>Rp. <?php echo safe_number_format($totalprice, $decimal, $a_decimal, $thousand).',-';?></td>
               </tr>
           </table>
         

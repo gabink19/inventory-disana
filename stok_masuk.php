@@ -37,8 +37,8 @@ $halaman = "stok_masuk"; // halaman
 $dataapa = "Barang Masuk"; // data
 $tabeldatabase = "stok_masuk"; // tabel database
 $chmod = $chmenu8; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 
 ?>
@@ -206,9 +206,9 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                      <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
             <td>
            
            <?php  if ($chmod >= 4 || $_SESSION['jabatan'] == 'admin') { ?>
@@ -234,9 +234,9 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['nota']); ?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nota']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['tgl']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['supplier']); ?></td>
             <td>
            
 

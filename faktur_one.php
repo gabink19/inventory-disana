@@ -53,8 +53,8 @@ $judul="Invoice";
 }
 
 
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
 
 date_default_timezone_set("Asia/Jakarta");
@@ -219,10 +219,10 @@ $today = date('d-m-Y');
             <tbody>
             <tr>
               <td><?php echo ++$no_urut;?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
-             <td><?php  echo mysqli_real_escape_string($conn, number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
-              <td><?php  echo mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
-               <td><?php  echo mysqli_real_escape_string($conn, number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+             <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format($fill['harga'], $decimal, $a_decimal, $thousand).',-'); ?></td>
+              <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['jumlah']); ?></td>
+               <td><?php  echo safe_mysqli_real_escape_string($conn, safe_number_format(($fill['jumlah']*$fill['harga']), $decimal, $a_decimal, $thousand).',-'); ?></td>
             </tr>
             
 
@@ -310,21 +310,21 @@ $today = date('d-m-Y');
           <table class="table">
             <tr>
                 <th>Sub Total:</th>
-                <td>Rp. <?php echo number_format(($pot+$total-$biaya), $decimal, $a_decimal, $thousand).',-';?></td>
+                <td>Rp. <?php echo safe_number_format(($pot+$total-$biaya), $decimal, $a_decimal, $thousand).',-';?></td>
               </tr>
                <tr>
                 <th>Diskon(<?php echo $diskon;?>)%:</th>
-                <td>Rp. <?php echo number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>
+                <td>Rp. <?php echo safe_number_format($pot, $decimal, $a_decimal, $thousand).',-';?></td>
               </tr>
 
                 <tr>
                 <th>Biaya Tambahan:</th>
-                <td>Rp. <?php echo number_format($biaya, $decimal, $a_decimal, $thousand).',-';?></td>
+                <td>Rp. <?php echo safe_number_format($biaya, $decimal, $a_decimal, $thousand).',-';?></td>
               </tr>
               
               <tr>
                 <th>Total:</th>
-                <td><b>Rp. <?php echo number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
+                <td><b>Rp. <?php echo safe_number_format($total, $decimal, $a_decimal, $thousand).',-';?></b></td>
               </tr>
           </table>
        

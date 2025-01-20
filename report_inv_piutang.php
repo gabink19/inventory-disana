@@ -40,8 +40,8 @@ $halaman = "report_inv_piutang"; // halaman
 $dataapa = "Sales Invoice"; // data
 $tabeldatabase = "sale"; // tabel database
 $chmod = $chmenu10; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 
  error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 ?>
@@ -138,26 +138,31 @@ echo '  <div >
             <td><h3>TOTAL PIUTANG</h3></td>
              <td style="width:50%"><h3>:</h3></td>
              
-            <td><h3>'.number_format($b['tbayar']-$b['tsudah']).'</h3></td>
+            <td><h3>'.safe_number_format($b['tbayar']-$b['tsudah']).'</h3></td>
         </tr>
         <tr>
         <td>TOTAL PENAGIHAN</td>
              <td style="width:50%"><h3></h3></td>
              
-            <td>'.number_format($b['tbayar']).'</td>
+            <td>'.safe_number_format($b['tbayar']).'</td>
         </tr>
 
          <tr>
         <td>SUDAH DIBAYAR</td>
              <td style="width:50%"><h3></h3></td>
              
-            <td><b>'.number_format($b['tsudah']).'</b></td>
+            <td><b>'.safe_number_format($b['tsudah']).'</b></td>
         </tr>
         </table>
         </div>';
 
 }
-
+if ($dr=="") {
+  $dr=date('d-m-Y');
+}
+if ($sam=="") {
+  $sam=date('d-m-Y');
+}
 $dari=date('d-m-Y', strtotime($dr));
 $sampai=date('d-m-Y', strtotime($sam));
 
@@ -227,9 +232,9 @@ $sampai=date('d-m-Y', strtotime($sam));
                             echo 'Non Pelanggan';
                           }
                         ?></td>
-                       <td><?php echo number_format($row['total']);?></td>
-                        <td><?php echo number_format($row['sudahbayar']);?></td>
-                            <td><?php echo number_format($row['total']-$row['sudahbayar']);?></td>
+                       <td><?php echo safe_number_format($row['total']);?></td>
+                        <td><?php echo safe_number_format($row['sudahbayar']);?></td>
+                            <td><?php echo safe_number_format($row['total']-$row['sudahbayar']);?></td>
                        
                          <td><?php if($row['status']=='belum'){?><span class="label label-danger">BELUM LUNAS</span><?php } else {?><span class="label label-success">SUDAH LUNAS</span> <?php } ?></td>
                         
@@ -316,9 +321,9 @@ $sampai=date('d-m-Y', strtotime($sam));
                             echo 'Non Pelanggan';
                           }
                         ?></td>
-                       <td><?php echo number_format($row['total']);?></td>
-                        <td><?php echo number_format($row['sudahbayar']);?></td>
-                            <td><?php echo number_format($row['total']-$row['sudahbayar']);?></td>
+                       <td><?php echo safe_number_format($row['total']);?></td>
+                        <td><?php echo safe_number_format($row['sudahbayar']);?></td>
+                            <td><?php echo safe_number_format($row['total']-$row['sudahbayar']);?></td>
                        
                          <td><?php if($row['status']=='belum'){?><span class="label label-danger">BELUM LUNAS</span><?php } else {?><span class="label label-success">SUDAH LUNAS</span> <?php } ?></td>
                         

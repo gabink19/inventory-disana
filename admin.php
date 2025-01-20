@@ -37,8 +37,8 @@ $halaman = "admin"; // halaman
 $dataapa = "Admin"; // data
 $tabeldatabase = "user"; // tabel database
 $chmod = $chmenu1; // Hak akses Menu
-$forward = mysqli_real_escape_string($conn,$tabeldatabase); // tabel database
-$forwardpage = mysqli_real_escape_string($conn, $halaman); // halaman
+$forward = safe_mysqli_real_escape_string($conn,$tabeldatabase); // tabel database
+$forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $search = $_POST['search'];
 ?>
 
@@ -233,7 +233,7 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                       <tbody>
 <tr>
             <td><?php echo ++$no_urut;?></td>
-            <td><?php  echo mysqli_real_escape_string($conn, $fill['nama']); ?></td>
+            <td><?php  echo safe_mysqli_real_escape_string($conn, $fill['nama']); ?></td>
             <td><div class="user-block"><img class="img-circle" src="<?php  echo $fill['avatar']; ?>" alt="Image"></div></td>
             <td>
             <?php if ($chmod >= 3 || $_SESSION['jabatan'] == 'admin') { ?>
