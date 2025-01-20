@@ -4,6 +4,13 @@
 include  "configuration/config_barcode.php"; // include php barcode 128 class
 include "configuration/config_connect.php";
  
+function safe_number_format($value, $decimals = 2, $decimal_separator = '.', $thousands_separator = ',') {
+    // Ganti nilai NULL dengan 0
+    $numeric_value = is_numeric($value) ? $value : 0;
+
+    // Format angka
+    return number_format($numeric_value, $decimals, $decimal_separator, $thousands_separator);
+}
 $set=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM barang_setting_barcode"));
 
 $atas=$set['label_atas'];
