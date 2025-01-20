@@ -4,7 +4,8 @@
 error_reporting(0);
  include "configuration/config_etc.php";
 include "configuration/config_include.php";
-etc();session();connect();
+//etc();
+session();connect();
 ?>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
