@@ -30,9 +30,12 @@ table, th, td {
 date_default_timezone_set("Asia/Jakarta");
 $now=date('d-m-Y');
 
-
-$dari =$_GET["dari"];
-$sampai = $_GET["sampai"];
+$dari =$now;
+$sampai = $now;
+if (isset($_GET["dari"])&&isset($_GET["sampai"])) {
+  $dari = $_GET["dari"];
+  $sampai = $_GET["sampai"];
+}
 
 
         $sql1="SELECT * FROM data";
@@ -82,8 +85,13 @@ $cost=$row['cost'] + 0;
 
 $net = $pemasukan - $biaya -$cost;
 $gross1= $pemasukan -$biaya;
-$prctg1 = round((($gross1/$pemasukan)*100),2);
-$prctg2 = round((($net/$pemasukan)*100),2);
+if ($pemasukan=="0") {
+  $prctg1 = 0;
+  $prctg2 = 0;
+}else{
+  $prctg1 = round((($gross1/$pemasukan)*100),2);
+  $prctg2 = round((($net/$pemasukan)*100),2);
+}
 
  $operasional       = mysqli_query($conn, "SELECT tipe,SUM(biaya) as cost FROM operasional WHERE tanggal BETWEEN '" . $dari . "' AND  '" . $sampai . "' GROUP BY tipe order by no asc"); 
 
