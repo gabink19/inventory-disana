@@ -115,7 +115,7 @@ $nota= $_GET['nota'];
 
 
 
-                 $sql2 = "insert into bayar values( '$nota','$tglnota','$jam','$bayar','$total','$kembali','$databelitotal','$kasir','$diskon','','$tipe','$ket','$biaya')";
+                 $sql2 = "INSERT INTO bayar (nota, tglbayar, jam, bayar, total, kembali, keluar, kasir, diskon, tipebayar, ket, biaya) VALUES ('$nota','$tglnota','$jam','$bayar','$total','$kembali','$databelitotal','$kasir','$diskon','$tipe','$ket','$biaya')";
                if(mysqli_query($conn, $sql2)){
 
                //update mutasi

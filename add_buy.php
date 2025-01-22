@@ -231,7 +231,7 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
    //            $sql3 = "UPDATE barang SET terbeli='$terbeliakhir', sisa='$sisaakhir' where kode='$barang'";
    //            $updatestok = mysqli_query($conn, $sql3);
 //merekam mutasi
-               $sql4 = "INSERT INTO mutasi values ( '$kasir','$today','$barang','$sisaakhir','$jumlah','$kegiatan','$kode','','$status')";
+               $sql4 = "INSERT INTO mutasi (kasir, tanggal, barang, sisa, jumlah, kegiatan, kode, status) values ( '$kasir','$today','$barang','$sisaakhir','$jumlah','$kegiatan','$kode','$status')";
                $mutasi = mysqli_query($conn, $sql4);
 
                  echo "<script type='text/javascript'>window.location = 'add_buy?item=add';</script>";

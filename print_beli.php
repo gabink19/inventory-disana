@@ -39,6 +39,20 @@ $forward = safe_mysqli_real_escape_string($conn, $tabeldatabase); // tabel datab
 $forwardpage = safe_mysqli_real_escape_string($conn, $halaman); // halaman
 $tabel = "buy";
 
+function safe_number_format($value, $decimals = 2, $decimal_separator = '.', $thousands_separator = ',') {
+  // Ganti nilai NULL dengan 0
+  $numeric_value = is_numeric($value) ? $value : 0;
+
+  // Format angka
+  return number_format($numeric_value, $decimals, $decimal_separator, $thousands_separator);
+}
+function safe_mysqli_real_escape_string(mysqli $connection, $string) {
+  // Pastikan nilai $string tidak NULL, gunakan string kosong sebagai default
+  $string = $string ?? '';
+
+  // Escape string menggunakan mysqli_real_escape_string
+  return mysqli_real_escape_string($connection, $string);
+}
  
 ?>
 <?php
