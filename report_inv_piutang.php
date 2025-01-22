@@ -126,10 +126,9 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
           if($s =='all'){
                 $sqla="SELECT SUM(total) as tbayar, SUM(sudahbayar) as tsudah FROM sale WHERE status LIKE 'belum' AND tglsale BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
-            } else if ($s=='belum') {
+            } else  {
                  $sqla="SELECT SUM(total) as tbayar, SUM(sudahbayar) as tsudah FROM sale WHERE pelanggan='$s' AND status LIKE 'belum' AND tglsale BETWEEN '" . $dr . "' AND  '" . $sam . "' ";
             } 
-
 $b=mysqli_fetch_assoc(mysqli_query($conn,$sqla));
 
 echo '  <div >

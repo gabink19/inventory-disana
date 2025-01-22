@@ -223,6 +223,13 @@ if($lop['countitem']==24){
     $rowoflastpage=$lop['countitem'] % 24;
 }
 
+function safe_number_format($value, $decimals = 2, $decimal_separator = '.', $thousands_separator = ',') {
+    // Ganti nilai NULL dengan 0
+    $numeric_value = is_numeric($value) ? $value : 0;
+
+    // Format angka
+    return number_format($numeric_value, $decimals, $decimal_separator, $thousands_separator);
+}
 
 $filler=0;
 $lastpage=$numofpage-1;

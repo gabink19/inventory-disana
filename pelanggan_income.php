@@ -245,7 +245,7 @@ $sampe=date("d-m-Y", strtotime($sampai));
         <div class="box-body">
 
            <div class="well well-sm">
-                    <?php echo 'Total transaksi dari '.$dr.' sampai '.$sampe.' sejumlah <b>Rp '.number_format($total, $decimal, $a_decimal, $thousand).',-</b> ada <b>Rp '.number_format($belum, $decimal, $a_decimal, $thousand).',-</b> yang belum dibayar dari total transaksi tersebut' ; ?>
+                    <?php echo 'Total transaksi dari '.$dr.' sampai '.$sampe.' sejumlah <b>Rp '.safe_number_format($total, $decimal, $a_decimal, $thousand).',-</b> ada <b>Rp '.safe_number_format($belum, $decimal, $a_decimal, $thousand).',-</b> yang belum dibayar dari total transaksi tersebut' ; ?>
                 </div>
 
           <div class="box-body table-responsive">

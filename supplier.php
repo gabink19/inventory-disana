@@ -255,7 +255,7 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
            <div class="form-group col-md-12 col-xs-12" >
                   <label for="alamat" class="col-sm-3 control-label">Alamat:</label>
                   <div class="col-sm-9">
-                  <textarea class="form-control" rows="3" id="alamat" name="alamat" maxlength="255" placeholder="Masukan Alamat" required><?php echo $fill['nama'];?></textarea>
+                  <textarea class="form-control" rows="3" id="alamat" name="alamat" maxlength="255" placeholder="Masukan Alamat" required><?php echo $fill['alamat'];?></textarea>
                    </div>
                 </div>
         </div>
