@@ -6,6 +6,13 @@ $forward = $_GET['forward'];
 header("Content-type: application/vnd-ms-excel");
 header("Content-Disposition: attachment; filename=$forward.xls");
 
+function safe_mysqli_real_escape_string(mysqli $connection, $string) {
+  // Pastikan nilai $string tidak NULL, gunakan string kosong sebagai default
+  $string = $string ?? '';
+
+  // Escape string menggunakan mysqli_real_escape_string
+  return mysqli_real_escape_string($connection, $string);
+}
 ?>
 <?php if($forward == 'bayar'){ ?>
       <table class="table">
