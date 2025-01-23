@@ -184,7 +184,6 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
                                         </thead>
                                           <?php
     error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
-   
     while(($count<$rpp) && ($i<$tcount)) {
       mysqli_data_seek($result,$i);
       $fill = mysqli_fetch_array($result);
@@ -242,6 +241,9 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
         </div>
         <!-- ./wrapper -->
         <script src="dist/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
        
        
         <script>

@@ -254,8 +254,8 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
                         $custo=mysqli_fetch_assoc(mysqli_query($conn,"SELECT nama FROM pelanggan WHERE kode='$pl'"));
                          echo '<td>'.$custo['nama'].'</td>';
                         
-                        echo '<td>'.number_format($fill['total']).'</td>';
-                        echo '<td>'.number_format($fill['modal']).'</td>';
+                        echo '<td>'.safe_number_format($fill['total']).'</td>';
+                        echo '<td>'.safe_number_format($fill['modal']).'</td>';
                                                        
                               echo '<td>'.$fill['oleh'].'</td>';
                               echo '<td>'.$fill['tgl'].'</td>';

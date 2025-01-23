@@ -188,12 +188,12 @@ if ($chmod >= 2 || $_SESSION['jabatan'] == 'admin') {
 
 if($cek['view_sku']!=0){  echo '<td>'.$fill['sku'].'</td>';}
 if($cek['view_nama']!=0){  echo '<td>'.$fill['nama'].'</td>';}
-if($cek['view_hbeli']!=0){ echo '<td>'.number_format($fill['hargabeli']).'</td>';}
-if($cek['view_hjual']!=0){ echo '<td>'.number_format($fill['hargajual']).'</td>';}
+if($cek['view_hbeli']!=0){ echo '<td>'.safe_number_format($fill['hargabeli']).'</td>';}
+if($cek['view_hjual']!=0){ echo '<td>'.safe_number_format($fill['hargajual']).'</td>';}
 
                    
-if($cek['view_stok']!=0){   echo '<td>'.number_format($fill['sisa']).'</td>';}
-if($cek['view_terjual']!=0){   echo '<td>'.number_format($fill['terjual']).'</td>';}
+if($cek['view_stok']!=0){   echo '<td>'.safe_number_format($fill['sisa']).'</td>';}
+if($cek['view_terjual']!=0){   echo '<td>'.safe_number_format($fill['terjual']).'</td>';}
  if($cek['view_satuan']!=0){   echo '<td>'.$fill['satuan'].'</td>';}                             
  if($cek['view_kategori']!=0){   echo '<td>'.$fill['kategori'].'</td>';}
  if($cek['view_lokasi']!=0){    echo '<td>'.$fill['lokasi'].'</td>';}

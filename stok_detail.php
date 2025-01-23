@@ -175,7 +175,7 @@ $total=$rowa['total'];
                            <div class="box">
             <div class="box-header">
             <h3 class="box-title">Data <?php echo $forward ?>  <span class="label label-default"><?php echo $totaldata; ?></span> <span class="label label-warning"><?php echo $nota; ?></span> <span class="label label-success"><?php echo $tanggal; ?></span>
-              <span class="label label-info"><?php echo 'Rp '.number_format($total, $decimal, $a_decimal, $thousand).',-'; ?></span>
+              <span class="label label-info"><?php echo 'Rp '.safe_number_format($total, $decimal, $a_decimal, $thousand).',-'; ?></span>
           </h3>
 
 

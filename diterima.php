@@ -15,7 +15,23 @@ $row  = mysqli_fetch_assoc($query);
 $namaorg = $row['nama'];
 ?>
 
-<?php
+<?php 
+ if(isset($_POST["simpan"])){
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+$nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
+$org = safe_mysqli_real_escape_string($conn, $_POST["org"]);
+
+
+
+$sqlw = "UPDATE buy SET diterima='$org' where nota='$nota' ";
+$updt = mysqli_query($conn, $sqlw);
+if ($updt){
+
+  echo "<script type='text/javascript'>  alert('Berhasil, Data telah disimpan!'); </script>";
+                  echo "<script type='text/javascript'>window.location = 'pembelian';</script>";
+}
+} }
 $decimal ="0";
 $a_decimal =",";
 $thousand =".";
@@ -138,11 +154,7 @@ if ($chmod >= 1 || $_SESSION['jabatan'] == 'admin') {
 ?>
 
 <?php
-
-     
-
-$sqla="SELECT * FROM user where userna_me='$user'";
-$hasila=mysqli_query($conn,$sqla);
+$hasila=mysqli_query($conn,$user);
 $rowax=mysqli_fetch_assoc($hasila);
 $namakasir=$rowax['nama'];
 ?>
@@ -373,7 +385,7 @@ if (mysqli_num_rows($cekres)>0){
              
               <input type="hidden" name="org" value="<?php echo $namaorg;?>">
               <input type="hidden" name="nota" value="<?php echo $nota;?>">
-          <button type="submit" name="simpan" class="btn pull-left btn-success col-lg-12" name="simpan" onclick="document.getElementById('Myform').submit();" ><span class="glyphicon glyphicon-floppy-disk"></span> Selesai</button>
+          <button type="submit" name="simpan" class="btn pull-left btn-success col-lg-12" name="simpan" onclick="document.getElementById('Myform').submit();" value="simpan" ><span class="glyphicon glyphicon-floppy-disk"></span> Selesai</button>
 
         </form>
   <?php } ?>      
@@ -384,27 +396,7 @@ if (mysqli_num_rows($cekres)>0){
         </form>
         </div> <p>* Klik Selesai setelah menerima semua barang</p>
         <!-- /.row -->
-
- <?php 
- if(isset($_POST["simpan"])){
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-$nota = safe_mysqli_real_escape_string($conn, $_POST["nota"]);
-$org = safe_mysqli_real_escape_string($conn, $_POST["org"]);
-
-
-
-$sqlw = "UPDATE buy SET diterima='$org' where nota='$nota' ";
-$updt = mysqli_query($conn, $sqlw);
-
-if ($updt){
-
-  echo "<script type='text/javascript'>  alert('Berhasil, Data telah disimpan!'); </script>";
-                  echo "<script type='text/javascript'>window.location = 'pembelian';</script>";
-}
-} }
-
- ?>       
+    
                     <!-- Main row -->
                     <div class="row">
                     </div>
@@ -446,7 +438,7 @@ if ($updt){
 </script>
         <script src="dist/bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script src="dist/plugins/morris/morris.min.js"></script>
+        <!-- <script src="dist/plugins/morris/morris.min.js"></script> -->
         <script src="dist/plugins/sparkline/jquery.sparkline.min.js"></script>
         <script src="dist/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
         <script src="dist/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -458,7 +450,7 @@ if ($updt){
         <script src="dist/plugins/slimScroll/jquery.slimscroll.min.js"></script>
         <script src="dist/plugins/fastclick/fastclick.js"></script>
         <script src="dist/js/app.min.js"></script>
-        <script src="dist/js/pages/dashboard.js"></script>
+        <!-- <script src="dist/js/pages/dashboard.js"></script> -->
         <script src="dist/js/demo.js"></script>
 		<script src="dist/plugins/datatables/jquery.dataTables.min.js"></script>
 		<script src="dist/plugins/datatables/dataTables.bootstrap.min.js"></script>

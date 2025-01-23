@@ -5,6 +5,13 @@
  date_default_timezone_set("Asia/Jakarta");
 $today=date('Y-m-d');
 
+function safe_mysqli_real_escape_string(mysqli $connection, $string) {
+  // Pastikan nilai $string tidak NULL, gunakan string kosong sebagai default
+  $string = $string ?? '';
+
+  // Escape string menggunakan mysqli_real_escape_string
+  return mysqli_real_escape_string($connection, $string);
+}
 if(isset($_POST["diterima"])){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 

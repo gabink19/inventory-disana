@@ -369,7 +369,7 @@ if($bulan == null || $search == "" ){
               
           </h3>
           <?php if($totalinv !='' || $totalinv !=null){?>
-          <span class="no-print pull-right" id="no-print"> <?php echo 'Total Invoice terbayar pada <b>'.$namabulan.'</b> '.$tahun.' sejumlah <b>Rp '.number_format($totalinv, $decimal, $a_decimal, $thousand).',-</b>'; ?></span>
+          <span class="no-print pull-right" id="no-print"> <?php echo 'Total Invoice terbayar pada <b>'.$namabulan.'</b> '.$tahun.' sejumlah <b>Rp '.safe_number_format($totalinv, $decimal, $a_decimal, $thousand).',-</b>'; ?></span>
         <?php } ?>
           
 

@@ -254,7 +254,7 @@ if($bulan == '1'){
 <?php if($tahun != null || $tahun != ""){ ?>
 
                       <div class="well well-sm">
-                    <?php echo 'Revenue pada bulan <b>'.$namabulan.'</b> '.$tahun.' sejumlah <b>Rp '.number_format($totalrevenue, $decimal, $a_decimal, $thousand).',-</b>'; ?>
+                    <?php echo 'Revenue pada bulan <b>'.$namabulan.'</b> '.$tahun.' sejumlah <b>Rp '.safe_number_format($totalrevenue, $decimal, $a_decimal, $thousand).',-</b>'; ?>
                 </div>
                   <?php }else{} ?>
 </div>
